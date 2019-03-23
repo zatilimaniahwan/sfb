@@ -1,0 +1,49 @@
+<!--
+  Generated template for the ReportdonationPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+  <ion-navbar>
+    <ion-title>Donation</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content >
+    <ion-list>
+        <ion-item>
+  <ion-label>Year:</ion-label>
+    <ion-select [(ngModel)]="year">
+        <ion-option value="2019">2019</ion-option>
+        <ion-option value="2018">2018</ion-option>
+      </ion-select>
+      </ion-item>
+      </ion-list>
+    <ion-card>
+        <ion-card-header>
+          Bar Chart
+        </ion-card-header>
+        <ion-card-content>
+          <canvas #barCanvas></canvas>
+        </ion-card-content>
+      </ion-card>
+      <ion-card>
+          <ion-card-header>
+            Doughnut Chart
+          </ion-card-header>
+          <ion-card-content>
+            <canvas #doughnutCanvas></canvas>
+          </ion-card-content>
+        </ion-card>
+    
+        <ion-card>
+          <ion-card-header>
+            Line Chart
+          </ion-card-header>
+          <ion-card-content>
+            <canvas #lineCanvas></canvas>
+          </ion-card-content>
+        </ion-card>
+    
+</ion-content>
