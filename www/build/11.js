@@ -1,14 +1,14 @@
 webpackJsonp([11],{
 
-/***/ 438:
+/***/ 437:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "PublicloginPageModule", function() { return PublicloginPageModule; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "OrganizationformPageModule", function() { return OrganizationformPageModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(7);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__publiclogin__ = __webpack_require__(343);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__organizationform__ = __webpack_require__(342);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -18,23 +18,23 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 
 
 
-var PublicloginPageModule = /** @class */ (function () {
-    function PublicloginPageModule() {
+var OrganizationformPageModule = /** @class */ (function () {
+    function OrganizationformPageModule() {
     }
-    PublicloginPageModule = __decorate([
+    OrganizationformPageModule = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["I" /* NgModule */])({
             declarations: [
-                __WEBPACK_IMPORTED_MODULE_2__publiclogin__["a" /* PublicloginPage */],
+                __WEBPACK_IMPORTED_MODULE_2__organizationform__["a" /* OrganizationformPage */],
             ],
             imports: [
-                __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["d" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__publiclogin__["a" /* PublicloginPage */]),
+                __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["d" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__organizationform__["a" /* OrganizationformPage */]),
             ],
         })
-    ], PublicloginPageModule);
-    return PublicloginPageModule;
+    ], OrganizationformPageModule);
+    return OrganizationformPageModule;
 }());
 
-//# sourceMappingURL=publiclogin.module.js.map
+//# sourceMappingURL=organizationform.module.js.map
 
 /***/ })
 

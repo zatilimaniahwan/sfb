@@ -6,6 +6,9 @@
 -->
 <ion-header>
   <ion-navbar>
+      <button ion-button menuToggle>
+          <ion-icon name="menu"></ion-icon>
+        </button>
     <ion-title>User Group</ion-title>
   </ion-navbar>
 </ion-header>
@@ -16,9 +19,10 @@
         <ion-item tappable *ngFor="let item of items; let index=index" (click)="edit(item.id)">
          <h4>{{ item.desc }}</h4> 
         </ion-item>
-      </ion-list>
-      <ion-fab right bottom>
+        <ion-fab right>
           <button ion-fab mini (click)="create()"><ion-icon name="add"></ion-icon></button>
       </ion-fab>
+      </ion-list>
+     
 
 </ion-content>

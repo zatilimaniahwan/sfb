@@ -1,6 +1,138 @@
 webpackJsonp([22],{
 
-/***/ 101:
+/***/ 102:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return UgroupformPage; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(7);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_common_http__ = __webpack_require__(79);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ugroup_ugroup__ = __webpack_require__(42);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+/**
+ * Generated class for the UgroupformPage page.
+ *
+ * See https://ionicframework.com/docs/components/#navigation for more info on
+ * Ionic pages and navigation.
+ */
+var UgroupformPage = /** @class */ (function () {
+    function UgroupformPage(navCtrl, navParams, toastCtrl, http) {
+        this.navCtrl = navCtrl;
+        this.navParams = navParams;
+        this.toastCtrl = toastCtrl;
+        this.http = http;
+        this.ugroup = {
+            id: '',
+            code: '',
+            desc: ''
+        };
+        this.title = '';
+        this.btnSave = false;
+        this.btnUpdate = false;
+        this.btnDelete = false;
+        this.ugroupID = '';
+        // Set title for create/add new data
+        this.title = 'Add New';
+        this.btnSave = true;
+        this.btnDelete = false;
+        this.btnUpdate = false;
+        // get current id for record
+        this.ugroupID = navParams.get("ugroupID");
+        // Set title if edit (Make it dynamic!!!)
+        if (this.ugroupID != null || this.ugroupID != undefined) {
+            this.title = 'Edit Record';
+            this.btnSave = false;
+            this.btnDelete = true;
+            this.btnUpdate = true;
+        }
+        // Set properties of toaster
+        this.toaster = this.toastCtrl.create({
+            duration: 5000,
+            position: 'bottom'
+        });
+    }
+    UgroupformPage.prototype.ionViewDidLoad = function () {
+        var _this = this;
+        console.log(this.ugroupID);
+        if (this.ugroupID != null) {
+            this.data = this.http.get('http://localhost/smartfoodbank/usergroup/usergroupbyid?id=' + this.ugroupID);
+            this.data.subscribe(function (data) {
+                _this.ugroup = data[0];
+                console.log(_this.ugroup);
+            });
+        }
+    };
+    UgroupformPage.prototype.save = function () {
+        var _this = this;
+        if (this.ugroup.code == '' || this.ugroup.desc == '') {
+            this.toaster.setMessage('All fields are required');
+            this.toaster.present();
+        }
+        else {
+            var url = "http://localhost/smartfoodbank/usergroup/addusergroup";
+            this.data = this.http.post(url, this.ugroup, { headers: { 'Content-Type': 'application/x-www-form-urlencoded' } });
+        }
+        this.data.subscribe(function (data) {
+            _this.toaster.setMessage('Data successfully added');
+            _this.toaster.present();
+            _this.navCtrl.setRoot(__WEBPACK_IMPORTED_MODULE_3__ugroup_ugroup__["a" /* UgroupPage */], { items: data });
+            console.log(data);
+        });
+    };
+    UgroupformPage.prototype.update = function () {
+        var _this = this;
+        if (this.ugroupID != '') {
+            var url = 'http://localhost/smartfoodbank/usergroup/updateusergroup';
+            this.data = this.http.post(url, this.ugroup, { headers: { 'Content-Type': 'application/x-www-form-urlencoded' } });
+            this.data.subscribe(function (data) {
+                _this.toaster.setMessage('Data successfully updated');
+                _this.toaster.present();
+                _this.navCtrl.setRoot(__WEBPACK_IMPORTED_MODULE_3__ugroup_ugroup__["a" /* UgroupPage */], { items: data });
+                console.log(data);
+            });
+        }
+    };
+    UgroupformPage.prototype.delete = function () {
+        var _this = this;
+        if (this.ugroupID != '') {
+            console.log(this.ugroupID);
+            var url = 'http://localhost/smartfoodbank/usergroup/deleteusergroup';
+            this.data = this.http.post(url, this.ugroup, { headers: { 'Content-Type': 'application/x-www-form-urlencoded' } });
+            this.data.subscribe(function (data) {
+                _this.toaster.setMessage('Data successfully deleted');
+                _this.toaster.present();
+                _this.navCtrl.setRoot(__WEBPACK_IMPORTED_MODULE_3__ugroup_ugroup__["a" /* UgroupPage */], { items: data });
+                console.log(data);
+            });
+        }
+    };
+    UgroupformPage = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
+            selector: 'page-ugroupform',template:/*ion-inline-start:"/Users/zatilimani/ionicprojects/smartfoodbank/src/pages/ugroupform/ugroupform.html"*/'<!--\n  Generated template for the StateformPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n  <ion-navbar>\n    <ion-title>{{title}}</ion-title>\n  </ion-navbar>\n</ion-header>\n\n<ion-content>\n   \n        <ion-item>\n            <ion-label floating>Code of User Group</ion-label>\n            <ion-input type="code" [(ngModel)] = "ugroup.code" ></ion-input>\n        </ion-item>\n        <ion-item>\n            <ion-label floating>Name of User Group</ion-label>\n            <ion-input type="desc" [(ngModel)] = "ugroup.desc" ></ion-input>\n        </ion-item>\n       <br>\n            <button ion-button round  (click) = "save()" *ngIf="btnSave">Save</button>\n            <button ion-button round  (click) = "update()" *ngIf="btnUpdate">Update</button>\n            <button ion-button round  (click) = "delete()" *ngIf="btnDelete">Delete</button>\n        \n   \n</ion-content>\n'/*ion-inline-end:"/Users/zatilimani/ionicprojects/smartfoodbank/src/pages/ugroupform/ugroupform.html"*/,
+        }),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavParams */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* ToastController */], __WEBPACK_IMPORTED_MODULE_2__angular_common_http__["a" /* HttpClient */]])
+    ], UgroupformPage);
+    return UgroupformPage;
+}());
+
+//# sourceMappingURL=ugroupform.js.map
+
+/***/ }),
+
+/***/ 103:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -45,259 +177,7 @@ var AnnouncementPage = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 102:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return BankdataPage; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(7);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__state_state__ = __webpack_require__(103);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ugroup_ugroup__ = __webpack_require__(105);
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-
-
-
-
-/**
- * Generated class for the BankdataPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
-var BankdataPage = /** @class */ (function () {
-    function BankdataPage(navCtrl, navParams) {
-        this.navCtrl = navCtrl;
-        this.navParams = navParams;
-    }
-    BankdataPage.prototype.viewState = function () {
-        this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_2__state_state__["a" /* StatePage */]);
-    };
-    BankdataPage.prototype.viewUsergroup = function () {
-        this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_3__ugroup_ugroup__["a" /* UgroupPage */]);
-    };
-    BankdataPage.prototype.ionViewDidLoad = function () {
-        console.log('ionViewDidLoad BankdataPage');
-    };
-    BankdataPage = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-bankdata',template:/*ion-inline-start:"/Users/zatilimani/ionicprojects/smartfoodbank/src/pages/bankdata/bankdata.html"*/'<!--\n  Generated template for the BankdataPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n    <ion-navbar>\n      <button ion-button menuToggle>\n        <ion-icon name="menu"></ion-icon>\n      </button>\n      <ion-title>Bank Data</ion-title>\n      <!--<ion-buttons end>\n          <button ion-button color="primary">\n           <ion-icon name="add-circle"></ion-icon>\n            &nbsp;Add New Data\n          </button>\n        </ion-buttons>-->\n    </ion-navbar>\n  </ion-header>\n\n<ion-content padding>\n    <button id="state" ion-button block (click)="viewState()" >List of State</button>\n    <br>\n    <button ion-button block color="secondary"(click)="viewUsergroup()">List of User Group</button>\n</ion-content>\n'/*ion-inline-end:"/Users/zatilimani/ionicprojects/smartfoodbank/src/pages/bankdata/bankdata.html"*/,
-        }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavParams */]])
-    ], BankdataPage);
-    return BankdataPage;
-}());
-
-//# sourceMappingURL=bankdata.js.map
-
-/***/ }),
-
-/***/ 103:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return StatePage; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(7);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_common_http__ = __webpack_require__(78);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__stateform_stateform__ = __webpack_require__(104);
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-
-
-
-
-/**
- * Generated class for the StatePage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
-var StatePage = /** @class */ (function () {
-    function StatePage(navCtrl, navParams, http) {
-        this.navCtrl = navCtrl;
-        this.navParams = navParams;
-        this.http = http;
-        this.searchQuery = '';
-        this.initializeItems();
-    }
-    StatePage.prototype.initializeItems = function () {
-        var _this = this;
-        var url = 'http://localhost/api/smartfoodbank/state/list_state.php';
-        this.data = this.http.get(url);
-        this.data.subscribe(function (data) {
-            //console.log(data);
-            _this.items = data;
-        });
-    };
-    StatePage.prototype.getItems = function (ev) {
-        // Reset items back to all of the items
-        this.initializeItems();
-        // set val to the value of the searchbar
-        var val = ev.target.value;
-        // if the value is an empty string don't filter the items
-        if (val && val.trim() != '') {
-            this.items = this.items.filter(function (item) {
-                return (item.toLowerCase().indexOf(val.toLowerCase()) > -1);
-            });
-        }
-    };
-    StatePage.prototype.create = function () {
-        this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_3__stateform_stateform__["a" /* StateformPage */]);
-    };
-    StatePage.prototype.edit = function (id) {
-        this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_3__stateform_stateform__["a" /* StateformPage */], { stateID: id });
-    };
-    StatePage.prototype.ionViewDidLoad = function () {
-        console.log('ionViewDidLoad StatePage');
-    };
-    StatePage = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-state',template:/*ion-inline-start:"/Users/zatilimani/ionicprojects/smartfoodbank/src/pages/state/state.html"*/'<!--\n  Generated template for the StatePage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n  <ion-navbar>\n    <ion-title>List of State</ion-title>\n  \n  </ion-navbar>\n</ion-header>\n\n<ion-content>\n    <ion-searchbar (ionInput)="getItems($event)"></ion-searchbar>\n    <ion-list>\n      <ion-item tappable *ngFor="let item of items; let index=index" (click)="edit(item.id)">\n       <h4>{{ item.desc }}</h4> \n      </ion-item>\n    </ion-list>\n    <ion-fab right bottom>\n        <button ion-fab mini (click)="create()"><ion-icon name="add"></ion-icon></button>\n    </ion-fab>\n</ion-content>\n'/*ion-inline-end:"/Users/zatilimani/ionicprojects/smartfoodbank/src/pages/state/state.html"*/,
-        }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavParams */], __WEBPACK_IMPORTED_MODULE_2__angular_common_http__["a" /* HttpClient */]])
-    ], StatePage);
-    return StatePage;
-}());
-
-//# sourceMappingURL=state.js.map
-
-/***/ }),
-
 /***/ 104:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return StateformPage; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(7);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_common_http__ = __webpack_require__(78);
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-
-
-
-/**
- * Generated class for the StateformPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
-var StateformPage = /** @class */ (function () {
-    function StateformPage(navCtrl, navParams, http, toastCtrl) {
-        this.navCtrl = navCtrl;
-        this.navParams = navParams;
-        this.http = http;
-        this.toastCtrl = toastCtrl;
-        this.state = {
-            code: '',
-            desc: '',
-        };
-        this.title = '';
-        this.header = {};
-        this.stateID = '';
-        this.title = 'Add New';
-        this.stateID = navParams.get("stateID");
-        if (this.stateID != null || this.stateID != undefined) {
-            this.title = 'Edit Record';
-        }
-        this.toaster = this.toastCtrl.create({
-            duration: 3000,
-            position: 'bottom'
-        });
-    }
-    StateformPage.prototype.ionViewDidLoad = function (id) {
-        var _this = this;
-        if (this.stateID != null) {
-            var url = 'http://localhost/api/smartfoodbank/state/detail_state.php';
-            this.data = this.http.post(url, { id: this.stateID }, this.header);
-            this.data.subscribe(function (data) {
-                _this.state = data;
-                console.log(data);
-            });
-        }
-    };
-    StateformPage = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-stateform',template:/*ion-inline-start:"/Users/zatilimani/ionicprojects/smartfoodbank/src/pages/stateform/stateform.html"*/'<!--\n  Generated template for the StateformPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n  <ion-navbar>\n    <ion-title>{{title}}</ion-title>\n  </ion-navbar>\n</ion-header>\n\n<ion-content>\n   \n        <ion-item>\n            <ion-label floating>Code of State</ion-label>\n            <ion-input type="code" [(ngModel)] = "state.code" ></ion-input>\n        </ion-item>\n        <ion-item>\n            <ion-label floating>Name of State</ion-label>\n            <ion-input type="desc" [(ngModel)] = "state.desc" ></ion-input>\n        </ion-item>\n       <br>\n            <button ion-button round  (click) = "save()">Save</button>\n            \n            <button ion-button round  (click) = "deleteState()">Delete</button>\n        \n   \n</ion-content>\n'/*ion-inline-end:"/Users/zatilimani/ionicprojects/smartfoodbank/src/pages/stateform/stateform.html"*/,
-        }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavParams */], __WEBPACK_IMPORTED_MODULE_2__angular_common_http__["a" /* HttpClient */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* ToastController */]])
-    ], StateformPage);
-    return StateformPage;
-}());
-
-//# sourceMappingURL=stateform.js.map
-
-/***/ }),
-
-/***/ 105:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return UgroupPage; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(7);
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-
-
-/**
- * Generated class for the UgroupPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
-var UgroupPage = /** @class */ (function () {
-    function UgroupPage(navCtrl, navParams) {
-        this.navCtrl = navCtrl;
-        this.navParams = navParams;
-    }
-    UgroupPage.prototype.ionViewDidLoad = function () {
-        console.log('ionViewDidLoad UgroupPage');
-    };
-    UgroupPage = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-ugroup',template:/*ion-inline-start:"/Users/zatilimani/ionicprojects/smartfoodbank/src/pages/ugroup/ugroup.html"*/'<!--\n  Generated template for the UgroupPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n  <ion-navbar>\n    <ion-title>User Group</ion-title>\n  </ion-navbar>\n</ion-header>\n\n<ion-content >\n    <ion-searchbar (ionInput)="getItems($event)"></ion-searchbar>\n    <ion-list>\n        <ion-item tappable *ngFor="let item of items; let index=index" (click)="edit(item.id)">\n         <h4>{{ item.desc }}</h4> \n        </ion-item>\n      </ion-list>\n      <ion-fab right bottom>\n          <button ion-fab mini (click)="create()"><ion-icon name="add"></ion-icon></button>\n      </ion-fab>\n\n</ion-content>\n'/*ion-inline-end:"/Users/zatilimani/ionicprojects/smartfoodbank/src/pages/ugroup/ugroup.html"*/,
-        }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavParams */]])
-    ], UgroupPage);
-    return UgroupPage;
-}());
-
-//# sourceMappingURL=ugroup.js.map
-
-/***/ }),
-
-/***/ 106:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -342,7 +222,7 @@ var BoxinfoPage = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 107:
+/***/ 105:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -387,15 +267,15 @@ var BoxlocationPage = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 108:
+/***/ 106:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return DonationPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(7);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__donationinfo_donationinfo__ = __webpack_require__(109);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__receipent_receipent__ = __webpack_require__(110);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__donationinfo_donationinfo__ = __webpack_require__(107);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__receipent_receipent__ = __webpack_require__(108);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -442,7 +322,7 @@ var DonationPage = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 109:
+/***/ 107:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -487,7 +367,7 @@ var DonationinfoPage = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 110:
+/***/ 108:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -532,15 +412,15 @@ var ReceipentPage = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 111:
+/***/ 109:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return FoodbankPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(7);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__boxinfo_boxinfo__ = __webpack_require__(106);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__boxlocation_boxlocation__ = __webpack_require__(107);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__boxinfo_boxinfo__ = __webpack_require__(104);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__boxlocation_boxlocation__ = __webpack_require__(105);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -587,7 +467,7 @@ var FoodbankPage = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 112:
+/***/ 110:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -621,7 +501,7 @@ var OrganizationPage = /** @class */ (function () {
     };
     OrganizationPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-organization',template:/*ion-inline-start:"/Users/zatilimani/ionicprojects/smartfoodbank/src/pages/organization/organization.html"*/'<!--\n  Generated template for the OrganizationPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n  <ion-navbar>\n    <ion-title>organization</ion-title>\n  </ion-navbar>\n</ion-header>\n\n<ion-content padding>\n\n</ion-content>\n'/*ion-inline-end:"/Users/zatilimani/ionicprojects/smartfoodbank/src/pages/organization/organization.html"*/,
+            selector: 'page-organization',template:/*ion-inline-start:"/Users/zatilimani/ionicprojects/smartfoodbank/src/pages/organization/organization.html"*/'<!--\n  Generated template for the OrganizationPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n  <ion-navbar>\n      <button ion-button menuToggle>\n          <ion-icon name="menu"></ion-icon>\n        </button>\n    <ion-title>Organization</ion-title>\n  </ion-navbar>\n</ion-header>\n\n<ion-content padding >\n  <button id="boxinfo" ion-button block (click)="settingInfo()" >Setting for Info</button>\n  <br>\n  <button ion-button block color="secondary"(click)="settingLocation()">Setting for Location</button>\n</ion-content>\n\n'/*ion-inline-end:"/Users/zatilimani/ionicprojects/smartfoodbank/src/pages/organization/organization.html"*/,
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavParams */]])
     ], OrganizationPage);
@@ -632,62 +512,7 @@ var OrganizationPage = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 113:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ReportPage; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(7);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__reportdonation_reportdonation__ = __webpack_require__(114);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__reportrecipient_reportrecipient__ = __webpack_require__(115);
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-
-
-
-
-/**
- * Generated class for the ReportPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
-var ReportPage = /** @class */ (function () {
-    function ReportPage(navCtrl, navParams) {
-        this.navCtrl = navCtrl;
-        this.navParams = navParams;
-    }
-    ReportPage.prototype.reportDonation = function () {
-        this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_2__reportdonation_reportdonation__["a" /* ReportdonationPage */]);
-    };
-    ReportPage.prototype.reportRecipient = function () {
-        this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_3__reportrecipient_reportrecipient__["a" /* ReportrecipientPage */]);
-    };
-    ReportPage.prototype.ionViewDidLoad = function () {
-        console.log('ionViewDidLoad ReportPage');
-    };
-    ReportPage = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-report',template:/*ion-inline-start:"/Users/zatilimani/ionicprojects/smartfoodbank/src/pages/report/report.html"*/'<!--\n  Generated template for the ReportPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n  <ion-navbar>\n      <button ion-button menuToggle>\n          <ion-icon name="menu"></ion-icon>\n        </button>\n    <ion-title>Report</ion-title>\n  </ion-navbar>\n</ion-header>\n\n<ion-content padding >\n    <button id="reportDonation" ion-button block (click)="reportDonation()" >Report for Donation</button>\n    <br>\n    <button id="reportRecipient" ion-button block color="secondary"(click)="reportRecipient()">Report for Location</button>\n</ion-content>\n'/*ion-inline-end:"/Users/zatilimani/ionicprojects/smartfoodbank/src/pages/report/report.html"*/,
-        }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavParams */]])
-    ], ReportPage);
-    return ReportPage;
-}());
-
-//# sourceMappingURL=report.js.map
-
-/***/ }),
-
-/***/ 114:
+/***/ 111:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -766,32 +591,6 @@ var ReportdonationPage = /** @class */ (function () {
                 }
             }
         });
-        this.doughnutChart = new __WEBPACK_IMPORTED_MODULE_2_chart_js__["Chart"](this.doughnutCanvas.nativeElement, {
-            type: 'doughnut',
-            data: {
-                labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
-                datasets: [{
-                        label: '# of Votes',
-                        data: [12, 19, 3, 5, 2, 3],
-                        backgroundColor: [
-                            'rgba(255, 99, 132, 0.2)',
-                            'rgba(54, 162, 235, 0.2)',
-                            'rgba(255, 206, 86, 0.2)',
-                            'rgba(75, 192, 192, 0.2)',
-                            'rgba(153, 102, 255, 0.2)',
-                            'rgba(255, 159, 64, 0.2)'
-                        ],
-                        hoverBackgroundColor: [
-                            "#FF6384",
-                            "#36A2EB",
-                            "#FFCE56",
-                            "#FF6384",
-                            "#36A2EB",
-                            "#FFCE56"
-                        ]
-                    }]
-            }
-        });
         this.lineChart = new __WEBPACK_IMPORTED_MODULE_2_chart_js__["Chart"](this.lineCanvas.nativeElement, {
             type: 'line',
             data: {
@@ -837,7 +636,7 @@ var ReportdonationPage = /** @class */ (function () {
     ], ReportdonationPage.prototype, "lineCanvas", void 0);
     ReportdonationPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-reportdonation',template:/*ion-inline-start:"/Users/zatilimani/ionicprojects/smartfoodbank/src/pages/reportdonation/reportdonation.html"*/'<!--\n  Generated template for the ReportdonationPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n  <ion-navbar>\n    <ion-title>Donation</ion-title>\n  </ion-navbar>\n</ion-header>\n\n<ion-content >\n    <ion-list>\n        <ion-item>\n  <ion-label>Year:</ion-label>\n    <ion-select [(ngModel)]="year">\n        <ion-option value="2019">2019</ion-option>\n        <ion-option value="2018">2018</ion-option>\n      </ion-select>\n      </ion-item>\n      </ion-list>\n    <ion-card>\n        <ion-card-header>\n          Bar Chart\n        </ion-card-header>\n        <ion-card-content>\n          <canvas #barCanvas></canvas>\n        </ion-card-content>\n      </ion-card>\n      <ion-card>\n          <ion-card-header>\n            Doughnut Chart\n          </ion-card-header>\n          <ion-card-content>\n            <canvas #doughnutCanvas></canvas>\n          </ion-card-content>\n        </ion-card>\n    \n        <ion-card>\n          <ion-card-header>\n            Line Chart\n          </ion-card-header>\n          <ion-card-content>\n            <canvas #lineCanvas></canvas>\n          </ion-card-content>\n        </ion-card>\n    \n</ion-content>\n'/*ion-inline-end:"/Users/zatilimani/ionicprojects/smartfoodbank/src/pages/reportdonation/reportdonation.html"*/,
+            selector: 'page-reportdonation',template:/*ion-inline-start:"/Users/zatilimani/ionicprojects/smartfoodbank/src/pages/reportdonation/reportdonation.html"*/'<!--\n  Generated template for the ReportdonationPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n  <ion-navbar>\n    <ion-title>Donation</ion-title>\n  </ion-navbar>\n</ion-header>\n\n<ion-content >\n    <ion-list>\n        <ion-item>\n  <ion-label>Year:</ion-label>\n    <ion-select [(ngModel)]="year">\n        <ion-option value="2019">2019</ion-option>\n        <ion-option value="2018">2018</ion-option>\n      </ion-select>\n      </ion-item>\n      </ion-list>\n    <ion-card>\n        <ion-card-header>\n          Bar Chart\n        </ion-card-header>\n        <ion-card-content>\n          <canvas #barCanvas></canvas>\n        </ion-card-content>\n      </ion-card>\n      \n    \n        <ion-card>\n          <ion-card-header>\n            Line Chart\n          </ion-card-header>\n          <ion-card-content>\n            <canvas #lineCanvas></canvas>\n          </ion-card-content>\n        </ion-card>\n    \n</ion-content>\n'/*ion-inline-end:"/Users/zatilimani/ionicprojects/smartfoodbank/src/pages/reportdonation/reportdonation.html"*/,
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavParams */]])
     ], ReportdonationPage);
@@ -848,7 +647,7 @@ var ReportdonationPage = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 115:
+/***/ 112:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -893,7 +692,62 @@ var ReportrecipientPage = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 127:
+/***/ 113:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ReportPage; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(7);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__reportdonation_reportdonation__ = __webpack_require__(111);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__reportrecipient_reportrecipient__ = __webpack_require__(112);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+/**
+ * Generated class for the ReportPage page.
+ *
+ * See https://ionicframework.com/docs/components/#navigation for more info on
+ * Ionic pages and navigation.
+ */
+var ReportPage = /** @class */ (function () {
+    function ReportPage(navCtrl, navParams) {
+        this.navCtrl = navCtrl;
+        this.navParams = navParams;
+    }
+    ReportPage.prototype.reportDonation = function () {
+        this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_2__reportdonation_reportdonation__["a" /* ReportdonationPage */]);
+    };
+    ReportPage.prototype.reportRecipient = function () {
+        this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_3__reportrecipient_reportrecipient__["a" /* ReportrecipientPage */]);
+    };
+    ReportPage.prototype.ionViewDidLoad = function () {
+        console.log('ionViewDidLoad ReportPage');
+    };
+    ReportPage = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
+            selector: 'page-report',template:/*ion-inline-start:"/Users/zatilimani/ionicprojects/smartfoodbank/src/pages/report/report.html"*/'<!--\n  Generated template for the ReportPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n  <ion-navbar>\n      <button ion-button menuToggle>\n          <ion-icon name="menu"></ion-icon>\n        </button>\n    <ion-title>Report</ion-title>\n  </ion-navbar>\n</ion-header>\n\n<ion-content padding >\n    <button id="reportDonation" ion-button block (click)="reportDonation()" >Report for Donation</button>\n    <br>\n    <button id="reportRecipient" ion-button block color="secondary"(click)="reportRecipient()">Report for Location</button>\n</ion-content>\n'/*ion-inline-end:"/Users/zatilimani/ionicprojects/smartfoodbank/src/pages/report/report.html"*/,
+        }),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavParams */]])
+    ], ReportPage);
+    return ReportPage;
+}());
+
+//# sourceMappingURL=report.js.map
+
+/***/ }),
+
+/***/ 125:
 /***/ (function(module, exports) {
 
 function webpackEmptyAsyncContext(req) {
@@ -906,20 +760,20 @@ function webpackEmptyAsyncContext(req) {
 webpackEmptyAsyncContext.keys = function() { return []; };
 webpackEmptyAsyncContext.resolve = webpackEmptyAsyncContext;
 module.exports = webpackEmptyAsyncContext;
-webpackEmptyAsyncContext.id = 127;
+webpackEmptyAsyncContext.id = 125;
 
 /***/ }),
 
-/***/ 169:
+/***/ 167:
 /***/ (function(module, exports, __webpack_require__) {
 
 var map = {
 	"../pages/announcement/announcement.module": [
-		427,
+		428,
 		21
 	],
 	"../pages/bankdata/bankdata.module": [
-		428,
+		427,
 		20
 	],
 	"../pages/boxinfo/boxinfo.module": [
@@ -935,11 +789,11 @@ var map = {
 		17
 	],
 	"../pages/donationinfo/donationinfo.module": [
-		433,
+		432,
 		16
 	],
 	"../pages/foodbank/foodbank.module": [
-		432,
+		433,
 		15
 	],
 	"../pages/intro/intro.module": [
@@ -954,52 +808,52 @@ var map = {
 		436,
 		12
 	],
-	"../pages/organizationinfo/organizationinfo.module": [
+	"../pages/organizationform/organizationform.module": [
 		437,
+		11
+	],
+	"../pages/organizationinfo/organizationinfo.module": [
+		438,
 		0
 	],
 	"../pages/publiclogin/publiclogin.module": [
-		438,
-		11
-	],
-	"../pages/receipent/receipent.module": [
 		439,
 		10
 	],
-	"../pages/register/register.module": [
+	"../pages/receipent/receipent.module": [
 		440,
 		9
 	],
-	"../pages/report/report.module": [
+	"../pages/register/register.module": [
 		441,
 		8
 	],
+	"../pages/report/report.module": [
+		448,
+		7
+	],
 	"../pages/reportdonation/reportdonation.module": [
 		442,
-		7
+		6
 	],
 	"../pages/reportrecipient/reportrecipient.module": [
 		443,
-		6
-	],
-	"../pages/role/role.module": [
-		445,
 		5
 	],
-	"../pages/staff/staff.module": [
-		444,
+	"../pages/role/role.module": [
+		447,
 		4
 	],
-	"../pages/state/state.module": [
+	"../pages/staff/staff.module": [
 		446,
 		3
 	],
-	"../pages/stateform/stateform.module": [
-		447,
+	"../pages/ugroup/ugroup.module": [
+		444,
 		2
 	],
-	"../pages/ugroup/ugroup.module": [
-		448,
+	"../pages/ugroupform/ugroupform.module": [
+		445,
 		1
 	]
 };
@@ -1014,12 +868,12 @@ function webpackAsyncContext(req) {
 webpackAsyncContext.keys = function webpackAsyncContextKeys() {
 	return Object.keys(map);
 };
-webpackAsyncContext.id = 169;
+webpackAsyncContext.id = 167;
 module.exports = webpackAsyncContext;
 
 /***/ }),
 
-/***/ 340:
+/***/ 338:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1054,7 +908,57 @@ var HomePage = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 341:
+/***/ 339:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return BankdataPage; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(7);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ugroup_ugroup__ = __webpack_require__(42);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+/**
+ * Generated class for the BankdataPage page.
+ *
+ * See https://ionicframework.com/docs/components/#navigation for more info on
+ * Ionic pages and navigation.
+ */
+var BankdataPage = /** @class */ (function () {
+    function BankdataPage(navCtrl, navParams) {
+        this.navCtrl = navCtrl;
+        this.navParams = navParams;
+    }
+    BankdataPage.prototype.viewUsergroup = function () {
+        this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_2__ugroup_ugroup__["a" /* UgroupPage */]);
+    };
+    BankdataPage.prototype.ionViewDidLoad = function () {
+        console.log('ionViewDidLoad BankdataPage');
+    };
+    BankdataPage = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
+            selector: 'page-bankdata',template:/*ion-inline-start:"/Users/zatilimani/ionicprojects/smartfoodbank/src/pages/bankdata/bankdata.html"*/'<!--\n  Generated template for the BankdataPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n    <ion-navbar>\n      <button ion-button menuToggle>\n        <ion-icon name="menu"></ion-icon>\n      </button>\n      <ion-title>Bank Data</ion-title>\n      <!--<ion-buttons end>\n          <button ion-button color="primary">\n           <ion-icon name="add-circle"></ion-icon>\n            &nbsp;Add New Data\n          </button>\n        </ion-buttons>-->\n    </ion-navbar>\n  </ion-header>\n\n<ion-content padding>\n    <button id="state" ion-button block (click)="viewState()" >List of State</button>\n    <br>\n    <button ion-button block color="secondary"(click)="viewUsergroup()">List of User Group</button>\n</ion-content>\n'/*ion-inline-end:"/Users/zatilimani/ionicprojects/smartfoodbank/src/pages/bankdata/bankdata.html"*/,
+        }),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavParams */]])
+    ], BankdataPage);
+    return BankdataPage;
+}());
+
+//# sourceMappingURL=bankdata.js.map
+
+/***/ }),
+
+/***/ 340:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1099,7 +1003,7 @@ var IntroPage = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 342:
+/***/ 341:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1141,6 +1045,51 @@ var OfficeloginPage = /** @class */ (function () {
 }());
 
 //# sourceMappingURL=officelogin.js.map
+
+/***/ }),
+
+/***/ 342:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return OrganizationformPage; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(7);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+/**
+ * Generated class for the OrganizationformPage page.
+ *
+ * See https://ionicframework.com/docs/components/#navigation for more info on
+ * Ionic pages and navigation.
+ */
+var OrganizationformPage = /** @class */ (function () {
+    function OrganizationformPage(navCtrl, navParams) {
+        this.navCtrl = navCtrl;
+        this.navParams = navParams;
+    }
+    OrganizationformPage.prototype.ionViewDidLoad = function () {
+        console.log('ionViewDidLoad OrganizationformPage');
+    };
+    OrganizationformPage = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
+            selector: 'page-organizationform',template:/*ion-inline-start:"/Users/zatilimani/ionicprojects/smartfoodbank/src/pages/organizationform/organizationform.html"*/'<!--\n  Generated template for the OrganizationformPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n  <ion-navbar>\n    <ion-title>organizationform</ion-title>\n  </ion-navbar>\n</ion-header>\n\n<ion-content padding>\n\n</ion-content>\n'/*ion-inline-end:"/Users/zatilimani/ionicprojects/smartfoodbank/src/pages/organizationform/organizationform.html"*/,
+        }),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavParams */]])
+    ], OrganizationformPage);
+    return OrganizationformPage;
+}());
+
+//# sourceMappingURL=organizationform.js.map
 
 /***/ }),
 
@@ -1346,33 +1295,33 @@ Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* pl
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser__ = __webpack_require__(32);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular__ = __webpack_require__(7);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__app_component__ = __webpack_require__(418);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__pages_home_home__ = __webpack_require__(340);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__pages_list_list__ = __webpack_require__(426);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ionic_native_status_bar__ = __webpack_require__(336);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__ionic_native_splash_screen__ = __webpack_require__(339);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__pages_state_state__ = __webpack_require__(103);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__pages_bankdata_bankdata__ = __webpack_require__(102);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__pages_ugroup_ugroup__ = __webpack_require__(105);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__pages_foodbank_foodbank__ = __webpack_require__(111);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__pages_boxinfo_boxinfo__ = __webpack_require__(106);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__pages_boxlocation_boxlocation__ = __webpack_require__(107);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__pages_organization_organization__ = __webpack_require__(112);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__pages_donation_donation__ = __webpack_require__(108);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__pages_announcement_announcement__ = __webpack_require__(101);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__pages_receipent_receipent__ = __webpack_require__(110);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__pages_donationinfo_donationinfo__ = __webpack_require__(109);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_common_http__ = __webpack_require__(79);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__app_component__ = __webpack_require__(418);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__pages_home_home__ = __webpack_require__(338);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__pages_list_list__ = __webpack_require__(426);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__ionic_native_status_bar__ = __webpack_require__(334);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__ionic_native_splash_screen__ = __webpack_require__(337);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__pages_bankdata_bankdata__ = __webpack_require__(339);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__pages_ugroup_ugroup__ = __webpack_require__(42);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__pages_foodbank_foodbank__ = __webpack_require__(109);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__pages_boxinfo_boxinfo__ = __webpack_require__(104);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__pages_boxlocation_boxlocation__ = __webpack_require__(105);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__pages_organization_organization__ = __webpack_require__(110);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__pages_donation_donation__ = __webpack_require__(106);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__pages_announcement_announcement__ = __webpack_require__(103);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__pages_receipent_receipent__ = __webpack_require__(108);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__pages_donationinfo_donationinfo__ = __webpack_require__(107);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__pages_staff_staff__ = __webpack_require__(345);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__pages_register_register__ = __webpack_require__(344);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_21__pages_intro_intro__ = __webpack_require__(341);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_22__pages_officelogin_officelogin__ = __webpack_require__(342);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_21__pages_intro_intro__ = __webpack_require__(340);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_22__pages_officelogin_officelogin__ = __webpack_require__(341);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_23__pages_publiclogin_publiclogin__ = __webpack_require__(343);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_24__pages_role_role__ = __webpack_require__(346);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_25__pages_report_report__ = __webpack_require__(113);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_26__angular_common_http__ = __webpack_require__(78);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_27__pages_stateform_stateform__ = __webpack_require__(104);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_28__pages_reportdonation_reportdonation__ = __webpack_require__(114);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_29__pages_reportrecipient_reportrecipient__ = __webpack_require__(115);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_26__pages_reportdonation_reportdonation__ = __webpack_require__(111);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_27__pages_reportrecipient_reportrecipient__ = __webpack_require__(112);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_28__pages_ugroupform_ugroupform__ = __webpack_require__(102);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_29__pages_organizationform_organizationform__ = __webpack_require__(342);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1415,10 +1364,9 @@ var AppModule = /** @class */ (function () {
     AppModule = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_1__angular_core__["I" /* NgModule */])({
             declarations: [
-                __WEBPACK_IMPORTED_MODULE_3__app_component__["a" /* MyApp */],
-                __WEBPACK_IMPORTED_MODULE_4__pages_home_home__["a" /* HomePage */],
-                __WEBPACK_IMPORTED_MODULE_5__pages_list_list__["a" /* ListPage */],
-                __WEBPACK_IMPORTED_MODULE_8__pages_state_state__["a" /* StatePage */],
+                __WEBPACK_IMPORTED_MODULE_4__app_component__["a" /* MyApp */],
+                __WEBPACK_IMPORTED_MODULE_5__pages_home_home__["a" /* HomePage */],
+                __WEBPACK_IMPORTED_MODULE_6__pages_list_list__["a" /* ListPage */],
                 __WEBPACK_IMPORTED_MODULE_9__pages_bankdata_bankdata__["a" /* BankdataPage */],
                 __WEBPACK_IMPORTED_MODULE_10__pages_ugroup_ugroup__["a" /* UgroupPage */],
                 __WEBPACK_IMPORTED_MODULE_11__pages_foodbank_foodbank__["a" /* FoodbankPage */],
@@ -1437,46 +1385,46 @@ var AppModule = /** @class */ (function () {
                 __WEBPACK_IMPORTED_MODULE_23__pages_publiclogin_publiclogin__["a" /* PublicloginPage */],
                 __WEBPACK_IMPORTED_MODULE_24__pages_role_role__["a" /* RolePage */],
                 __WEBPACK_IMPORTED_MODULE_25__pages_report_report__["a" /* ReportPage */],
-                __WEBPACK_IMPORTED_MODULE_27__pages_stateform_stateform__["a" /* StateformPage */],
-                __WEBPACK_IMPORTED_MODULE_28__pages_reportdonation_reportdonation__["a" /* ReportdonationPage */],
-                __WEBPACK_IMPORTED_MODULE_29__pages_reportrecipient_reportrecipient__["a" /* ReportrecipientPage */]
+                __WEBPACK_IMPORTED_MODULE_26__pages_reportdonation_reportdonation__["a" /* ReportdonationPage */],
+                __WEBPACK_IMPORTED_MODULE_27__pages_reportrecipient_reportrecipient__["a" /* ReportrecipientPage */],
+                __WEBPACK_IMPORTED_MODULE_28__pages_ugroupform_ugroupform__["a" /* UgroupformPage */],
+                __WEBPACK_IMPORTED_MODULE_29__pages_organizationform_organizationform__["a" /* OrganizationformPage */]
             ],
             imports: [
                 __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser__["a" /* BrowserModule */],
-                __WEBPACK_IMPORTED_MODULE_26__angular_common_http__["b" /* HttpClientModule */],
-                __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["c" /* IonicModule */].forRoot(__WEBPACK_IMPORTED_MODULE_3__app_component__["a" /* MyApp */], {}, {
+                __WEBPACK_IMPORTED_MODULE_3__angular_common_http__["b" /* HttpClientModule */],
+                __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["c" /* IonicModule */].forRoot(__WEBPACK_IMPORTED_MODULE_4__app_component__["a" /* MyApp */], {}, {
                     links: [
-                        { loadChildren: '../pages/announcement/announcement.module#AnnouncementPageModule', name: 'AnnouncementPage', segment: 'announcement', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/bankdata/bankdata.module#BankdataPageModule', name: 'BankdataPage', segment: 'bankdata', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/announcement/announcement.module#AnnouncementPageModule', name: 'AnnouncementPage', segment: 'announcement', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/boxinfo/boxinfo.module#BoxinfoPageModule', name: 'BoxinfoPage', segment: 'boxinfo', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/boxlocation/boxlocation.module#BoxlocationPageModule', name: 'BoxlocationPage', segment: 'boxlocation', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/donation/donation.module#DonationPageModule', name: 'DonationPage', segment: 'donation', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/foodbank/foodbank.module#FoodbankPageModule', name: 'FoodbankPage', segment: 'foodbank', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/donationinfo/donationinfo.module#DonationinfoPageModule', name: 'DonationinfoPage', segment: 'donationinfo', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/foodbank/foodbank.module#FoodbankPageModule', name: 'FoodbankPage', segment: 'foodbank', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/intro/intro.module#IntroPageModule', name: 'IntroPage', segment: 'intro', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/officelogin/officelogin.module#OfficeloginPageModule', name: 'OfficeloginPage', segment: 'officelogin', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/organization/organization.module#OrganizationPageModule', name: 'OrganizationPage', segment: 'organization', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/organizationform/organizationform.module#OrganizationformPageModule', name: 'OrganizationformPage', segment: 'organizationform', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/organizationinfo/organizationinfo.module#OrganizationinfoPageModule', name: 'OrganizationinfoPage', segment: 'organizationinfo', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/publiclogin/publiclogin.module#PublicloginPageModule', name: 'PublicloginPage', segment: 'publiclogin', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/receipent/receipent.module#ReceipentPageModule', name: 'ReceipentPage', segment: 'receipent', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/register/register.module#RegisterPageModule', name: 'RegisterPage', segment: 'register', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/report/report.module#ReportPageModule', name: 'ReportPage', segment: 'report', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/reportdonation/reportdonation.module#ReportdonationPageModule', name: 'ReportdonationPage', segment: 'reportdonation', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/reportrecipient/reportrecipient.module#ReportrecipientPageModule', name: 'ReportrecipientPage', segment: 'reportrecipient', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/ugroup/ugroup.module#UgroupPageModule', name: 'UgroupPage', segment: 'ugroup', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/ugroupform/ugroupform.module#UgroupformPageModule', name: 'UgroupformPage', segment: 'ugroupform', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/staff/staff.module#StaffPageModule', name: 'StaffPage', segment: 'staff', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/role/role.module#RolePageModule', name: 'RolePage', segment: 'role', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/state/state.module#StatePageModule', name: 'StatePage', segment: 'state', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/stateform/stateform.module#StateformPageModule', name: 'StateformPage', segment: 'stateform', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/ugroup/ugroup.module#UgroupPageModule', name: 'UgroupPage', segment: 'ugroup', priority: 'low', defaultHistory: [] }
+                        { loadChildren: '../pages/report/report.module#ReportPageModule', name: 'ReportPage', segment: 'report', priority: 'low', defaultHistory: [] }
                     ]
                 }),
             ],
             bootstrap: [__WEBPACK_IMPORTED_MODULE_2_ionic_angular__["a" /* IonicApp */]],
             entryComponents: [
-                __WEBPACK_IMPORTED_MODULE_3__app_component__["a" /* MyApp */],
-                __WEBPACK_IMPORTED_MODULE_4__pages_home_home__["a" /* HomePage */],
-                __WEBPACK_IMPORTED_MODULE_5__pages_list_list__["a" /* ListPage */],
-                __WEBPACK_IMPORTED_MODULE_8__pages_state_state__["a" /* StatePage */],
+                __WEBPACK_IMPORTED_MODULE_4__app_component__["a" /* MyApp */],
+                __WEBPACK_IMPORTED_MODULE_5__pages_home_home__["a" /* HomePage */],
+                __WEBPACK_IMPORTED_MODULE_6__pages_list_list__["a" /* ListPage */],
                 __WEBPACK_IMPORTED_MODULE_9__pages_bankdata_bankdata__["a" /* BankdataPage */],
                 __WEBPACK_IMPORTED_MODULE_10__pages_ugroup_ugroup__["a" /* UgroupPage */],
                 __WEBPACK_IMPORTED_MODULE_11__pages_foodbank_foodbank__["a" /* FoodbankPage */],
@@ -1495,14 +1443,15 @@ var AppModule = /** @class */ (function () {
                 __WEBPACK_IMPORTED_MODULE_23__pages_publiclogin_publiclogin__["a" /* PublicloginPage */],
                 __WEBPACK_IMPORTED_MODULE_24__pages_role_role__["a" /* RolePage */],
                 __WEBPACK_IMPORTED_MODULE_25__pages_report_report__["a" /* ReportPage */],
-                __WEBPACK_IMPORTED_MODULE_27__pages_stateform_stateform__["a" /* StateformPage */],
                 __WEBPACK_IMPORTED_MODULE_25__pages_report_report__["a" /* ReportPage */],
-                __WEBPACK_IMPORTED_MODULE_29__pages_reportrecipient_reportrecipient__["a" /* ReportrecipientPage */],
-                __WEBPACK_IMPORTED_MODULE_28__pages_reportdonation_reportdonation__["a" /* ReportdonationPage */]
+                __WEBPACK_IMPORTED_MODULE_27__pages_reportrecipient_reportrecipient__["a" /* ReportrecipientPage */],
+                __WEBPACK_IMPORTED_MODULE_26__pages_reportdonation_reportdonation__["a" /* ReportdonationPage */],
+                __WEBPACK_IMPORTED_MODULE_28__pages_ugroupform_ugroupform__["a" /* UgroupformPage */],
+                __WEBPACK_IMPORTED_MODULE_29__pages_organizationform_organizationform__["a" /* OrganizationformPage */]
             ],
             providers: [
-                __WEBPACK_IMPORTED_MODULE_6__ionic_native_status_bar__["a" /* StatusBar */],
-                __WEBPACK_IMPORTED_MODULE_7__ionic_native_splash_screen__["a" /* SplashScreen */],
+                __WEBPACK_IMPORTED_MODULE_7__ionic_native_status_bar__["a" /* StatusBar */],
+                __WEBPACK_IMPORTED_MODULE_8__ionic_native_splash_screen__["a" /* SplashScreen */],
                 { provide: __WEBPACK_IMPORTED_MODULE_1__angular_core__["u" /* ErrorHandler */], useClass: __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["b" /* IonicErrorHandler */] }
             ]
         })
@@ -1518,260 +1467,260 @@ var AppModule = /** @class */ (function () {
 /***/ (function(module, exports, __webpack_require__) {
 
 var map = {
-	"./af": 170,
-	"./af.js": 170,
-	"./ar": 171,
-	"./ar-dz": 172,
-	"./ar-dz.js": 172,
-	"./ar-kw": 173,
-	"./ar-kw.js": 173,
-	"./ar-ly": 174,
-	"./ar-ly.js": 174,
-	"./ar-ma": 175,
-	"./ar-ma.js": 175,
-	"./ar-sa": 176,
-	"./ar-sa.js": 176,
-	"./ar-tn": 177,
-	"./ar-tn.js": 177,
-	"./ar.js": 171,
-	"./az": 178,
-	"./az.js": 178,
-	"./be": 179,
-	"./be.js": 179,
-	"./bg": 180,
-	"./bg.js": 180,
-	"./bm": 181,
-	"./bm.js": 181,
-	"./bn": 182,
-	"./bn.js": 182,
-	"./bo": 183,
-	"./bo.js": 183,
-	"./br": 184,
-	"./br.js": 184,
-	"./bs": 185,
-	"./bs.js": 185,
-	"./ca": 186,
-	"./ca.js": 186,
-	"./cs": 187,
-	"./cs.js": 187,
-	"./cv": 188,
-	"./cv.js": 188,
-	"./cy": 189,
-	"./cy.js": 189,
-	"./da": 190,
-	"./da.js": 190,
-	"./de": 191,
-	"./de-at": 192,
-	"./de-at.js": 192,
-	"./de-ch": 193,
-	"./de-ch.js": 193,
-	"./de.js": 191,
-	"./dv": 194,
-	"./dv.js": 194,
-	"./el": 195,
-	"./el.js": 195,
-	"./en-SG": 196,
-	"./en-SG.js": 196,
-	"./en-au": 197,
-	"./en-au.js": 197,
-	"./en-ca": 198,
-	"./en-ca.js": 198,
-	"./en-gb": 199,
-	"./en-gb.js": 199,
-	"./en-ie": 200,
-	"./en-ie.js": 200,
-	"./en-il": 201,
-	"./en-il.js": 201,
-	"./en-nz": 202,
-	"./en-nz.js": 202,
-	"./eo": 203,
-	"./eo.js": 203,
-	"./es": 204,
-	"./es-do": 205,
-	"./es-do.js": 205,
-	"./es-us": 206,
-	"./es-us.js": 206,
-	"./es.js": 204,
-	"./et": 207,
-	"./et.js": 207,
-	"./eu": 208,
-	"./eu.js": 208,
-	"./fa": 209,
-	"./fa.js": 209,
-	"./fi": 210,
-	"./fi.js": 210,
-	"./fo": 211,
-	"./fo.js": 211,
-	"./fr": 212,
-	"./fr-ca": 213,
-	"./fr-ca.js": 213,
-	"./fr-ch": 214,
-	"./fr-ch.js": 214,
-	"./fr.js": 212,
-	"./fy": 215,
-	"./fy.js": 215,
-	"./ga": 216,
-	"./ga.js": 216,
-	"./gd": 217,
-	"./gd.js": 217,
-	"./gl": 218,
-	"./gl.js": 218,
-	"./gom-latn": 219,
-	"./gom-latn.js": 219,
-	"./gu": 220,
-	"./gu.js": 220,
-	"./he": 221,
-	"./he.js": 221,
-	"./hi": 222,
-	"./hi.js": 222,
-	"./hr": 223,
-	"./hr.js": 223,
-	"./hu": 224,
-	"./hu.js": 224,
-	"./hy-am": 225,
-	"./hy-am.js": 225,
-	"./id": 226,
-	"./id.js": 226,
-	"./is": 227,
-	"./is.js": 227,
-	"./it": 228,
-	"./it-ch": 229,
-	"./it-ch.js": 229,
-	"./it.js": 228,
-	"./ja": 230,
-	"./ja.js": 230,
-	"./jv": 231,
-	"./jv.js": 231,
-	"./ka": 232,
-	"./ka.js": 232,
-	"./kk": 233,
-	"./kk.js": 233,
-	"./km": 234,
-	"./km.js": 234,
-	"./kn": 235,
-	"./kn.js": 235,
-	"./ko": 236,
-	"./ko.js": 236,
-	"./ku": 237,
-	"./ku.js": 237,
-	"./ky": 238,
-	"./ky.js": 238,
-	"./lb": 239,
-	"./lb.js": 239,
-	"./lo": 240,
-	"./lo.js": 240,
-	"./lt": 241,
-	"./lt.js": 241,
-	"./lv": 242,
-	"./lv.js": 242,
-	"./me": 243,
-	"./me.js": 243,
-	"./mi": 244,
-	"./mi.js": 244,
-	"./mk": 245,
-	"./mk.js": 245,
-	"./ml": 246,
-	"./ml.js": 246,
-	"./mn": 247,
-	"./mn.js": 247,
-	"./mr": 248,
-	"./mr.js": 248,
-	"./ms": 249,
-	"./ms-my": 250,
-	"./ms-my.js": 250,
-	"./ms.js": 249,
-	"./mt": 251,
-	"./mt.js": 251,
-	"./my": 252,
-	"./my.js": 252,
-	"./nb": 253,
-	"./nb.js": 253,
-	"./ne": 254,
-	"./ne.js": 254,
-	"./nl": 255,
-	"./nl-be": 256,
-	"./nl-be.js": 256,
-	"./nl.js": 255,
-	"./nn": 257,
-	"./nn.js": 257,
-	"./pa-in": 258,
-	"./pa-in.js": 258,
-	"./pl": 259,
-	"./pl.js": 259,
-	"./pt": 260,
-	"./pt-br": 261,
-	"./pt-br.js": 261,
-	"./pt.js": 260,
-	"./ro": 262,
-	"./ro.js": 262,
-	"./ru": 263,
-	"./ru.js": 263,
-	"./sd": 264,
-	"./sd.js": 264,
-	"./se": 265,
-	"./se.js": 265,
-	"./si": 266,
-	"./si.js": 266,
-	"./sk": 267,
-	"./sk.js": 267,
-	"./sl": 268,
-	"./sl.js": 268,
-	"./sq": 269,
-	"./sq.js": 269,
-	"./sr": 270,
-	"./sr-cyrl": 271,
-	"./sr-cyrl.js": 271,
-	"./sr.js": 270,
-	"./ss": 272,
-	"./ss.js": 272,
-	"./sv": 273,
-	"./sv.js": 273,
-	"./sw": 274,
-	"./sw.js": 274,
-	"./ta": 275,
-	"./ta.js": 275,
-	"./te": 276,
-	"./te.js": 276,
-	"./tet": 277,
-	"./tet.js": 277,
-	"./tg": 278,
-	"./tg.js": 278,
-	"./th": 279,
-	"./th.js": 279,
-	"./tl-ph": 280,
-	"./tl-ph.js": 280,
-	"./tlh": 281,
-	"./tlh.js": 281,
-	"./tr": 282,
-	"./tr.js": 282,
-	"./tzl": 283,
-	"./tzl.js": 283,
-	"./tzm": 284,
-	"./tzm-latn": 285,
-	"./tzm-latn.js": 285,
-	"./tzm.js": 284,
-	"./ug-cn": 286,
-	"./ug-cn.js": 286,
-	"./uk": 287,
-	"./uk.js": 287,
-	"./ur": 288,
-	"./ur.js": 288,
-	"./uz": 289,
-	"./uz-latn": 290,
-	"./uz-latn.js": 290,
-	"./uz.js": 289,
-	"./vi": 291,
-	"./vi.js": 291,
-	"./x-pseudo": 292,
-	"./x-pseudo.js": 292,
-	"./yo": 293,
-	"./yo.js": 293,
-	"./zh-cn": 294,
-	"./zh-cn.js": 294,
-	"./zh-hk": 295,
-	"./zh-hk.js": 295,
-	"./zh-tw": 296,
-	"./zh-tw.js": 296
+	"./af": 168,
+	"./af.js": 168,
+	"./ar": 169,
+	"./ar-dz": 170,
+	"./ar-dz.js": 170,
+	"./ar-kw": 171,
+	"./ar-kw.js": 171,
+	"./ar-ly": 172,
+	"./ar-ly.js": 172,
+	"./ar-ma": 173,
+	"./ar-ma.js": 173,
+	"./ar-sa": 174,
+	"./ar-sa.js": 174,
+	"./ar-tn": 175,
+	"./ar-tn.js": 175,
+	"./ar.js": 169,
+	"./az": 176,
+	"./az.js": 176,
+	"./be": 177,
+	"./be.js": 177,
+	"./bg": 178,
+	"./bg.js": 178,
+	"./bm": 179,
+	"./bm.js": 179,
+	"./bn": 180,
+	"./bn.js": 180,
+	"./bo": 181,
+	"./bo.js": 181,
+	"./br": 182,
+	"./br.js": 182,
+	"./bs": 183,
+	"./bs.js": 183,
+	"./ca": 184,
+	"./ca.js": 184,
+	"./cs": 185,
+	"./cs.js": 185,
+	"./cv": 186,
+	"./cv.js": 186,
+	"./cy": 187,
+	"./cy.js": 187,
+	"./da": 188,
+	"./da.js": 188,
+	"./de": 189,
+	"./de-at": 190,
+	"./de-at.js": 190,
+	"./de-ch": 191,
+	"./de-ch.js": 191,
+	"./de.js": 189,
+	"./dv": 192,
+	"./dv.js": 192,
+	"./el": 193,
+	"./el.js": 193,
+	"./en-SG": 194,
+	"./en-SG.js": 194,
+	"./en-au": 195,
+	"./en-au.js": 195,
+	"./en-ca": 196,
+	"./en-ca.js": 196,
+	"./en-gb": 197,
+	"./en-gb.js": 197,
+	"./en-ie": 198,
+	"./en-ie.js": 198,
+	"./en-il": 199,
+	"./en-il.js": 199,
+	"./en-nz": 200,
+	"./en-nz.js": 200,
+	"./eo": 201,
+	"./eo.js": 201,
+	"./es": 202,
+	"./es-do": 203,
+	"./es-do.js": 203,
+	"./es-us": 204,
+	"./es-us.js": 204,
+	"./es.js": 202,
+	"./et": 205,
+	"./et.js": 205,
+	"./eu": 206,
+	"./eu.js": 206,
+	"./fa": 207,
+	"./fa.js": 207,
+	"./fi": 208,
+	"./fi.js": 208,
+	"./fo": 209,
+	"./fo.js": 209,
+	"./fr": 210,
+	"./fr-ca": 211,
+	"./fr-ca.js": 211,
+	"./fr-ch": 212,
+	"./fr-ch.js": 212,
+	"./fr.js": 210,
+	"./fy": 213,
+	"./fy.js": 213,
+	"./ga": 214,
+	"./ga.js": 214,
+	"./gd": 215,
+	"./gd.js": 215,
+	"./gl": 216,
+	"./gl.js": 216,
+	"./gom-latn": 217,
+	"./gom-latn.js": 217,
+	"./gu": 218,
+	"./gu.js": 218,
+	"./he": 219,
+	"./he.js": 219,
+	"./hi": 220,
+	"./hi.js": 220,
+	"./hr": 221,
+	"./hr.js": 221,
+	"./hu": 222,
+	"./hu.js": 222,
+	"./hy-am": 223,
+	"./hy-am.js": 223,
+	"./id": 224,
+	"./id.js": 224,
+	"./is": 225,
+	"./is.js": 225,
+	"./it": 226,
+	"./it-ch": 227,
+	"./it-ch.js": 227,
+	"./it.js": 226,
+	"./ja": 228,
+	"./ja.js": 228,
+	"./jv": 229,
+	"./jv.js": 229,
+	"./ka": 230,
+	"./ka.js": 230,
+	"./kk": 231,
+	"./kk.js": 231,
+	"./km": 232,
+	"./km.js": 232,
+	"./kn": 233,
+	"./kn.js": 233,
+	"./ko": 234,
+	"./ko.js": 234,
+	"./ku": 235,
+	"./ku.js": 235,
+	"./ky": 236,
+	"./ky.js": 236,
+	"./lb": 237,
+	"./lb.js": 237,
+	"./lo": 238,
+	"./lo.js": 238,
+	"./lt": 239,
+	"./lt.js": 239,
+	"./lv": 240,
+	"./lv.js": 240,
+	"./me": 241,
+	"./me.js": 241,
+	"./mi": 242,
+	"./mi.js": 242,
+	"./mk": 243,
+	"./mk.js": 243,
+	"./ml": 244,
+	"./ml.js": 244,
+	"./mn": 245,
+	"./mn.js": 245,
+	"./mr": 246,
+	"./mr.js": 246,
+	"./ms": 247,
+	"./ms-my": 248,
+	"./ms-my.js": 248,
+	"./ms.js": 247,
+	"./mt": 249,
+	"./mt.js": 249,
+	"./my": 250,
+	"./my.js": 250,
+	"./nb": 251,
+	"./nb.js": 251,
+	"./ne": 252,
+	"./ne.js": 252,
+	"./nl": 253,
+	"./nl-be": 254,
+	"./nl-be.js": 254,
+	"./nl.js": 253,
+	"./nn": 255,
+	"./nn.js": 255,
+	"./pa-in": 256,
+	"./pa-in.js": 256,
+	"./pl": 257,
+	"./pl.js": 257,
+	"./pt": 258,
+	"./pt-br": 259,
+	"./pt-br.js": 259,
+	"./pt.js": 258,
+	"./ro": 260,
+	"./ro.js": 260,
+	"./ru": 261,
+	"./ru.js": 261,
+	"./sd": 262,
+	"./sd.js": 262,
+	"./se": 263,
+	"./se.js": 263,
+	"./si": 264,
+	"./si.js": 264,
+	"./sk": 265,
+	"./sk.js": 265,
+	"./sl": 266,
+	"./sl.js": 266,
+	"./sq": 267,
+	"./sq.js": 267,
+	"./sr": 268,
+	"./sr-cyrl": 269,
+	"./sr-cyrl.js": 269,
+	"./sr.js": 268,
+	"./ss": 270,
+	"./ss.js": 270,
+	"./sv": 271,
+	"./sv.js": 271,
+	"./sw": 272,
+	"./sw.js": 272,
+	"./ta": 273,
+	"./ta.js": 273,
+	"./te": 274,
+	"./te.js": 274,
+	"./tet": 275,
+	"./tet.js": 275,
+	"./tg": 276,
+	"./tg.js": 276,
+	"./th": 277,
+	"./th.js": 277,
+	"./tl-ph": 278,
+	"./tl-ph.js": 278,
+	"./tlh": 279,
+	"./tlh.js": 279,
+	"./tr": 280,
+	"./tr.js": 280,
+	"./tzl": 281,
+	"./tzl.js": 281,
+	"./tzm": 282,
+	"./tzm-latn": 283,
+	"./tzm-latn.js": 283,
+	"./tzm.js": 282,
+	"./ug-cn": 284,
+	"./ug-cn.js": 284,
+	"./uk": 285,
+	"./uk.js": 285,
+	"./ur": 286,
+	"./ur.js": 286,
+	"./uz": 287,
+	"./uz-latn": 288,
+	"./uz-latn.js": 288,
+	"./uz.js": 287,
+	"./vi": 289,
+	"./vi.js": 289,
+	"./x-pseudo": 290,
+	"./x-pseudo.js": 290,
+	"./yo": 291,
+	"./yo.js": 291,
+	"./zh-cn": 292,
+	"./zh-cn.js": 292,
+	"./zh-hk": 293,
+	"./zh-hk.js": 293,
+	"./zh-tw": 294,
+	"./zh-tw.js": 294
 };
 function webpackContext(req) {
 	return __webpack_require__(webpackContextResolve(req));
@@ -1798,15 +1747,15 @@ webpackContext.id = 400;
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return MyApp; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(7);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__ = __webpack_require__(336);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__ = __webpack_require__(339);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__pages_home_home__ = __webpack_require__(340);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__pages_bankdata_bankdata__ = __webpack_require__(102);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__pages_donation_donation__ = __webpack_require__(108);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__pages_organization_organization__ = __webpack_require__(112);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__pages_foodbank_foodbank__ = __webpack_require__(111);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__pages_report_report__ = __webpack_require__(113);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__pages_announcement_announcement__ = __webpack_require__(101);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__ = __webpack_require__(334);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__ = __webpack_require__(337);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__pages_home_home__ = __webpack_require__(338);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__pages_donation_donation__ = __webpack_require__(106);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__pages_organization_organization__ = __webpack_require__(110);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__pages_foodbank_foodbank__ = __webpack_require__(109);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__pages_report_report__ = __webpack_require__(113);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__pages_announcement_announcement__ = __webpack_require__(103);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__pages_ugroup_ugroup__ = __webpack_require__(42);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1838,12 +1787,12 @@ var MyApp = /** @class */ (function () {
         this.pages = [
             { title: 'Dashboard', component: __WEBPACK_IMPORTED_MODULE_4__pages_home_home__["a" /* HomePage */], icon: 'home' },
             // { title: 'List', component: ListPage },
-            { title: 'Donation', component: __WEBPACK_IMPORTED_MODULE_6__pages_donation_donation__["a" /* DonationPage */], icon: 'hand' },
-            { title: 'Report', component: __WEBPACK_IMPORTED_MODULE_9__pages_report_report__["a" /* ReportPage */], icon: 'stats' },
-            { title: 'Organization', component: __WEBPACK_IMPORTED_MODULE_7__pages_organization_organization__["a" /* OrganizationPage */], icon: 'contacts' },
-            { title: 'Food Bank Box', component: __WEBPACK_IMPORTED_MODULE_8__pages_foodbank_foodbank__["a" /* FoodbankPage */], icon: 'cube' },
-            { title: 'Bank Data', component: __WEBPACK_IMPORTED_MODULE_5__pages_bankdata_bankdata__["a" /* BankdataPage */], icon: 'list' },
-            { title: 'Announcement', component: __WEBPACK_IMPORTED_MODULE_10__pages_announcement_announcement__["a" /* AnnouncementPage */], icon: 'megaphone' }
+            { title: 'Donation', component: __WEBPACK_IMPORTED_MODULE_5__pages_donation_donation__["a" /* DonationPage */], icon: 'hand' },
+            { title: 'Report', component: __WEBPACK_IMPORTED_MODULE_8__pages_report_report__["a" /* ReportPage */], icon: 'stats' },
+            { title: 'Organization', component: __WEBPACK_IMPORTED_MODULE_6__pages_organization_organization__["a" /* OrganizationPage */], icon: 'contacts' },
+            { title: 'Food Bank Box', component: __WEBPACK_IMPORTED_MODULE_7__pages_foodbank_foodbank__["a" /* FoodbankPage */], icon: 'cube' },
+            { title: 'User Group', component: __WEBPACK_IMPORTED_MODULE_10__pages_ugroup_ugroup__["a" /* UgroupPage */], icon: 'contact' },
+            { title: 'Announcement', component: __WEBPACK_IMPORTED_MODULE_9__pages_announcement_announcement__["a" /* AnnouncementPage */], icon: 'megaphone' }
         ];
     }
     MyApp.prototype.initializeApp = function () {
@@ -1873,6 +1822,73 @@ var MyApp = /** @class */ (function () {
 }());
 
 //# sourceMappingURL=app.component.js.map
+
+/***/ }),
+
+/***/ 42:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return UgroupPage; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(7);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_common_http__ = __webpack_require__(79);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ugroupform_ugroupform__ = __webpack_require__(102);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+/**
+ * Generated class for the UgroupPage page.
+ *
+ * See https://ionicframework.com/docs/components/#navigation for more info on
+ * Ionic pages and navigation.
+ */
+var UgroupPage = /** @class */ (function () {
+    function UgroupPage(navCtrl, navParams, http) {
+        this.navCtrl = navCtrl;
+        this.navParams = navParams;
+        this.http = http;
+        this.searchQuery = '';
+        this.initializeItems();
+    }
+    UgroupPage.prototype.initializeItems = function () {
+        var _this = this;
+        var url = 'http://localhost/smartfoodbank/usergroup/usergroups';
+        this.data = this.http.get(url);
+        this.data.subscribe(function (data) {
+            //console.log(data);
+            _this.items = data;
+        });
+    };
+    UgroupPage.prototype.create = function () {
+        this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_3__ugroupform_ugroupform__["a" /* UgroupformPage */]);
+    };
+    UgroupPage.prototype.edit = function (id) {
+        this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_3__ugroupform_ugroupform__["a" /* UgroupformPage */], { ugroupID: id });
+    };
+    UgroupPage.prototype.ionViewDidLoad = function () {
+        console.log('ionViewDidLoad UgroupPage');
+    };
+    UgroupPage = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
+            selector: 'page-ugroup',template:/*ion-inline-start:"/Users/zatilimani/ionicprojects/smartfoodbank/src/pages/ugroup/ugroup.html"*/'<!--\n  Generated template for the UgroupPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n  <ion-navbar>\n      <button ion-button menuToggle>\n          <ion-icon name="menu"></ion-icon>\n        </button>\n    <ion-title>User Group</ion-title>\n  </ion-navbar>\n</ion-header>\n\n<ion-content >\n    <ion-searchbar (ionInput)="getItems($event)"></ion-searchbar>\n    <ion-list>\n        <ion-item tappable *ngFor="let item of items; let index=index" (click)="edit(item.id)">\n         <h4>{{ item.desc }}</h4> \n        </ion-item>\n        <ion-fab right>\n          <button ion-fab mini (click)="create()"><ion-icon name="add"></ion-icon></button>\n      </ion-fab>\n      </ion-list>\n     \n\n</ion-content>\n'/*ion-inline-end:"/Users/zatilimani/ionicprojects/smartfoodbank/src/pages/ugroup/ugroup.html"*/,
+        }),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavParams */], __WEBPACK_IMPORTED_MODULE_2__angular_common_http__["a" /* HttpClient */]])
+    ], UgroupPage);
+    return UgroupPage;
+}());
+
+//# sourceMappingURL=ugroup.js.map
 
 /***/ }),
 

@@ -1,14 +1,13 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { ErrorHandler, NgModule } from '@angular/core';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
-
+import { HttpClientModule } from '@angular/common/http';
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { ListPage } from '../pages/list/list';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
-import { StatePage } from '../pages/state/state';
 import { BankdataPage } from '../pages/bankdata/bankdata';
 import { UgroupPage } from '../pages/ugroup/ugroup';
 import { FoodbankPage } from '../pages/foodbank/foodbank';
@@ -26,17 +25,16 @@ import { OfficeloginPage } from '../pages/officelogin/officelogin';
 import { PublicloginPage } from '../pages/publiclogin/publiclogin';
 import { RolePage } from '../pages/role/role';
 import { ReportPage } from '../pages/report/report';
-import { HttpClient, HttpClientModule } from '@angular/common/http';
-import { StateformPage } from '../pages/stateform/stateform';
 import { ReportdonationPage } from '../pages/reportdonation/reportdonation';
 import { ReportrecipientPage } from '../pages/reportrecipient/reportrecipient';
+import { UgroupformPage } from '../pages/ugroupform/ugroupform';
+import { OrganizationformPage } from '../pages/organizationform/organizationform';
 
 @NgModule({
   declarations: [
     MyApp,
     HomePage,
     ListPage,
-    StatePage,
     BankdataPage,
     UgroupPage,
     FoodbankPage,
@@ -55,9 +53,10 @@ import { ReportrecipientPage } from '../pages/reportrecipient/reportrecipient';
     PublicloginPage,
     RolePage,
     ReportPage,
-    StateformPage,
     ReportdonationPage,
-    ReportrecipientPage
+    ReportrecipientPage,
+    UgroupformPage,
+    OrganizationformPage
   ],
   imports: [
     BrowserModule,
@@ -69,7 +68,6 @@ import { ReportrecipientPage } from '../pages/reportrecipient/reportrecipient';
     MyApp,
     HomePage,
     ListPage,
-    StatePage,
     BankdataPage,
     UgroupPage,
     FoodbankPage,
@@ -88,10 +86,11 @@ import { ReportrecipientPage } from '../pages/reportrecipient/reportrecipient';
     PublicloginPage,
     RolePage,
     ReportPage,
-    StateformPage,
     ReportPage,
     ReportrecipientPage,
-    ReportdonationPage
+    ReportdonationPage,
+    UgroupformPage,
+    OrganizationformPage
   ],
   providers: [
     StatusBar,

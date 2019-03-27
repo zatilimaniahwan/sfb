@@ -4,12 +4,12 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
 import { HomePage } from '../pages/home/home';
-import { BankdataPage } from '../pages/bankdata/bankdata';
 import { DonationPage } from '../pages/donation/donation';
 import { OrganizationPage } from '../pages/organization/organization';
 import { FoodbankPage } from '../pages/foodbank/foodbank';
 import { ReportPage } from '../pages/report/report';
 import { AnnouncementPage } from '../pages/announcement/announcement';
+import { UgroupPage } from '../pages/ugroup/ugroup';
 
 
 @Component({
@@ -33,7 +33,7 @@ export class MyApp {
       {title:'Report', component:ReportPage,icon:'stats'},
       {title:'Organization',component:OrganizationPage,icon:'contacts'},
       {title:'Food Bank Box',component:FoodbankPage,icon:'cube'},
-      {title:'Bank Data', component:BankdataPage,icon:'list'},
+      {title:'User Group', component:UgroupPage,icon:'contact'},
       {title:'Announcement',component:AnnouncementPage,icon:'megaphone'}
       
     ];

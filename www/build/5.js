@@ -1,14 +1,14 @@
 webpackJsonp([5],{
 
-/***/ 445:
+/***/ 443:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RolePageModule", function() { return RolePageModule; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ReportrecipientPageModule", function() { return ReportrecipientPageModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(7);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__role__ = __webpack_require__(346);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__reportrecipient__ = __webpack_require__(112);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -18,23 +18,23 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 
 
 
-var RolePageModule = /** @class */ (function () {
-    function RolePageModule() {
+var ReportrecipientPageModule = /** @class */ (function () {
+    function ReportrecipientPageModule() {
     }
-    RolePageModule = __decorate([
+    ReportrecipientPageModule = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["I" /* NgModule */])({
             declarations: [
-                __WEBPACK_IMPORTED_MODULE_2__role__["a" /* RolePage */],
+                __WEBPACK_IMPORTED_MODULE_2__reportrecipient__["a" /* ReportrecipientPage */],
             ],
             imports: [
-                __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["d" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__role__["a" /* RolePage */]),
+                __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["d" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__reportrecipient__["a" /* ReportrecipientPage */]),
             ],
         })
-    ], RolePageModule);
-    return RolePageModule;
+    ], ReportrecipientPageModule);
+    return ReportrecipientPageModule;
 }());
 
-//# sourceMappingURL=role.module.js.map
+//# sourceMappingURL=reportrecipient.module.js.map
 
 /***/ })
 
