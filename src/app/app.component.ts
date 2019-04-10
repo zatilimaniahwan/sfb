@@ -1,57 +1,35 @@
-import { Component, ViewChild } from '@angular/core';
-import { Nav, Platform } from 'ionic-angular';
-import { StatusBar } from '@ionic-native/status-bar';
-import { SplashScreen } from '@ionic-native/splash-screen';
+import { Component } from '@angular/core';
 
-import { HomePage } from '../pages/home/home';
-import { DonationPage } from '../pages/donation/donation';
-import { OrganizationPage } from '../pages/organization/organization';
-import { FoodbankPage } from '../pages/foodbank/foodbank';
-import { ReportPage } from '../pages/report/report';
-import { AnnouncementPage } from '../pages/announcement/announcement';
-import { UgroupPage } from '../pages/ugroup/ugroup';
-
+import { Platform } from '@ionic/angular';
+import { SplashScreen } from '@ionic-native/splash-screen/ngx';
+import { StatusBar } from '@ionic-native/status-bar/ngx';
+import { Environment } from '@ionic-native/google-maps';
+import { Router } from '@angular/router';
 
 @Component({
-  templateUrl: 'app.html'
+  selector: 'app-root',
+  templateUrl: 'app.component.html'
 })
-export class MyApp {
-  @ViewChild(Nav) nav: Nav;
-
-  rootPage: any = HomePage;
-
-  pages: Array<{title: string, component: any,icon:any}>;
-
-  constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen) {
+export class AppComponent {
+  
+  constructor(
+    private platform: Platform,
+    private splashScreen: SplashScreen,
+    private statusBar: StatusBar,
+    private router:Router
+  ) {
     this.initializeApp();
-
-    // used for an example of ngFor and navigation
-    this.pages = [
-      { title: 'Dashboard', component: HomePage, icon:'home' },
-     // { title: 'List', component: ListPage },
-      {title:'Donation', component:DonationPage,icon:'hand'},
-      {title:'Report', component:ReportPage,icon:'stats'},
-      {title:'Organization',component:OrganizationPage,icon:'contacts'},
-      {title:'Food Bank Box',component:FoodbankPage,icon:'cube'},
-      {title:'User Group', component:UgroupPage,icon:'contact'},
-      {title:'Announcement',component:AnnouncementPage,icon:'megaphone'}
-      
-    ];
-
   }
 
   initializeApp() {
     this.platform.ready().then(() => {
-      // Okay, so the platform is ready and our plugins are available.
-      // Here you can do any higher level native things you might need.
+    this.router.navigateByUrl('intro');
+      Environment.setEnv({
+        'API_KEY_FOR_BROWSER_RELEASE': 'AIzaSyDMPAgokYzvVtLUUmMWQpPCvU_ZZ0ncM6o',
+        'API_KEY_FOR_BROWSER_DEBUG': 'AIzaSyDMPAgokYzvVtLUUmMWQpPCvU_ZZ0ncM6o'
+      });
       this.statusBar.styleDefault();
       this.splashScreen.hide();
     });
-  }
-
-  openPage(page) {
-    // Reset the content nav to have just this page
-    // we wouldn't want the back button to show in this scenario
-    this.nav.setRoot(page.component);
   }
 }

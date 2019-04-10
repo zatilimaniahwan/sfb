@@ -1,0 +1,28 @@
+<ion-header no-border>
+  <ion-toolbar>
+    <ion-title>Choose Role</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card>
+    <ion-card-content>
+      <ion-label>Click the provided role when to use the application</ion-label>
+    </ion-card-content>
+  </ion-card>
+  
+  <ion-card>
+    <ion-item>
+      <ion-icon name="people" slot="start"></ion-icon>
+      <ion-label>Donator</ion-label>
+    </ion-item>
+  </ion-card>
+  <ion-card tappable (click)="viewLogin()">
+      <ion-item>
+        <ion-icon name="business" slot="start"></ion-icon>
+        <ion-label>Charity</ion-label>
+      </ion-item>
+    </ion-card>
+
+
+</ion-content>

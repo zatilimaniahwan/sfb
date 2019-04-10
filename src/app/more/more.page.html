@@ -1,0 +1,44 @@
+<ion-header no-border >
+    <ion-toolbar>
+        <ion-title slot="start">More Settings</ion-title> 
+        <ion-button fill="blank" slot="end" (click)="view()">
+            <ion-icon slot="start"  name="unlock"></ion-icon>
+            <p>Logout</p>
+          </ion-button>
+    </ion-toolbar>
+   
+</ion-header>
+
+<ion-content >
+    <ion-card tappable (click)="viewMyself()">
+        <ion-item >
+          <ion-icon name=contact slot="start"></ion-icon>
+          <ion-label>My Profile</ion-label>
+        </ion-item>
+      </ion-card>
+  <ion-card tappable (click)="viewOrg()">
+    <ion-item>
+      <ion-icon name=business slot="start"></ion-icon>
+      <ion-label>Organization</ion-label>
+    </ion-item>
+  </ion-card>
+  <ion-card tappable (click)="viewBox()">
+      <ion-item >
+        <ion-icon name=cube slot="start"></ion-icon>
+        <ion-label>Box Info</ion-label>
+      </ion-item>
+    </ion-card>
+    <ion-card tappable (click)="viewUser()">
+        <ion-item >
+          <ion-icon name=people slot="start"></ion-icon>
+          <ion-label>User Group</ion-label>
+        </ion-item>
+      </ion-card>
+      <ion-card tappable (click)="viewAnnounce()">
+          <ion-item>
+            <ion-icon name=megaphone slot="start"></ion-icon>
+            <ion-label>Announcement</ion-label>
+          </ion-item>
+        </ion-card>
+
+</ion-content>

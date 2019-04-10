@@ -1,0 +1,25 @@
+<ion-header>
+    <ion-toolbar>
+      <ion-title>{{title}}</ion-title>
+      <ion-buttons slot="start">
+          <ion-button (click)="previous()"><ion-icon name="arrow-back"></ion-icon></ion-button>
+        </ion-buttons>
+    </ion-toolbar>
+  </ion-header>
+
+<ion-content padding>
+    <ion-item>
+        <ion-label position="floating">Code of User Group</ion-label>
+        <ion-input type="code" [(ngModel)]="usergroup.code" ></ion-input>
+      </ion-item>
+      <ion-item>
+          <ion-label position="floating">Name of User Group</ion-label>
+          <ion-input type="description" [(ngModel)]="usergroup.desc" ></ion-input>
+        </ion-item>
+        <br><br>
+          <ion-button (click)="submit()">Submit</ion-button>
+          <ion-button color="warning"*ngIf="hide">Clear</ion-button>
+          <ion-button color="danger" *ngIf="show">Delete</ion-button>
+          <br><br>              
+
+</ion-content>

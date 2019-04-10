@@ -1,0 +1,36 @@
+<ion-header>
+  <ion-toolbar>
+      <ion-buttons slot="start">
+          <ion-button (click)="previous()"><ion-icon name="arrow-back"></ion-icon></ion-button>
+        </ion-buttons>
+    <ion-title>Filter</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+    <ion-list lines="none">
+        <ion-label>Status</ion-label>
+        <ion-item >
+            <ion-chip color="secondary"> <ion-label>Not collected</ion-label></ion-chip>
+            <ion-chip color="tertiary"> <ion-label>Collected</ion-label></ion-chip>
+        </ion-item>
+    </ion-list>
+    <ion-list>
+        <ion-label>Name of Food Bank</ion-label>
+        <ion-select placeholder="Select One">
+          <ion-select-option value="f">Female</ion-select-option>
+          <ion-select-option value="m">Male</ion-select-option>
+        </ion-select>
+    </ion-list>
+    <ion-list>
+        <ion-label>State</ion-label>
+        <ion-select placeholder="Select One">
+          <ion-select-option value="f">Female</ion-select-option>
+          <ion-select-option value="m">Male</ion-select-option>
+        </ion-select>
+    </ion-list>
+  <ion-list>
+      <ion-button expand="block" fill="outline"><ion-icon slot="start" name="search"></ion-icon>Search</ion-button>
+  </ion-list>
+         
+</ion-content>

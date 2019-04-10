@@ -1,0 +1,50 @@
+<ion-header no-border >
+    <ion-toolbar>
+        <ion-title slot="start">{{title}}</ion-title> 
+        <ion-button fill="blank" slot="end" (click)="view()">
+            <ion-icon slot="start"  name="unlock"></ion-icon>
+            <p>Logout</p>
+          </ion-button>
+    </ion-toolbar>
+    <ion-toolbar>
+        <ion-segment [(ngModel)]="menuType">
+            <ion-segment-button value="donation"(ionSelect)="segmentDonation()">
+              <ion-label>Donation</ion-label>
+            </ion-segment-button>
+            <ion-segment-button value="recipient"(ionSelect)="segmentRecipient()">
+              <ion-label>Recipient</ion-label>
+            </ion-segment-button>
+          </ion-segment>
+    </ion-toolbar>
+    <ion-toolbar>
+        <ion-searchbar  animated slot="start" ></ion-searchbar>
+        <ion-button fill="blank" slot="end" (click)="viewFilter()">
+            <ion-icon slot="end"  name="options"></ion-icon>
+          </ion-button>
+    </ion-toolbar>
+  </ion-header>
+  
+
+<ion-content>
+  <ion-card tappable *ngFor="let item of items; let index=index" (click)="edit(item.id)">
+    <ion-card-header>
+      <ion-list lines="none">
+        <ion-item >
+            <ion-card-subtitle slot="start">{{item.code}}</ion-card-subtitle>
+            <ion-badge color="secondary" slot="end">Collected</ion-badge>
+        </ion-item>
+      </ion-list>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-label>{{item.desc}}</ion-label>
+    </ion-card-content>
+  </ion-card>
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed" *ngIf="show">
+      <ion-fab-button (click)="create()">
+        <ion-icon name="create"></ion-icon>
+      </ion-fab-button>
+    </ion-fab>
+  
+ 
+     
+</ion-content>

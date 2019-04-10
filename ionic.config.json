@@ -1,5 +1,7 @@
 {
-  "name": "smartfoodbank",
-  "integrations": {},
-  "type": "ionic-angular"
+  "name": "sfb",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "angular"
 }

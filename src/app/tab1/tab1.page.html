@@ -1,0 +1,19 @@
+<ion-header no-border>
+  <ion-toolbar>
+      <ion-title slot="start">Food Bank</ion-title> 
+      <ion-button fill="blank" slot="end" (click)="view()">
+          <ion-icon slot="start"  name="unlock"></ion-icon>
+          <p>Logout</p>
+        </ion-button>
+  </ion-toolbar>
+  <ion-toolbar>
+      <ion-searchbar  animated slot="start" ></ion-searchbar>
+      <ion-button fill="blank" slot="end" (click)="view()">
+         <ion-icon slot="end"  name="options"></ion-icon>
+       </ion-button>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <div id="map_canvas"></div> 
+</ion-content>

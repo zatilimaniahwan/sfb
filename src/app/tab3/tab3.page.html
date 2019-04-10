@@ -1,0 +1,44 @@
+<ion-header no-border >
+    <ion-toolbar>
+        <ion-title slot="start">Report</ion-title> 
+        <ion-button fill="blank" slot="end" (click)="view()">
+            <ion-icon slot="start"  name="unlock"></ion-icon>
+            <p>Logout</p>
+          </ion-button>
+    </ion-toolbar>
+    <ion-toolbar>
+        <ion-segment [(ngModel)]="menuType">
+            <ion-segment-button value="donation"(ionSelect)="reportDonate()">
+              <ion-label>Donation</ion-label>
+            </ion-segment-button>
+            <ion-segment-button value="recipient"(ionSelect)="reportRecipient()">
+              <ion-label>Recipient</ion-label>
+            </ion-segment-button>
+          </ion-segment>
+    </ion-toolbar>
+  </ion-header>
+
+<ion-content>
+    <ion-item lines="none" *ngIf="hide" >
+        <ion-label>Food Type</ion-label>
+        <ion-select placeholder="Select One">
+          <ion-select-option value="f">Female</ion-select-option>
+          <ion-select-option value="m">Male</ion-select-option>
+        </ion-select>
+      </ion-item>
+      <ion-item lines="none" *ngIf="show" >
+          <ion-label>State</ion-label>
+          <ion-select placeholder="Select One">
+            <ion-select-option value="f">Female</ion-select-option>
+            <ion-select-option value="m">Male</ion-select-option>
+          </ion-select>
+        </ion-item>
+        <ion-card>
+            <ion-card-header>
+              Doughnut Chart
+            </ion-card-header>
+            <ion-card-content>
+              <canvas #barCanvas></canvas>
+            </ion-card-content>
+          </ion-card>
+</ion-content>
