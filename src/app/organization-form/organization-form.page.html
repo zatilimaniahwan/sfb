@@ -20,6 +20,20 @@
             <ion-label position="floating">Address</ion-label>
             <ion-textarea type="address" [(ngModel)]="organization.address"></ion-textarea>
           </ion-item>
+          <ion-item>
+              <ion-label position="floating">State</ion-label>
+              <ion-select placeholder="Select One">
+                  <ion-select-option [value]="state.code" *ngFor="let state of states">{{state.desc}}</ion-select-option>
+                </ion-select>
+            </ion-item>
+            <ion-item>
+                <ion-label position="floating">Email</ion-label>
+                <ion-input type="email" [(ngModel)]="organization.email" ></ion-input>
+              </ion-item>
+              <ion-item>
+                  <ion-label position="floating">Fax No (optional)</ion-label>
+                  <ion-input type="fax_no" [(ngModel)]="organization.fax" ></ion-input>
+                </ion-item>
         <br><br>
           <ion-button (click)="submit()">Submit</ion-button>
           <ion-button color="warning"*ngIf="hide">Clear</ion-button>
