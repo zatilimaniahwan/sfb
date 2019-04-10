@@ -7,6 +7,23 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content padding>
+    <ion-item>
+        <ion-label position="floating">Organization Registration Number</ion-label>
+        <ion-input type="reg_no" [(ngModel)]="organization.reg_no" ></ion-input>
+      </ion-item>
+      <ion-item>
+          <ion-label position="floating">Organization Name</ion-label>
+          <ion-input type="org_name" [(ngModel)]="organization.org_name" ></ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-label position="floating">Address</ion-label>
+            <ion-input type="address" [(ngModel)]="organization.address" ></ion-input>
+          </ion-item>
+        <br><br>
+          <ion-button (click)="submit()">Submit</ion-button>
+          <ion-button color="warning"*ngIf="hide">Clear</ion-button>
+          <ion-button color="danger" *ngIf="show">Delete</ion-button>
+          <br><br>              
 
 </ion-content>
