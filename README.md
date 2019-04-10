@@ -1,7 +1,7 @@
 
 # Smart Food Bank Application
-Framework: Ionic 4
-Language: Angular 7, HTML 5 and SCSS
-Integration: Arduino, Google Maps
-Database: MySQL
-API: CodeIgniter Framework
+<p>Framework: Ionic 4</p>
+<p>Language: Angular 7, HTML 5 and SCSS</p>
+<p>Integration: Arduino, Google Maps</p>
+<p>Database: MySQL</p>
+<p>API: CodeIgniter Framework</p>
