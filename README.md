@@ -1,2 +1,7 @@
-# sfb
-Smart Food Bank Application. It was developed by using Ionic 4 and Angular 7.
+
+# Smart Food Bank Application
+<p>Framework: Ionic 4</p>
+<p>Language: Angular 7, HTML 5 and SCSS</p>
+<p>Integration: Arduino, Google Maps</p>
+<p>Database: MySQL</p>
+<p>API: CodeIgniter Framework</p>
