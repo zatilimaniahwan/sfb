@@ -71,7 +71,7 @@ export class OrganizationFormPage implements OnInit {
   //Submit new data
   async submit(){
     //check whether the field is blank or not
-    if(this.organization.reg_no==''|| this.organization.org_name==''|| this.organization.address==''|| this.organization.tel_no==''||this.organization.email==''){
+    if(this.organization.reg_no==''|| this.organization.org_name==''|| this.organization.address==''|| this.organization.tel_no==''||this.organization.email==''||this.organization.fax_no==''){
       const toast = await this.toastCtrl.create({
         message: 'All fields are required.',
         duration: 2000
