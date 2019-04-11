@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
+import { Observable } from 'rxjs';
+import { HttpClient} from '@angular/common/http';
 
 @Component({
   selector: 'app-organization-form',
@@ -8,14 +10,26 @@ import { ModalController } from '@ionic/angular';
 })
 export class OrganizationFormPage implements OnInit {
   title='';
-
-  constructor(private modalCtrl:ModalController) { }
+  organization:any={
+    id:'',
+    reg_no:'',
+    org_name:'',
+    address:'',
+    state:'',
+    email:'',
+    tel_no:'',
+    fax_no:''
+  }
+  organizationID='';
+  data:Observable<any>;
+  constructor(private modalCtrl:ModalController,private http:HttpClient ) { }
 
   previous(){
     this.modalCtrl.dismiss();
   }
   ngOnInit() {
     this.title='Add Data';
+    
   }
 
 }

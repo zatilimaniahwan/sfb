@@ -22,7 +22,7 @@
           </ion-item>
           <ion-item>
               <ion-label position="floating">State</ion-label>
-              <ion-select placeholder="Select One">
+              <ion-select placeholder="Select One" [(ngModel)]="organization.state">
                   <ion-select-option [value]="state.code" *ngFor="let state of states">{{state.desc}}</ion-select-option>
                 </ion-select>
             </ion-item>
@@ -31,8 +31,12 @@
                 <ion-input type="email" [(ngModel)]="organization.email" ></ion-input>
               </ion-item>
               <ion-item>
+                  <ion-label position="floating">Telephone No </ion-label>
+                  <ion-input type="tel_no" [(ngModel)]="organization.tel_no" ></ion-input>
+                </ion-item>
+              <ion-item>
                   <ion-label position="floating">Fax No (optional)</ion-label>
-                  <ion-input type="fax_no" [(ngModel)]="organization.fax" ></ion-input>
+                  <ion-input type="fax_no" [(ngModel)]="organization.fax_no" ></ion-input>
                 </ion-item>
         <br><br>
           <ion-button (click)="submit()">Submit</ion-button>

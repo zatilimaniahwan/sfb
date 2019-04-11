@@ -17,9 +17,10 @@
           <ion-input type="description" [(ngModel)]="usergroup.desc" ></ion-input>
         </ion-item>
         <br><br>
-          <ion-button (click)="submit()">Submit</ion-button>
-          <ion-button color="warning"*ngIf="hide">Clear</ion-button>
-          <ion-button color="danger" *ngIf="show">Delete</ion-button>
+          <ion-button (click)="submit()"*ngIf="btnSubmit">Submit</ion-button>
+          <ion-button (click)="update()"*ngIf="btnUpdate">Submit</ion-button>
+          <ion-button (click)="clear()" color="warning"*ngIf="btnClear">Clear</ion-button>
+          <ion-button (click)="delete()"color="danger" *ngIf="btnDelete">Delete</ion-button>
           <br><br>              
 
 </ion-content>
