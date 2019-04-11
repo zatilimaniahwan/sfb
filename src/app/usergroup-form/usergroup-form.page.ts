@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ModalController, NavParams, ToastController, NavController } from '@ionic/angular';
+import { ModalController, NavParams, ToastController, NavController, AlertController } from '@ionic/angular';
 import { Observable } from 'rxjs';
 import { HttpClient} from '@angular/common/http';
 
@@ -24,7 +24,7 @@ export class UsergroupFormPage implements OnInit {
   btnDelete=false;
   toaster:any;
   items:string[];
-  constructor(private modalCtrl:ModalController,private http:HttpClient,private navParams:NavParams,private toastCtrl:ToastController,private navCtrl:NavController) { }
+  constructor(private modalCtrl:ModalController,private http:HttpClient,private navParams:NavParams,private toastCtrl:ToastController,private navCtrl:NavController,private alertCtrl:AlertController) { }
 
   // State when ionic in ready state
   ngOnInit() {
@@ -88,7 +88,45 @@ export class UsergroupFormPage implements OnInit {
       })
     }
   }
+  //Delete current data
   async delete(){
-
+    // Call alert to ask confirmation before delete the data
+    const alert=await this.alertCtrl.create({
+      header:'Confirmation Message',
+      message:'Are you confirm to delete this data?',
+      buttons:[
+        {
+          text:'Cancel',
+          role:'cancel',
+          cssClass:'danger',
+          handler:(blah)=>{
+            this.alertCtrl.dismiss();
+          }},
+          {
+            text:'Confirm',
+            handler:()=>{
+              if(this.usergroupID !=''){
+                var url='http://localhost/smartfoodbank/usergroup/deleteusergroup';
+                this.data=this.http.post(url,this.usergroup,{headers:{'Content-Type':'application/x-www-form-urlencoded'}});
+                this.data.subscribe(async data=>{
+                  this.modalCtrl.dismiss();
+                  const toast = await this.toastCtrl.create({
+                    message: 'Data successfully deleted.',
+                    duration: 2000
+                  });
+                  toast.present();
+                  this.navCtrl.navigateRoot(['usergroup',{items:data}]);
+                })
+              }
+            }
+          }
+      ]
+    });
+    await alert.present();
+  }
+  //Clear form
+  clear(){
+    this.usergroup.code='';
+    this.usergroup.desc='';
   }
 }
