@@ -10,11 +10,11 @@
 <ion-content padding>
     <ion-item>
         <ion-label position="floating">Code of User Group</ion-label>
-        <ion-input type="code" [(ngModel)]="usergroup.code" ></ion-input>
+        <ion-input type="text" [(ngModel)]="usergroup.code" ></ion-input>
       </ion-item>
       <ion-item>
           <ion-label position="floating">Name of User Group</ion-label>
-          <ion-input type="description" [(ngModel)]="usergroup.desc" ></ion-input>
+          <ion-input type="text" [(ngModel)]="usergroup.desc" ></ion-input>
         </ion-item>
         <br><br>
           <ion-button (click)="submit()"*ngIf="btnSubmit">Submit</ion-button>

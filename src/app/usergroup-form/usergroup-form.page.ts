@@ -9,6 +9,7 @@ import { HttpClient} from '@angular/common/http';
   styleUrls: ['./usergroup-form.page.scss'],
 })
 export class UsergroupFormPage implements OnInit {
+  // Declare variable, array and object
   title='';
   usergroup:any={
     id:'',
@@ -25,6 +26,7 @@ export class UsergroupFormPage implements OnInit {
   items:string[];
   constructor(private modalCtrl:ModalController,private http:HttpClient,private navParams:NavParams,private toastCtrl:ToastController,private navCtrl:NavController) { }
 
+  // State when ionic in ready state
   ngOnInit() {
     this.title='Add New Data';
     this.btnSubmit=true;
@@ -43,12 +45,13 @@ export class UsergroupFormPage implements OnInit {
       this.btnDelete=true;
    }
   }
-
+//close modal and back to previous page
   previous(){
     this.modalCtrl.dismiss();
   }
-
+  //Submit new data
   async submit(){
+    //check whether the field is blank or not
     if(this.usergroup.code==''|| this.usergroup.desc==''){
       const toast = await this.toastCtrl.create({
         message: 'All fields are required.',
@@ -68,7 +71,24 @@ export class UsergroupFormPage implements OnInit {
       toast.present();
       this.navCtrl.navigateRoot(['usergroup',{items:data}]);
     })
+  }
+  //Update current data
+  async update(){
+    if(this.usergroupID !=''){
+      var url='http://localhost/smartfoodbank/usergroup/updateusergroup';
+      this.data=this.http.post(url,this.usergroup,{headers:{'Content-Type':'application/x-www-form-urlencoded'}});
+      this.data.subscribe(async data=>{
+        this.modalCtrl.dismiss();
+        const toast = await this.toastCtrl.create({
+          message: 'Data successfully updated.',
+          duration: 2000
+        });
+        toast.present();
+        this.navCtrl.navigateRoot(['usergroup',{items:data}]);
+      })
+    }
+  }
+  async delete(){
 
   }
-
 }
