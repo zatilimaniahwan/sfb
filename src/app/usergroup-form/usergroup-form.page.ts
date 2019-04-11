@@ -24,7 +24,13 @@ export class UsergroupFormPage implements OnInit {
   btnDelete=false;
   toaster:any;
   items:string[];
-  constructor(private modalCtrl:ModalController,private http:HttpClient,private navParams:NavParams,private toastCtrl:ToastController,private navCtrl:NavController,private alertCtrl:AlertController) { }
+  constructor(
+    private modalCtrl:ModalController,
+    private http:HttpClient,
+    private navParams:NavParams,
+    private toastCtrl:ToastController,
+    private navCtrl:NavController,
+    private alertCtrl:AlertController) { }
 
   // State when ionic in ready state
   ngOnInit() {
@@ -37,7 +43,6 @@ export class UsergroupFormPage implements OnInit {
      this.data=this.http.get('http://localhost/smartfoodbank/usergroup/usergroupbyid?id='+this.usergroupID);
       this.data.subscribe(data=>{
         this.usergroup=data[0];
-        console.log(this.usergroup);
       });
       this.btnSubmit=false;
       this.btnUpdate=true;

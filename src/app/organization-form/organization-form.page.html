@@ -10,15 +10,15 @@
 <ion-content padding>
     <ion-item>
         <ion-label position="floating">Organization Registration Number</ion-label>
-        <ion-input type="reg_no" [(ngModel)]="organization.reg_no" ></ion-input>
+        <ion-input type="text" [(ngModel)]="organization.reg_no" ></ion-input>
       </ion-item>
       <ion-item>
           <ion-label position="floating">Organization Name</ion-label>
-          <ion-input type="org_name" [(ngModel)]="organization.org_name" ></ion-input>
+          <ion-input type="text" [(ngModel)]="organization.org_name" ></ion-input>
         </ion-item>
         <ion-item>
             <ion-label position="floating">Address</ion-label>
-            <ion-textarea type="address" [(ngModel)]="organization.address"></ion-textarea>
+            <ion-textarea type="text" [(ngModel)]="organization.address"></ion-textarea>
           </ion-item>
           <ion-item>
               <ion-label position="floating">State</ion-label>
@@ -32,16 +32,17 @@
               </ion-item>
               <ion-item>
                   <ion-label position="floating">Telephone No </ion-label>
-                  <ion-input type="tel_no" [(ngModel)]="organization.tel_no" ></ion-input>
+                  <ion-input type="text" [(ngModel)]="organization.tel_no" ></ion-input>
                 </ion-item>
               <ion-item>
                   <ion-label position="floating">Fax No (optional)</ion-label>
-                  <ion-input type="fax_no" [(ngModel)]="organization.fax_no" ></ion-input>
+                  <ion-input type="text" [(ngModel)]="organization.fax_no" ></ion-input>
                 </ion-item>
-        <br><br>
-          <ion-button (click)="submit()">Submit</ion-button>
-          <ion-button color="warning"*ngIf="hide">Clear</ion-button>
-          <ion-button color="danger" *ngIf="show">Delete</ion-button>
-          <br><br>              
+                <br><br>
+                <ion-button (click)="submit()"*ngIf="btnSubmit">Submit</ion-button>
+                <ion-button (click)="update()"*ngIf="btnUpdate">Submit</ion-button>
+                <ion-button (click)="clear()" color="warning"*ngIf="btnClear">Clear</ion-button>
+                <ion-button (click)="delete()"color="danger" *ngIf="btnDelete">Delete</ion-button>
+                <br><br>                 
 
 </ion-content>
