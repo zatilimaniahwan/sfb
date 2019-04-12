@@ -17,7 +17,9 @@ const routes: Routes = [
   { path: 'login', loadChildren: './login/login.module#LoginPageModule' },
   { path: 'role', loadChildren: './role/role.module#RolePageModule' },
   { path: 'staff-form', loadChildren: './staff-form/staff-form.module#StaffFormPageModule' },
-  { path: 'boxinfo-form', loadChildren: './boxinfo-form/boxinfo-form.module#BoxinfoFormPageModule' }
+  { path: 'boxinfo-form', loadChildren: './boxinfo-form/boxinfo-form.module#BoxinfoFormPageModule' },
+  { path: 'lock', loadChildren: './lock/lock.module#LockPageModule' },
+  { path: 'audittrail', loadChildren: './audittrail/audittrail.module#AudittrailPageModule' }
  
 ];
 @NgModule({

@@ -28,7 +28,7 @@
         <ion-card-header>
           <ion-list lines="none">
             <ion-item >
-              <ion-icon name="contact" slot="start"></ion-icon>
+              
                 <ion-card-subtitle slot="start">{{item.organization_code}}</ion-card-subtitle>
             </ion-item>
           </ion-list>
@@ -38,11 +38,11 @@
           <ion-label>{{item.fullname}}</ion-label>
         </ion-card-content>
       </ion-card>
-      <ion-card tappable ngIf="cardOrg" *ngFor="let item of items; let index=index" (click)="editStaff(item.id)">
+      <ion-card tappable ngIf="cardStaff" *ngFor="let item of items; let index=index" (click)="editStaff(item.id)">
           <ion-card-header>
             <ion-list lines="none">
               <ion-item >
-                <ion-icon name="contact" slot="start"></ion-icon>
+               
                   <ion-card-subtitle slot="start">{{item.organization_code}}</ion-card-subtitle>
               </ion-item>
             </ion-list>

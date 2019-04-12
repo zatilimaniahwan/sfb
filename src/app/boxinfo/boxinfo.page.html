@@ -1,9 +1,34 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>boxinfo</ion-title>
-  </ion-toolbar>
-</ion-header>
-
+<ion-header no-border >
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-button (click)="previous()"><ion-icon name="arrow-back"></ion-icon></ion-button>
+          </ion-buttons>
+        <ion-title>Box Info</ion-title> 
+        <ion-button fill="blank" slot="end" (click)="view()">
+            <ion-icon slot="end"  name="contact"></ion-icon>
+          </ion-button>
+    </ion-toolbar>
+    <ion-toolbar>
+        <ion-searchbar></ion-searchbar>
+    </ion-toolbar>
+  </ion-header>
 <ion-content>
 
+    <ion-card tappable *ngFor="let item of items; let index=index" (click)="edit(item.id)">
+        <ion-card-header>
+          <ion-list lines="none">
+            <ion-item >
+                <ion-card-subtitle slot="start">{{item.foodbankname}}</ion-card-subtitle>
+            </ion-item>
+          </ion-list>
+        </ion-card-header>
+        <ion-card-content>
+          <ion-label>{{item.address}}</ion-label>
+        </ion-card-content>
+      </ion-card>
+      <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+          <ion-fab-button (click)="create()">
+            <ion-icon name="create"></ion-icon>
+          </ion-fab-button>
+        </ion-fab>
 </ion-content>
