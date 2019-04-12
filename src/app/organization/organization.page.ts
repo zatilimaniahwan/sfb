@@ -22,7 +22,7 @@ export class OrganizationPage implements OnInit {
     this.title='Organization';
   }
   previous(){
-    this.navCtrl.navigateForward('/tabs/tab4')
+    this.navCtrl.navigateForward('/tabs/tab4');
   }
   ngOnInit() {
     this.org=true;

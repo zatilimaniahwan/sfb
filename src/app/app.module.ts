@@ -18,6 +18,7 @@ import { Geolocation } from '@ionic-native/geolocation/ngx';
 import { LocationAccuracy } from '@ionic-native/location-accuracy/ngx';
 import { OrganizationFormPageModule } from './organization-form/organization-form.module';
 import { StaffFormPageModule } from './staff-form/staff-form.module';
+import { BoxinfoFormPageModule } from './boxinfo-form/boxinfo-form.module';
 
 
 @NgModule({
@@ -32,7 +33,8 @@ import { StaffFormPageModule } from './staff-form/staff-form.module';
     FormsModule,
     UsergroupFormPageModule,
     OrganizationFormPageModule,
-    StaffFormPageModule
+    StaffFormPageModule,
+    BoxinfoFormPageModule
   ],
   providers: [
     StatusBar,
