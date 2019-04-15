@@ -857,6 +857,13 @@ var map = {
 		"./src/app/announcement/announcement.module.ts",
 		"announcement-announcement-module"
 	],
+	"./audittrail/audittrail.module": [
+		"./src/app/audittrail/audittrail.module.ts",
+		"audittrail-audittrail-module"
+	],
+	"./boxinfo-form/boxinfo-form.module": [
+		"./src/app/boxinfo-form/boxinfo-form.module.ts"
+	],
 	"./boxinfo/boxinfo.module": [
 		"./src/app/boxinfo/boxinfo.module.ts",
 		"boxinfo-boxinfo-module"
@@ -962,7 +969,9 @@ var routes = [
     { path: 'intro', loadChildren: './intro/intro.module#IntroPageModule' },
     { path: 'login', loadChildren: './login/login.module#LoginPageModule' },
     { path: 'role', loadChildren: './role/role.module#RolePageModule' },
-    { path: 'staff-form', loadChildren: './staff-form/staff-form.module#StaffFormPageModule' }
+    { path: 'staff-form', loadChildren: './staff-form/staff-form.module#StaffFormPageModule' },
+    { path: 'boxinfo-form', loadChildren: './boxinfo-form/boxinfo-form.module#BoxinfoFormPageModule' },
+    { path: 'audittrail', loadChildren: './audittrail/audittrail.module#AudittrailPageModule' }
 ];
 var AppRoutingModule = /** @class */ (function () {
     function AppRoutingModule() {
@@ -1028,7 +1037,7 @@ var AppComponent = /** @class */ (function () {
     AppComponent.prototype.initializeApp = function () {
         var _this = this;
         this.platform.ready().then(function () {
-            _this.router.navigateByUrl('intro');
+            //this.router.navigateByUrl('intro');
             _ionic_native_google_maps__WEBPACK_IMPORTED_MODULE_5__["Environment"].setEnv({
                 'API_KEY_FOR_BROWSER_RELEASE': 'AIzaSyDMPAgokYzvVtLUUmMWQpPCvU_ZZ0ncM6o',
                 'API_KEY_FOR_BROWSER_DEBUG': 'AIzaSyDMPAgokYzvVtLUUmMWQpPCvU_ZZ0ncM6o'
@@ -1083,6 +1092,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _ionic_native_location_accuracy_ngx__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! @ionic-native/location-accuracy/ngx */ "./node_modules/@ionic-native/location-accuracy/ngx/index.js");
 /* harmony import */ var _organization_form_organization_form_module__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./organization-form/organization-form.module */ "./src/app/organization-form/organization-form.module.ts");
 /* harmony import */ var _staff_form_staff_form_module__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ./staff-form/staff-form.module */ "./src/app/staff-form/staff-form.module.ts");
+/* harmony import */ var _boxinfo_form_boxinfo_form_module__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! ./boxinfo-form/boxinfo-form.module */ "./src/app/boxinfo-form/boxinfo-form.module.ts");
+
 
 
 
@@ -1118,7 +1129,8 @@ var AppModule = /** @class */ (function () {
                 _angular_forms__WEBPACK_IMPORTED_MODULE_12__["FormsModule"],
                 _usergroup_form_usergroup_form_module__WEBPACK_IMPORTED_MODULE_13__["UsergroupFormPageModule"],
                 _organization_form_organization_form_module__WEBPACK_IMPORTED_MODULE_17__["OrganizationFormPageModule"],
-                _staff_form_staff_form_module__WEBPACK_IMPORTED_MODULE_18__["StaffFormPageModule"]
+                _staff_form_staff_form_module__WEBPACK_IMPORTED_MODULE_18__["StaffFormPageModule"],
+                _boxinfo_form_boxinfo_form_module__WEBPACK_IMPORTED_MODULE_19__["BoxinfoFormPageModule"]
             ],
             providers: [
                 _ionic_native_status_bar_ngx__WEBPACK_IMPORTED_MODULE_6__["StatusBar"],
@@ -1132,6 +1144,115 @@ var AppModule = /** @class */ (function () {
         })
     ], AppModule);
     return AppModule;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/boxinfo-form/boxinfo-form.module.ts":
+/*!*****************************************************!*\
+  !*** ./src/app/boxinfo-form/boxinfo-form.module.ts ***!
+  \*****************************************************/
+/*! exports provided: BoxinfoFormPageModule */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "BoxinfoFormPageModule", function() { return BoxinfoFormPageModule; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/common */ "./node_modules/@angular/common/fesm5/common.js");
+/* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/fesm5/forms.js");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
+/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @ionic/angular */ "./node_modules/@ionic/angular/dist/fesm5.js");
+/* harmony import */ var _boxinfo_form_page__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./boxinfo-form.page */ "./src/app/boxinfo-form/boxinfo-form.page.ts");
+
+
+
+
+
+
+
+var routes = [
+    {
+        path: '',
+        component: _boxinfo_form_page__WEBPACK_IMPORTED_MODULE_6__["BoxinfoFormPage"]
+    }
+];
+var BoxinfoFormPageModule = /** @class */ (function () {
+    function BoxinfoFormPageModule() {
+    }
+    BoxinfoFormPageModule = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["NgModule"])({
+            imports: [
+                _angular_common__WEBPACK_IMPORTED_MODULE_2__["CommonModule"],
+                _angular_forms__WEBPACK_IMPORTED_MODULE_3__["FormsModule"],
+                _ionic_angular__WEBPACK_IMPORTED_MODULE_5__["IonicModule"],
+                _angular_router__WEBPACK_IMPORTED_MODULE_4__["RouterModule"].forChild(routes)
+            ],
+            declarations: [_boxinfo_form_page__WEBPACK_IMPORTED_MODULE_6__["BoxinfoFormPage"]]
+        })
+    ], BoxinfoFormPageModule);
+    return BoxinfoFormPageModule;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/boxinfo-form/boxinfo-form.page.html":
+/*!*****************************************************!*\
+  !*** ./src/app/boxinfo-form/boxinfo-form.page.html ***!
+  \*****************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "<ion-header>\n  <ion-toolbar>\n    <ion-title>{{title}}</ion-title>\n  </ion-toolbar>\n</ion-header>\n\n<ion-content>\n\n</ion-content>\n"
+
+/***/ }),
+
+/***/ "./src/app/boxinfo-form/boxinfo-form.page.scss":
+/*!*****************************************************!*\
+  !*** ./src/app/boxinfo-form/boxinfo-form.page.scss ***!
+  \*****************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL2JveGluZm8tZm9ybS9ib3hpbmZvLWZvcm0ucGFnZS5zY3NzIn0= */"
+
+/***/ }),
+
+/***/ "./src/app/boxinfo-form/boxinfo-form.page.ts":
+/*!***************************************************!*\
+  !*** ./src/app/boxinfo-form/boxinfo-form.page.ts ***!
+  \***************************************************/
+/*! exports provided: BoxinfoFormPage */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "BoxinfoFormPage", function() { return BoxinfoFormPage; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+
+
+var BoxinfoFormPage = /** @class */ (function () {
+    function BoxinfoFormPage() {
+        this.title = '';
+    }
+    BoxinfoFormPage.prototype.ngOnInit = function () {
+        this.title = 'Add New Data';
+    };
+    BoxinfoFormPage = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
+            selector: 'app-boxinfo-form',
+            template: __webpack_require__(/*! ./boxinfo-form.page.html */ "./src/app/boxinfo-form/boxinfo-form.page.html"),
+            styles: [__webpack_require__(/*! ./boxinfo-form.page.scss */ "./src/app/boxinfo-form/boxinfo-form.page.scss")]
+        }),
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [])
+    ], BoxinfoFormPage);
+    return BoxinfoFormPage;
 }());
 
 
@@ -1309,7 +1430,7 @@ var OrganizationFormPageModule = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<ion-header>\n  <ion-toolbar>\n      <ion-button fill=\"blank\" slot=\"start\" (click)=\"previous()\">\n          <ion-icon slot=\"start\"  name=\"arrow-back\"></ion-icon>\n        </ion-button>\n    <ion-title>{{title}}</ion-title>\n  </ion-toolbar>\n</ion-header>\n\n<ion-content>\n\n</ion-content>\n"
+module.exports = "<ion-header>\n  <ion-toolbar>\n      <ion-button fill=\"blank\" slot=\"start\" (click)=\"previous()\">\n          <ion-icon slot=\"start\"  name=\"arrow-back\"></ion-icon>\n        </ion-button>\n    <ion-title>{{title}}</ion-title>\n  </ion-toolbar>\n</ion-header>\n\n<ion-content padding>\n    <ion-item>\n        <ion-label position=\"floating\">Organization Registration Number</ion-label>\n        <ion-input type=\"text\" [(ngModel)]=\"organization.reg_no\" ></ion-input>\n      </ion-item>\n      <ion-item>\n          <ion-label position=\"floating\">Name of Organization</ion-label>\n          <ion-input type=\"text\" [(ngModel)]=\"organization.org_name\" ></ion-input>\n        </ion-item>\n        <ion-item>\n            <ion-label position=\"floating\">Address</ion-label>\n            <ion-textarea type=\"text\" [(ngModel)]=\"organization.address\"></ion-textarea>\n          </ion-item>\n          <ion-item>\n              <ion-label position=\"floating\">State</ion-label>\n              <ion-select placeholder=\"Select One\" [(ngModel)]=\"organization.state\">\n                  <ion-select-option [value]=\"state.code\" *ngFor=\"let state of states\">{{state.desc}}</ion-select-option>\n                </ion-select>\n            </ion-item>\n            <ion-item>\n                <ion-label position=\"floating\">Email</ion-label>\n                <ion-input type=\"email\" [(ngModel)]=\"organization.email\" ></ion-input>\n              </ion-item>\n              <ion-item>\n                  <ion-label position=\"floating\">Telephone No </ion-label>\n                  <ion-input type=\"text\" [(ngModel)]=\"organization.tel_no\" ></ion-input>\n                </ion-item>\n              <ion-item>\n                  <ion-label position=\"floating\">Fax No (optional)</ion-label>\n                  <ion-input type=\"text\" [(ngModel)]=\"organization.fax_no\" ></ion-input>\n                </ion-item>\n                <br><br>\n                <ion-button (click)=\"submit()\"*ngIf=\"btnSubmit\">Submit</ion-button>\n                <ion-button (click)=\"update()\"*ngIf=\"btnUpdate\">Submit</ion-button>\n                <ion-button (click)=\"clear()\" color=\"warning\"*ngIf=\"btnClear\">Clear</ion-button>\n                <ion-button (click)=\"delete()\"color=\"danger\" *ngIf=\"btnDelete\">Delete</ion-button>\n                <br><br>                 \n\n</ion-content>\n"
 
 /***/ }),
 
@@ -1337,19 +1458,214 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @ionic/angular */ "./node_modules/@ionic/angular/dist/fesm5.js");
+/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm5/http.js");
+
 
 
 
 var OrganizationFormPage = /** @class */ (function () {
-    function OrganizationFormPage(modalCtrl) {
+    function OrganizationFormPage(modalCtrl, http, navParams, navCtrl, toastCtrl, alertCtrl) {
         this.modalCtrl = modalCtrl;
+        this.http = http;
+        this.navParams = navParams;
+        this.navCtrl = navCtrl;
+        this.toastCtrl = toastCtrl;
+        this.alertCtrl = alertCtrl;
+        //Declare variable,object and array
         this.title = '';
+        this.organization = {
+            id: '',
+            reg_no: '',
+            org_name: '',
+            address: '',
+            state: '',
+            email: '',
+            tel_no: '',
+            fax_no: ''
+        };
+        this.organizationID = '';
+        this.btnSubmit = false;
+        this.btnUpdate = false;
+        this.btnClear = false;
+        this.btnDelete = false;
     }
+    //State when ionic in ready state
+    OrganizationFormPage.prototype.ngOnInit = function () {
+        var _this = this;
+        this.title = 'Add New Data';
+        this.btnSubmit = true;
+        this.btnClear = true;
+        var url = 'http://localhost/smartfoodbank/state/states';
+        this.data = this.http.get(url);
+        this.data.subscribe(function (data) {
+            _this.states = data;
+        });
+        this.organizationID = this.navParams.get('value');
+        if (this.organizationID != null || this.organizationID != undefined) {
+            this.title = 'Edit Data';
+            this.data = this.http.get('http://localhost/smartfoodbank/organization/organizationbyid?id=' + this.organizationID);
+            this.data.subscribe(function (data) {
+                _this.organization = data[0];
+            });
+            var url = 'http://localhost/smartfoodbank/state/states';
+            this.data = this.http.get(url);
+            this.data.subscribe(function (data) {
+                _this.states = data;
+            });
+            this.btnSubmit = false;
+            this.btnClear = false;
+            this.btnUpdate = true;
+            this.btnDelete = true;
+        }
+    };
+    //Close modal and back to previous page
     OrganizationFormPage.prototype.previous = function () {
         this.modalCtrl.dismiss();
     };
-    OrganizationFormPage.prototype.ngOnInit = function () {
-        this.title = 'Add Data';
+    //Submit new data
+    OrganizationFormPage.prototype.submit = function () {
+        return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function () {
+            var toast, url;
+            var _this = this;
+            return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        if (!(this.organization.reg_no == '' || this.organization.org_name == '' || this.organization.address == '' || this.organization.tel_no == '' || this.organization.email == '' || this.organization.fax_no == '')) return [3 /*break*/, 2];
+                        return [4 /*yield*/, this.toastCtrl.create({
+                                message: 'All fields are required.',
+                                duration: 2000
+                            })];
+                    case 1:
+                        toast = _a.sent();
+                        toast.present();
+                        return [3 /*break*/, 3];
+                    case 2:
+                        url = "http://localhost/smartfoodbank/organization/addorganization";
+                        this.data = this.http.post(url, this.organization, { headers: { 'Content-Type': 'application/x-www-form-urlencoded' } });
+                        _a.label = 3;
+                    case 3:
+                        this.data.subscribe(function (data) { return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](_this, void 0, void 0, function () {
+                            var toast;
+                            return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_a) {
+                                switch (_a.label) {
+                                    case 0:
+                                        this.modalCtrl.dismiss();
+                                        return [4 /*yield*/, this.toastCtrl.create({
+                                                message: 'Data successfully added.',
+                                                duration: 2000
+                                            })];
+                                    case 1:
+                                        toast = _a.sent();
+                                        toast.present();
+                                        this.navCtrl.navigateRoot(['organization', { items: data }]);
+                                        return [2 /*return*/];
+                                }
+                            });
+                        }); });
+                        return [2 /*return*/];
+                }
+            });
+        });
+    };
+    //Update current data
+    OrganizationFormPage.prototype.update = function () {
+        return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function () {
+            var url;
+            var _this = this;
+            return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_a) {
+                if (this.organizationID != '') {
+                    url = 'http://localhost/smartfoodbank/organization/updateorganization';
+                    this.data = this.http.post(url, this.organization, { headers: { 'Content-Type': 'application/x-www-form-urlencoded' } });
+                    this.data.subscribe(function (data) { return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](_this, void 0, void 0, function () {
+                        var toast;
+                        return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_a) {
+                            switch (_a.label) {
+                                case 0:
+                                    this.modalCtrl.dismiss();
+                                    return [4 /*yield*/, this.toastCtrl.create({
+                                            message: 'Data successfully updated.',
+                                            duration: 2000
+                                        })];
+                                case 1:
+                                    toast = _a.sent();
+                                    toast.present();
+                                    this.navCtrl.navigateRoot(['organization', { items: data }]);
+                                    return [2 /*return*/];
+                            }
+                        });
+                    }); });
+                }
+                return [2 /*return*/];
+            });
+        });
+    };
+    //Delete current data
+    OrganizationFormPage.prototype.delete = function () {
+        return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function () {
+            var alert;
+            var _this = this;
+            return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, this.alertCtrl.create({
+                            header: 'Confirmation Message',
+                            message: 'Are you confirm to delete this data?',
+                            buttons: [
+                                {
+                                    text: 'Cancel',
+                                    role: 'cancel',
+                                    cssClass: 'danger',
+                                    handler: function (blah) {
+                                        _this.alertCtrl.dismiss();
+                                    }
+                                },
+                                {
+                                    text: 'Confirm',
+                                    handler: function () {
+                                        if (_this.organizationID != '') {
+                                            var url = 'http://localhost/smartfoodbank/organization/deleteorganization';
+                                            _this.data = _this.http.post(url, _this.organization, { headers: { 'Content-Type': 'application/x-www-form-urlencoded' } });
+                                            _this.data.subscribe(function (data) { return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](_this, void 0, void 0, function () {
+                                                var toast;
+                                                return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_a) {
+                                                    switch (_a.label) {
+                                                        case 0:
+                                                            this.modalCtrl.dismiss();
+                                                            return [4 /*yield*/, this.toastCtrl.create({
+                                                                    message: 'Data successfully deleted.',
+                                                                    duration: 2000
+                                                                })];
+                                                        case 1:
+                                                            toast = _a.sent();
+                                                            toast.present();
+                                                            this.navCtrl.navigateRoot(['organization', { items: data }]);
+                                                            return [2 /*return*/];
+                                                    }
+                                                });
+                                            }); });
+                                        }
+                                    }
+                                }
+                            ]
+                        })];
+                    case 1:
+                        alert = _a.sent();
+                        return [4 /*yield*/, alert.present()];
+                    case 2:
+                        _a.sent();
+                        return [2 /*return*/];
+                }
+            });
+        });
+    };
+    //Clear form
+    OrganizationFormPage.prototype.clear = function () {
+        this.organization.reg_no = '';
+        this.organization.org_name = '';
+        this.organization.address = '';
+        this.organization.state = '';
+        this.organization.email = '';
+        this.organization.tel_no = '';
+        this.organization.fax_no = '';
     };
     OrganizationFormPage = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
@@ -1357,7 +1673,12 @@ var OrganizationFormPage = /** @class */ (function () {
             template: __webpack_require__(/*! ./organization-form.page.html */ "./src/app/organization-form/organization-form.page.html"),
             styles: [__webpack_require__(/*! ./organization-form.page.scss */ "./src/app/organization-form/organization-form.page.scss")]
         }),
-        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_ionic_angular__WEBPACK_IMPORTED_MODULE_2__["ModalController"]])
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_ionic_angular__WEBPACK_IMPORTED_MODULE_2__["ModalController"],
+            _angular_common_http__WEBPACK_IMPORTED_MODULE_3__["HttpClient"],
+            _ionic_angular__WEBPACK_IMPORTED_MODULE_2__["NavParams"],
+            _ionic_angular__WEBPACK_IMPORTED_MODULE_2__["NavController"],
+            _ionic_angular__WEBPACK_IMPORTED_MODULE_2__["ToastController"],
+            _ionic_angular__WEBPACK_IMPORTED_MODULE_2__["AlertController"]])
     ], OrganizationFormPage);
     return OrganizationFormPage;
 }());
@@ -1547,7 +1868,7 @@ var StaffFormPageModule = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<ion-header>\n  <ion-toolbar>\n      <ion-button fill=\"blank\" slot=\"start\" (click)=\"previous()\">\n          <ion-icon slot=\"start\"  name=\"arrow-back\"></ion-icon>\n        </ion-button>\n    <ion-title>s{{title}}</ion-title>\n  </ion-toolbar>\n</ion-header>\n\n<ion-content>\n\n</ion-content>\n"
+module.exports = "<ion-header>\n  <ion-toolbar>\n      <ion-button fill=\"blank\" slot=\"start\" (click)=\"previous()\">\n          <ion-icon slot=\"start\"  name=\"arrow-back\"></ion-icon>\n        </ion-button>\n    <ion-title>{{title}}</ion-title>\n  </ion-toolbar>\n</ion-header>\n\n<ion-content padding>\n    <ion-item>\n        <ion-label position=\"floating\">Name of Organization</ion-label>\n        <ion-select placeholder=\"Select One\" [(ngModel)]=\"staff.organization_code\">\n            <ion-select-option [value]=\"organization.reg_no\" *ngFor=\"let organization of organizations\">{{organization.reg_no}}</ion-select-option>\n          </ion-select>\n      </ion-item>\n      <ion-item>\n          <ion-label position=\"floating\">Staff ID</ion-label>\n          <ion-input type=\"text\" [(ngModel)]=\"staff.staff_id\" ></ion-input>\n        </ion-item>\n        <ion-item>\n            <ion-label position=\"floating\">Full Name</ion-label>\n            <ion-input type=\"text\" [(ngModel)]=\"staff.fullname\" ></ion-input>\n          </ion-item>\n        <ion-item>\n            <ion-label position=\"floating\">Password</ion-label>\n            <ion-input type=\"password\" [(ngModel)]=\"staff.password\" ></ion-input>\n          </ion-item>\n          <ion-item>\n              <ion-label position=\"floating\">Email</ion-label>\n              <ion-input type=\"email\" [(ngModel)]=\"staff.email\" ></ion-input>\n            </ion-item>\n              <ion-item>\n                  <ion-label position=\"floating\">User Group</ion-label>\n                  <ion-select placeholder=\"Select One\" [(ngModel)]=\"staff.usergroup\">\n                      <ion-select-option [value]=\"usergroup.code\" *ngFor=\"let usergroup of usergroups\">{{usergroup.desc}}</ion-select-option>\n                    </ion-select>\n                </ion-item>\n                <br><br>\n                <ion-button (click)=\"submit()\"*ngIf=\"btnSubmit\">Submit</ion-button>\n                <ion-button (click)=\"update()\"*ngIf=\"btnUpdate\">Submit</ion-button>\n                <ion-button (click)=\"clear()\" color=\"warning\"*ngIf=\"btnClear\">Clear</ion-button>\n                <ion-button (click)=\"delete()\"color=\"danger\" *ngIf=\"btnDelete\">Delete</ion-button>\n                <br><br>  \n\n</ion-content>\n"
 
 /***/ }),
 
@@ -1574,12 +1895,222 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "StaffFormPage", function() { return StaffFormPage; });
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm5/http.js");
+/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @ionic/angular */ "./node_modules/@ionic/angular/dist/fesm5.js");
+
+
 
 
 var StaffFormPage = /** @class */ (function () {
-    function StaffFormPage() {
+    function StaffFormPage(modalCtrl, http, navParams, toastCtrl, navCtrl, alertCtrl) {
+        this.modalCtrl = modalCtrl;
+        this.http = http;
+        this.navParams = navParams;
+        this.toastCtrl = toastCtrl;
+        this.navCtrl = navCtrl;
+        this.alertCtrl = alertCtrl;
+        //Declare variable,object and array
+        this.title = '';
+        this.staff = {
+            id: '',
+            organization_code: '',
+            staff_id: '',
+            fullname: '',
+            password: '',
+            email: '',
+            usergroup: ''
+        };
+        this.staffID = '';
+        this.btnSubmit = false;
+        this.btnUpdate = false;
+        this.btnClear = false;
+        this.btnDelete = false;
     }
     StaffFormPage.prototype.ngOnInit = function () {
+        var _this = this;
+        this.title = 'Add New Data';
+        this.btnSubmit = true;
+        this.btnClear = true;
+        var url = 'http://localhost/smartfoodbank/usergroup/usergroups';
+        this.data = this.http.get(url);
+        this.data.subscribe(function (data) {
+            _this.usergroups = data;
+        });
+        var url = 'http://localhost/smartfoodbank/organization/organizations';
+        this.data = this.http.get(url);
+        this.data.subscribe(function (data) {
+            _this.organizations = data;
+        });
+        this.staffID = this.navParams.get('value');
+        if (this.staffID != null || this.staffID != undefined) {
+            this.title = 'Edit Data';
+            this.data = this.http.get('http://localhost/smartfoodbank/staff/staffbyid?id=' + this.staffID);
+            this.data.subscribe(function (data) {
+                _this.staff = data[0];
+            });
+            var url = 'http://localhost/smartfoodbank/usergroup/usergroups';
+            this.data = this.http.get(url);
+            this.data.subscribe(function (data) {
+                _this.usergroups = data;
+            });
+            var url = 'http://localhost/smartfoodbank/organization/organizations';
+            this.data = this.http.get(url);
+            this.data.subscribe(function (data) {
+                _this.organizations = data;
+            });
+            this.btnSubmit = false;
+            this.btnClear = false;
+            this.btnUpdate = true;
+            this.btnDelete = true;
+        }
+    };
+    //Close modal and back to previous page
+    StaffFormPage.prototype.previous = function () {
+        this.modalCtrl.dismiss();
+    };
+    //Submit new data
+    StaffFormPage.prototype.submit = function () {
+        return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function () {
+            var toast, url;
+            var _this = this;
+            return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        if (!(this.staff.organization_code == '' || this.staff.staff_id == '' || this.staff.password == '' || this.staff.email == '' || this.staff.usergroup == '')) return [3 /*break*/, 2];
+                        return [4 /*yield*/, this.toastCtrl.create({
+                                message: 'All fields are required.',
+                                duration: 2000
+                            })];
+                    case 1:
+                        toast = _a.sent();
+                        toast.present();
+                        return [3 /*break*/, 3];
+                    case 2:
+                        url = "http://localhost/smartfoodbank/staff/addstaff";
+                        this.data = this.http.post(url, this.staff, { headers: { 'Content-Type': 'application/x-www-form-urlencoded' } });
+                        _a.label = 3;
+                    case 3:
+                        this.data.subscribe(function (data) { return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](_this, void 0, void 0, function () {
+                            var toast;
+                            return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_a) {
+                                switch (_a.label) {
+                                    case 0:
+                                        this.modalCtrl.dismiss();
+                                        return [4 /*yield*/, this.toastCtrl.create({
+                                                message: 'Data successfully added.',
+                                                duration: 2000
+                                            })];
+                                    case 1:
+                                        toast = _a.sent();
+                                        toast.present();
+                                        this.navCtrl.navigateRoot(['staff', { items: data }]);
+                                        return [2 /*return*/];
+                                }
+                            });
+                        }); });
+                        return [2 /*return*/];
+                }
+            });
+        });
+    };
+    //Update current data
+    StaffFormPage.prototype.update = function () {
+        return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function () {
+            var url;
+            var _this = this;
+            return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_a) {
+                if (this.staffID != '') {
+                    url = 'http://localhost/smartfoodbank/staff/updatestaff';
+                    this.data = this.http.post(url, this.staff, { headers: { 'Content-Type': 'application/x-www-form-urlencoded' } });
+                    this.data.subscribe(function (data) { return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](_this, void 0, void 0, function () {
+                        var toast;
+                        return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_a) {
+                            switch (_a.label) {
+                                case 0:
+                                    this.modalCtrl.dismiss();
+                                    return [4 /*yield*/, this.toastCtrl.create({
+                                            message: 'Data successfully updated.',
+                                            duration: 2000
+                                        })];
+                                case 1:
+                                    toast = _a.sent();
+                                    toast.present();
+                                    this.navCtrl.navigateRoot(['staff', { items: data }]);
+                                    return [2 /*return*/];
+                            }
+                        });
+                    }); });
+                }
+                return [2 /*return*/];
+            });
+        });
+    };
+    //Delete current data
+    StaffFormPage.prototype.delete = function () {
+        return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function () {
+            var alert;
+            var _this = this;
+            return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, this.alertCtrl.create({
+                            header: 'Confirmation Message',
+                            message: 'Are you confirm to delete this data?',
+                            buttons: [
+                                {
+                                    text: 'Cancel',
+                                    role: 'cancel',
+                                    cssClass: 'danger',
+                                    handler: function (blah) {
+                                        _this.alertCtrl.dismiss();
+                                    }
+                                },
+                                {
+                                    text: 'Confirm',
+                                    handler: function () {
+                                        if (_this.staffID != '') {
+                                            var url = 'http://localhost/smartfoodbank/staff/deletestaff';
+                                            _this.data = _this.http.post(url, _this.staff, { headers: { 'Content-Type': 'application/x-www-form-urlencoded' } });
+                                            _this.data.subscribe(function (data) { return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](_this, void 0, void 0, function () {
+                                                var toast;
+                                                return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_a) {
+                                                    switch (_a.label) {
+                                                        case 0:
+                                                            this.modalCtrl.dismiss();
+                                                            return [4 /*yield*/, this.toastCtrl.create({
+                                                                    message: 'Data successfully deleted.',
+                                                                    duration: 2000
+                                                                })];
+                                                        case 1:
+                                                            toast = _a.sent();
+                                                            toast.present();
+                                                            this.navCtrl.navigateRoot(['staff', { items: data }]);
+                                                            return [2 /*return*/];
+                                                    }
+                                                });
+                                            }); });
+                                        }
+                                    }
+                                }
+                            ]
+                        })];
+                    case 1:
+                        alert = _a.sent();
+                        return [4 /*yield*/, alert.present()];
+                    case 2:
+                        _a.sent();
+                        return [2 /*return*/];
+                }
+            });
+        });
+    };
+    //Clear form
+    StaffFormPage.prototype.clear = function () {
+        this.staff.organization_code = '';
+        this.staff.staff_id = '';
+        this.staff.fullname = '';
+        this.staff.password = '';
+        this.staff.email = '';
+        this.staff.usergroup = '';
     };
     StaffFormPage = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
@@ -1587,7 +2118,12 @@ var StaffFormPage = /** @class */ (function () {
             template: __webpack_require__(/*! ./staff-form.page.html */ "./src/app/staff-form/staff-form.page.html"),
             styles: [__webpack_require__(/*! ./staff-form.page.scss */ "./src/app/staff-form/staff-form.page.scss")]
         }),
-        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [])
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_ionic_angular__WEBPACK_IMPORTED_MODULE_3__["ModalController"],
+            _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpClient"],
+            _ionic_angular__WEBPACK_IMPORTED_MODULE_3__["NavParams"],
+            _ionic_angular__WEBPACK_IMPORTED_MODULE_3__["ToastController"],
+            _ionic_angular__WEBPACK_IMPORTED_MODULE_3__["NavController"],
+            _ionic_angular__WEBPACK_IMPORTED_MODULE_3__["AlertController"]])
     ], StaffFormPage);
     return StaffFormPage;
 }());
@@ -1654,7 +2190,7 @@ var UsergroupFormPageModule = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<ion-header>\n    <ion-toolbar>\n      <ion-title>{{title}}</ion-title>\n      <ion-buttons slot=\"start\">\n          <ion-button (click)=\"previous()\"><ion-icon name=\"arrow-back\"></ion-icon></ion-button>\n        </ion-buttons>\n    </ion-toolbar>\n  </ion-header>\n\n<ion-content padding>\n    <ion-item>\n        <ion-label position=\"floating\">Code of User Group</ion-label>\n        <ion-input type=\"code\" [(ngModel)]=\"usergroup.code\" ></ion-input>\n      </ion-item>\n      <ion-item>\n          <ion-label position=\"floating\">Name of User Group</ion-label>\n          <ion-input type=\"description\" [(ngModel)]=\"usergroup.desc\" ></ion-input>\n        </ion-item>\n        <br><br>\n          <ion-button (click)=\"submit()\">Submit</ion-button>\n          <ion-button color=\"warning\"*ngIf=\"hide\">Clear</ion-button>\n          <ion-button color=\"danger\" *ngIf=\"show\">Delete</ion-button>\n          <br><br>              \n\n</ion-content>\n"
+module.exports = "<ion-header>\n    <ion-toolbar>\n      <ion-title>{{title}}</ion-title>\n      <ion-buttons slot=\"start\">\n          <ion-button (click)=\"previous()\"><ion-icon name=\"arrow-back\"></ion-icon></ion-button>\n        </ion-buttons>\n    </ion-toolbar>\n  </ion-header>\n\n<ion-content padding>\n    <ion-item>\n        <ion-label position=\"floating\">Code of User Group</ion-label>\n        <ion-input type=\"text\" [(ngModel)]=\"usergroup.code\" ></ion-input>\n      </ion-item>\n      <ion-item>\n          <ion-label position=\"floating\">Name of User Group</ion-label>\n          <ion-input type=\"text\" [(ngModel)]=\"usergroup.desc\" ></ion-input>\n        </ion-item>\n        <br><br>\n          <ion-button (click)=\"submit()\"*ngIf=\"btnSubmit\">Submit</ion-button>\n          <ion-button (click)=\"update()\"*ngIf=\"btnUpdate\">Submit</ion-button>\n          <ion-button (click)=\"clear()\" color=\"warning\"*ngIf=\"btnClear\">Clear</ion-button>\n          <ion-button (click)=\"delete()\"color=\"danger\" *ngIf=\"btnDelete\">Delete</ion-button>\n          <br><br>              \n\n</ion-content>\n"
 
 /***/ }),
 
@@ -1688,38 +2224,188 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var UsergroupFormPage = /** @class */ (function () {
-    function UsergroupFormPage(modalCtrl, http, navParams) {
+    function UsergroupFormPage(modalCtrl, http, navParams, toastCtrl, navCtrl, alertCtrl) {
         this.modalCtrl = modalCtrl;
         this.http = http;
         this.navParams = navParams;
-        this.title = 'Add Data';
+        this.toastCtrl = toastCtrl;
+        this.navCtrl = navCtrl;
+        this.alertCtrl = alertCtrl;
+        // Declare variable, array and object
+        this.title = '';
         this.usergroup = {
             id: '',
             code: '',
             desc: ''
         };
         this.usergroupID = '';
-        this.show = false;
-        this.hide = true;
+        this.btnSubmit = false;
+        this.btnUpdate = false;
+        this.btnClear = false;
+        this.btnDelete = false;
     }
+    // State when ionic in ready state
     UsergroupFormPage.prototype.ngOnInit = function () {
         var _this = this;
+        this.title = 'Add New Data';
+        this.btnSubmit = true;
+        this.btnClear = true;
         this.usergroupID = this.navParams.get('value');
         if (this.usergroupID != null || this.usergroupID != undefined) {
             this.title = 'Edit Data';
             this.data = this.http.get('http://localhost/smartfoodbank/usergroup/usergroupbyid?id=' + this.usergroupID);
             this.data.subscribe(function (data) {
                 _this.usergroup = data[0];
-                console.log(_this.usergroup);
             });
-            this.show = true;
-            this.hide = false;
+            this.btnSubmit = false;
+            this.btnUpdate = true;
+            this.btnClear = false;
+            this.btnDelete = true;
         }
     };
+    //close modal and back to previous page
     UsergroupFormPage.prototype.previous = function () {
         this.modalCtrl.dismiss();
     };
+    //Submit new data
     UsergroupFormPage.prototype.submit = function () {
+        return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function () {
+            var toast, url;
+            var _this = this;
+            return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        if (!(this.usergroup.code == '' || this.usergroup.desc == '')) return [3 /*break*/, 2];
+                        return [4 /*yield*/, this.toastCtrl.create({
+                                message: 'All fields are required.',
+                                duration: 2000
+                            })];
+                    case 1:
+                        toast = _a.sent();
+                        toast.present();
+                        return [3 /*break*/, 3];
+                    case 2:
+                        url = "http://localhost/smartfoodbank/usergroup/addusergroup";
+                        this.data = this.http.post(url, this.usergroup, { headers: { 'Content-Type': 'application/x-www-form-urlencoded' } });
+                        _a.label = 3;
+                    case 3:
+                        this.data.subscribe(function (data) { return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](_this, void 0, void 0, function () {
+                            var toast;
+                            return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_a) {
+                                switch (_a.label) {
+                                    case 0:
+                                        this.modalCtrl.dismiss();
+                                        return [4 /*yield*/, this.toastCtrl.create({
+                                                message: 'Data successfully added.',
+                                                duration: 2000
+                                            })];
+                                    case 1:
+                                        toast = _a.sent();
+                                        toast.present();
+                                        this.navCtrl.navigateRoot(['usergroup', { items: data }]);
+                                        return [2 /*return*/];
+                                }
+                            });
+                        }); });
+                        return [2 /*return*/];
+                }
+            });
+        });
+    };
+    //Update current data
+    UsergroupFormPage.prototype.update = function () {
+        return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function () {
+            var url;
+            var _this = this;
+            return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_a) {
+                if (this.usergroupID != '') {
+                    url = 'http://localhost/smartfoodbank/usergroup/updateusergroup';
+                    this.data = this.http.post(url, this.usergroup, { headers: { 'Content-Type': 'application/x-www-form-urlencoded' } });
+                    this.data.subscribe(function (data) { return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](_this, void 0, void 0, function () {
+                        var toast;
+                        return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_a) {
+                            switch (_a.label) {
+                                case 0:
+                                    this.modalCtrl.dismiss();
+                                    return [4 /*yield*/, this.toastCtrl.create({
+                                            message: 'Data successfully updated.',
+                                            duration: 2000
+                                        })];
+                                case 1:
+                                    toast = _a.sent();
+                                    toast.present();
+                                    this.navCtrl.navigateRoot(['usergroup', { items: data }]);
+                                    return [2 /*return*/];
+                            }
+                        });
+                    }); });
+                }
+                return [2 /*return*/];
+            });
+        });
+    };
+    //Delete current data
+    UsergroupFormPage.prototype.delete = function () {
+        return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function () {
+            var alert;
+            var _this = this;
+            return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, this.alertCtrl.create({
+                            header: 'Confirmation Message',
+                            message: 'Are you confirm to delete this data?',
+                            buttons: [
+                                {
+                                    text: 'Cancel',
+                                    role: 'cancel',
+                                    cssClass: 'danger',
+                                    handler: function (blah) {
+                                        _this.alertCtrl.dismiss();
+                                    }
+                                },
+                                {
+                                    text: 'Confirm',
+                                    handler: function () {
+                                        if (_this.usergroupID != '') {
+                                            var url = 'http://localhost/smartfoodbank/usergroup/deleteusergroup';
+                                            _this.data = _this.http.post(url, _this.usergroup, { headers: { 'Content-Type': 'application/x-www-form-urlencoded' } });
+                                            _this.data.subscribe(function (data) { return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](_this, void 0, void 0, function () {
+                                                var toast;
+                                                return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_a) {
+                                                    switch (_a.label) {
+                                                        case 0:
+                                                            this.modalCtrl.dismiss();
+                                                            return [4 /*yield*/, this.toastCtrl.create({
+                                                                    message: 'Data successfully deleted.',
+                                                                    duration: 2000
+                                                                })];
+                                                        case 1:
+                                                            toast = _a.sent();
+                                                            toast.present();
+                                                            this.navCtrl.navigateRoot(['usergroup', { items: data }]);
+                                                            return [2 /*return*/];
+                                                    }
+                                                });
+                                            }); });
+                                        }
+                                    }
+                                }
+                            ]
+                        })];
+                    case 1:
+                        alert = _a.sent();
+                        return [4 /*yield*/, alert.present()];
+                    case 2:
+                        _a.sent();
+                        return [2 /*return*/];
+                }
+            });
+        });
+    };
+    //Clear form
+    UsergroupFormPage.prototype.clear = function () {
+        this.usergroup.code = '';
+        this.usergroup.desc = '';
     };
     UsergroupFormPage = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
@@ -1727,7 +2413,12 @@ var UsergroupFormPage = /** @class */ (function () {
             template: __webpack_require__(/*! ./usergroup-form.page.html */ "./src/app/usergroup-form/usergroup-form.page.html"),
             styles: [__webpack_require__(/*! ./usergroup-form.page.scss */ "./src/app/usergroup-form/usergroup-form.page.scss")]
         }),
-        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_ionic_angular__WEBPACK_IMPORTED_MODULE_2__["ModalController"], _angular_common_http__WEBPACK_IMPORTED_MODULE_3__["HttpClient"], _ionic_angular__WEBPACK_IMPORTED_MODULE_2__["NavParams"]])
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_ionic_angular__WEBPACK_IMPORTED_MODULE_2__["ModalController"],
+            _angular_common_http__WEBPACK_IMPORTED_MODULE_3__["HttpClient"],
+            _ionic_angular__WEBPACK_IMPORTED_MODULE_2__["NavParams"],
+            _ionic_angular__WEBPACK_IMPORTED_MODULE_2__["ToastController"],
+            _ionic_angular__WEBPACK_IMPORTED_MODULE_2__["NavController"],
+            _ionic_angular__WEBPACK_IMPORTED_MODULE_2__["AlertController"]])
     ], UsergroupFormPage);
     return UsergroupFormPage;
 }());
@@ -1797,7 +2488,7 @@ Object(_angular_platform_browser_dynamic__WEBPACK_IMPORTED_MODULE_1__["platformB
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /Users/zatilimani/ionicprojects/sfb/src/main.ts */"./src/main.ts");
+module.exports = __webpack_require__(/*! /Users/zatilimani/sfb/src/main.ts */"./src/main.ts");
 
 
 /***/ })
