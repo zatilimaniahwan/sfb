@@ -1745,7 +1745,7 @@ var RecipientFormPageModule = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<ion-header>\n  <ion-toolbar>\n    <ion-title>{{title}}</ion-title>\n    <ion-buttons slot=\"start\">\n        <ion-button (click)=\"previous()\"><ion-icon name=\"arrow-back\"></ion-icon></ion-button>\n      </ion-buttons>\n  </ion-toolbar>\n</ion-header>\n\n<ion-content padding>\n    <ion-item>\n        <ion-label position=\"floating\">Full Name</ion-label>\n        <ion-input type=\"fullname\" ></ion-input>\n      </ion-item>\n      <ion-item>\n          <ion-label position=\"floating\">IC No</ion-label>\n          <ion-input type=\"icno\" ></ion-input>\n        </ion-item>\n        <ion-item>\n            <ion-label position=\"floating\">Address</ion-label>\n            <ion-textarea type=\"address\"></ion-textarea>\n          </ion-item>\n          <ion-item>\n              <ion-label position=\"floating\">State</ion-label>\n              <ion-select placeholder=\"Select One\">\n                  <ion-select-option [value]=\"state.code\" *ngFor=\"let state of states\">{{state.desc}}</ion-select-option>\n                </ion-select>\n            </ion-item>\n            <ion-item>\n                <ion-label position=\"floating\">Age</ion-label>\n                <ion-input type=\"icno\" ></ion-input>\n              </ion-item>\n              <ion-item>\n                  <ion-label position=\"floating\">Phone No</ion-label>\n                  <ion-input type=\"phoneNo\" ></ion-input>\n                </ion-item>\n                <ion-item>\n                    <ion-label position=\"floating\">No Family Member</ion-label>\n                    <ion-input type=\"familyMember\" ></ion-input>\n                  </ion-item>\n                  <ion-item>\n                      <ion-label position=\"floating\">Income</ion-label>\n                      <ion-input type=\"income\" ></ion-input>\n                    </ion-item>\n                    <ion-item>\n                        <ion-label position=\"floating\">Status</ion-label>\n                        <ion-select placeholder=\"Select One\">\n                            <ion-select-option value=\"0\">Tidak Aktif</ion-select-option>\n                            <ion-select-option value=\"1\">Aktif</ion-select-option>\n                          </ion-select>\n                      </ion-item>\n                    <br><br>\n                        <ion-button>Submit</ion-button>\n                        <ion-button color=\"warning\">Clear</ion-button>\n                        <br><br>\n</ion-content>\n"
+module.exports = "<ion-header>\n  <ion-toolbar>\n    <ion-title>{{title}}</ion-title>\n    <ion-buttons slot=\"start\">\n        <ion-button (click)=\"previous()\"><ion-icon name=\"arrow-back\"></ion-icon></ion-button>\n      </ion-buttons>\n  </ion-toolbar>\n</ion-header>\n\n<ion-content padding>\n    <ion-item>\n        <ion-label position=\"floating\">Full Name</ion-label>\n        <ion-input type=\"text\" [(ngModel)]=\"recipient.fullname\" ></ion-input>\n      </ion-item>\n      <ion-item>\n          <ion-label position=\"floating\">IC No</ion-label>\n          <ion-input type=\"text\" [(ngModel)]=\"recipient.ic\" ></ion-input>\n        </ion-item>\n        <ion-item>\n            <ion-label position=\"floating\">Address</ion-label>\n            <ion-textarea type=\"text\" [(ngModel)]=\"recipient.address\"></ion-textarea>\n          </ion-item>\n          <ion-item>\n              <ion-label position=\"floating\">State</ion-label>\n              <ion-select placeholder=\"Select One\" [(ngModel)]=\"recipient.state\">\n                  <ion-select-option [value]=\"state.code\" *ngFor=\"let state of states\">{{state.desc}}</ion-select-option>\n                </ion-select>\n            </ion-item>\n            <ion-item>\n                <ion-label position=\"floating\">Age</ion-label>\n                <ion-input type=\"text\" [(ngModel)]=\"recipient.age\"></ion-input>\n              </ion-item>\n              <ion-item>\n                  <ion-label position=\"floating\">Phone No</ion-label>\n                  <ion-input type=\"text\" [(ngModel)]=\"recipient.tel_no\"></ion-input>\n                </ion-item>\n                <ion-item>\n                    <ion-label position=\"floating\">No Family Member</ion-label>\n                    <ion-input type=\"number\" [(ngModel)]=\"recipient.family_no\"></ion-input>\n                  </ion-item>\n                  <ion-item>\n                      <ion-label position=\"floating\">Income</ion-label>\n                      <ion-input type=\"number\" [(ngModel)]=\"recipient.income\" ></ion-input>\n                    </ion-item>\n                    <ion-item>\n                        <ion-label position=\"floating\">Status</ion-label>\n                        <ion-select placeholder=\"Select One\" [(ngModel)]=\"recipient.status\">\n                            <ion-select-option value=\"0\">Tidak Aktif</ion-select-option>\n                            <ion-select-option value=\"1\">Aktif</ion-select-option>\n                          </ion-select>\n                      </ion-item>\n                    <br><br>\n                        <ion-button (click)=\"submit()\">Submit</ion-button>\n                        <ion-button (click)=\"clear\" color=\"warning\">Clear</ion-button>\n                        <br><br>\n</ion-content>\n"
 
 /***/ }),
 
@@ -1779,21 +1779,209 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var RecipientFormPage = /** @class */ (function () {
-    function RecipientFormPage(modalCtrl, http) {
+    function RecipientFormPage(modalCtrl, http, navParams, navCtrl, toastCtrl, alertCtrl) {
         this.modalCtrl = modalCtrl;
         this.http = http;
-        this.title = 'Add Data';
+        this.navParams = navParams;
+        this.navCtrl = navCtrl;
+        this.toastCtrl = toastCtrl;
+        this.alertCtrl = alertCtrl;
+        this.title = '';
+        this.recipient = {
+            id: '',
+            fullname: '',
+            ic: '',
+            address: '',
+            state: '',
+            age: '',
+            tel_no: '',
+            family_no: '',
+            income: '',
+            status: ''
+        };
+        this.recipientID = '';
+        this.btnSubmit = false;
+        this.btnUpdate = false;
+        this.btnClear = false;
+        this.btnDelete = false;
     }
     RecipientFormPage.prototype.previous = function () {
         this.modalCtrl.dismiss();
     };
     RecipientFormPage.prototype.ngOnInit = function () {
         var _this = this;
+        this.title = 'Add New Data';
+        this.btnSubmit = true;
+        this.btnClear = true;
         var url = 'http://localhost/smartfoodbank/state/states';
         this.data = this.http.get(url);
         this.data.subscribe(function (data) {
             _this.states = data;
         });
+        this.recipientID = this.navParams.get('value');
+        if (this.recipientID != null || this.recipientID != undefined) {
+            this.title = 'Edit Data';
+            this.data = this.http.get('http://localhost/smartfoodbank/recipient/recipientbyid?id=' + this.recipientID);
+            this.data.subscribe(function (data) {
+                _this.recipient = data[0];
+            });
+            var url = 'http://localhost/smartfoodbank/state/states';
+            this.data = this.http.get(url);
+            this.data.subscribe(function (data) {
+                _this.states = data;
+            });
+            this.btnSubmit = false;
+            this.btnClear = false;
+            this.btnUpdate = true;
+            this.btnDelete = true;
+        }
+    };
+    //Submit new data
+    RecipientFormPage.prototype.submit = function () {
+        return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function () {
+            var toast, url;
+            var _this = this;
+            return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        if (!(this.recipient.fullname == '' || this.recipient.ic == '' || this.recipient.address == '' || this.recipient.state == '' || this.recipient.age == '' || this.recipient.tel_no == '' || this.recipient.family_no == '' || this.recipient.income == '' || this.recipient.status == '')) return [3 /*break*/, 2];
+                        return [4 /*yield*/, this.toastCtrl.create({
+                                message: 'All fields are required.',
+                                duration: 2000
+                            })];
+                    case 1:
+                        toast = _a.sent();
+                        toast.present();
+                        return [3 /*break*/, 3];
+                    case 2:
+                        url = "http://localhost/smartfoodbank/recipient/addrecipient";
+                        this.data = this.http.post(url, this.recipient, { headers: { 'Content-Type': 'application/x-www-form-urlencoded' } });
+                        _a.label = 3;
+                    case 3:
+                        this.data.subscribe(function (data) { return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](_this, void 0, void 0, function () {
+                            var toast;
+                            return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_a) {
+                                switch (_a.label) {
+                                    case 0:
+                                        this.modalCtrl.dismiss();
+                                        return [4 /*yield*/, this.toastCtrl.create({
+                                                message: 'Data successfully added.',
+                                                duration: 2000
+                                            })];
+                                    case 1:
+                                        toast = _a.sent();
+                                        toast.present();
+                                        this.navCtrl.navigateRoot(['/tabs/tab2', { items: data }]);
+                                        return [2 /*return*/];
+                                }
+                            });
+                        }); });
+                        return [2 /*return*/];
+                }
+            });
+        });
+    };
+    //Update current data
+    RecipientFormPage.prototype.update = function () {
+        return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function () {
+            var url;
+            var _this = this;
+            return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_a) {
+                if (this.recipientID != '') {
+                    url = 'http://localhost/smartfoodbank/recipient/updaterecipient';
+                    this.data = this.http.post(url, this.recipient, { headers: { 'Content-Type': 'application/x-www-form-urlencoded' } });
+                    this.data.subscribe(function (data) { return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](_this, void 0, void 0, function () {
+                        var toast;
+                        return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_a) {
+                            switch (_a.label) {
+                                case 0:
+                                    this.modalCtrl.dismiss();
+                                    return [4 /*yield*/, this.toastCtrl.create({
+                                            message: 'Data successfully updated.',
+                                            duration: 2000
+                                        })];
+                                case 1:
+                                    toast = _a.sent();
+                                    toast.present();
+                                    this.navCtrl.navigateRoot(['/tabs/tab2', { items: data }]);
+                                    return [2 /*return*/];
+                            }
+                        });
+                    }); });
+                }
+                return [2 /*return*/];
+            });
+        });
+    };
+    //Delete current data
+    RecipientFormPage.prototype.delete = function () {
+        return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function () {
+            var alert;
+            var _this = this;
+            return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, this.alertCtrl.create({
+                            header: 'Confirmation Message',
+                            message: 'Are you confirm to delete this data?',
+                            buttons: [
+                                {
+                                    text: 'Cancel',
+                                    role: 'cancel',
+                                    cssClass: 'danger',
+                                    handler: function (blah) {
+                                        _this.alertCtrl.dismiss();
+                                    }
+                                },
+                                {
+                                    text: 'Confirm',
+                                    handler: function () {
+                                        if (_this.recipientID != '') {
+                                            var url = 'http://localhost/smartfoodbank/recipient/deleterecipient';
+                                            _this.data = _this.http.post(url, _this.recipient, { headers: { 'Content-Type': 'application/x-www-form-urlencoded' } });
+                                            _this.data.subscribe(function (data) { return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](_this, void 0, void 0, function () {
+                                                var toast;
+                                                return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_a) {
+                                                    switch (_a.label) {
+                                                        case 0:
+                                                            this.modalCtrl.dismiss();
+                                                            return [4 /*yield*/, this.toastCtrl.create({
+                                                                    message: 'Data successfully deleted.',
+                                                                    duration: 2000
+                                                                })];
+                                                        case 1:
+                                                            toast = _a.sent();
+                                                            toast.present();
+                                                            this.navCtrl.navigateRoot(['/tabs/tab2', { items: data }]);
+                                                            return [2 /*return*/];
+                                                    }
+                                                });
+                                            }); });
+                                        }
+                                    }
+                                }
+                            ]
+                        })];
+                    case 1:
+                        alert = _a.sent();
+                        return [4 /*yield*/, alert.present()];
+                    case 2:
+                        _a.sent();
+                        return [2 /*return*/];
+                }
+            });
+        });
+    };
+    //Clear form
+    RecipientFormPage.prototype.clear = function () {
+        this.recipient.fullname = '';
+        this.recipient.ic = '';
+        this.recipient.address = '';
+        this.recipient.state = '';
+        this.recipient.age = '';
+        this.recipient.income = '';
+        this.recipient.tel_no = '';
+        this.recipient.family_no = '';
+        this.recipient.status = '';
     };
     RecipientFormPage = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
@@ -1801,7 +1989,12 @@ var RecipientFormPage = /** @class */ (function () {
             template: __webpack_require__(/*! ./recipient-form.page.html */ "./src/app/recipient-form/recipient-form.page.html"),
             styles: [__webpack_require__(/*! ./recipient-form.page.scss */ "./src/app/recipient-form/recipient-form.page.scss")]
         }),
-        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_ionic_angular__WEBPACK_IMPORTED_MODULE_2__["ModalController"], _angular_common_http__WEBPACK_IMPORTED_MODULE_3__["HttpClient"]])
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_ionic_angular__WEBPACK_IMPORTED_MODULE_2__["ModalController"],
+            _angular_common_http__WEBPACK_IMPORTED_MODULE_3__["HttpClient"],
+            _ionic_angular__WEBPACK_IMPORTED_MODULE_2__["NavParams"],
+            _ionic_angular__WEBPACK_IMPORTED_MODULE_2__["NavController"],
+            _ionic_angular__WEBPACK_IMPORTED_MODULE_2__["ToastController"],
+            _ionic_angular__WEBPACK_IMPORTED_MODULE_2__["AlertController"]])
     ], RecipientFormPage);
     return RecipientFormPage;
 }());

@@ -49,8 +49,10 @@
                             <ion-select-option value="1">Aktif</ion-select-option>
                           </ion-select>
                       </ion-item>
-                    <br><br>
-                        <ion-button (click)="submit()">Submit</ion-button>
-                        <ion-button (click)="clear" color="warning">Clear</ion-button>
-                        <br><br>
+                      <br><br>
+                      <ion-button (click)="submit()"*ngIf="btnSubmit">Submit</ion-button>
+                      <ion-button (click)="update()"*ngIf="btnUpdate">Submit</ion-button>
+                      <ion-button (click)="clear()" color="warning"*ngIf="btnClear">Clear</ion-button>
+                      <ion-button (click)="delete()"color="danger" *ngIf="btnDelete">Delete</ion-button>
+                      <br><br> 
 </ion-content>
