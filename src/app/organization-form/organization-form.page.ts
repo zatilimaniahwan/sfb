@@ -13,6 +13,7 @@ export class OrganizationFormPage implements OnInit {
   organization:any={
     id:'',
     reg_no:'',
+    code:'',
     org_name:'',
     address:'',
     state:'',
