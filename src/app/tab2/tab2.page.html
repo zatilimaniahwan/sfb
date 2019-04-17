@@ -26,19 +26,39 @@
   
 
 <ion-content>
-  <ion-card tappable *ngFor="let item of items; let index=index" (click)="edit(item.id)">
+  <div *ngIf="cardDonation">
+  <ion-card tappable  *ngFor="let item of items; let index=index" (click)="edit(item.id)">
     <ion-card-header>
       <ion-list lines="none">
         <ion-item >
-            <ion-card-subtitle slot="start">{{item.code}}</ion-card-subtitle>
-            <ion-badge color="secondary" slot="end">Collected</ion-badge>
+            <ion-card-subtitle slot="start">Donation {{item.donation_id}}</ion-card-subtitle>
+            <ion-badge *ngIf=" item.status == 0" color="warning" slot="end">Not Collected</ion-badge>
+            <ion-badge *ngIf=" item.status == 1" color="tertiary" slot="end">Collected</ion-badge>
+            <ion-badge *ngIf=" item.status == 2" color="secondary" slot="end">Distributed</ion-badge>
         </ion-item>
       </ion-list>
     </ion-card-header>
     <ion-card-content>
-      <ion-label>{{item.desc}}</ion-label>
+      <ion-label>{{}}</ion-label>
     </ion-card-content>
   </ion-card>
+  </div>
+  <div *ngIf="cardRecipient">
+  <ion-card tappable  *ngFor="let item of items; let index=index" (click)="edit(item.id)">
+    <ion-card-header>
+      <ion-list lines="none">
+        <ion-item >
+            <ion-card-subtitle slot="start">{{item.organisation_code}}</ion-card-subtitle>
+            <ion-badge *ngIf=" item.status == 1" color="secondary" slot="end">Active</ion-badge>
+            <ion-badge *ngIf=" item.status == 0" color="danger" slot="end"> Not Active</ion-badge>
+        </ion-item>
+      </ion-list>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-label>{{item.fullname}}</ion-label>
+    </ion-card-content>
+  </ion-card>
+  </div>
   <ion-fab vertical="bottom" horizontal="end" slot="fixed" *ngIf="show">
       <ion-fab-button (click)="create()">
         <ion-icon name="create"></ion-icon>

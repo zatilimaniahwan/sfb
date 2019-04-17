@@ -24,7 +24,8 @@
   </ion-header>
 
   <ion-content>
-      <ion-card tappable ngIf="cardOrg" *ngFor="let item of items; let index=index" (click)="editOrg(item.id)">
+    <div *ngIf="cardOrg">
+      <ion-card tappable *ngFor="let item of items; let index=index" (click)="editOrg(item.id)">
         <ion-card-header>
           <ion-list lines="none">
             <ion-item >
@@ -38,7 +39,9 @@
           <ion-label>{{item.fullname}}</ion-label>
         </ion-card-content>
       </ion-card>
-      <ion-card tappable ngIf="cardStaff" *ngFor="let item of items; let index=index" (click)="editStaff(item.id)">
+    </div>
+      <div *ngIf="cardStaff">
+      <ion-card tappable  *ngFor="let item of items; let index=index" (click)="editStaff(item.id)">
           <ion-card-header>
             <ion-list lines="none">
               <ion-item >
@@ -52,6 +55,7 @@
             <ion-label>{{item.fullname}}</ion-label>
           </ion-card-content>
         </ion-card>
+        </div>
       <ion-fab vertical="bottom" horizontal="end" slot="fixed" *ngIf="org">
           <ion-fab-button (click)="createOrg()">
             <ion-icon name="create"></ion-icon>

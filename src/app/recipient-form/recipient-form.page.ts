@@ -71,7 +71,7 @@ export class RecipientFormPage implements OnInit {
   //Submit new data
   async submit(){
     //check whether the field is blank or not
-    if(this.recipient.fullname==''|| this.recipient.ic==''|| this.recipient.address==''|| this.recipient.state==''||this.recipient.age==''||this.recipient.tel_no==''|| this.recipient.family_no==''||this.recipient.income==''|| this.recipient.status==''){
+    if(this.recipient.fullname==''|| this.recipient.ic==''|| this.recipient.address==''|| this.recipient.state==''||this.recipient.age==''||this.recipient.tel_no==''|| this.recipient.family_no==''||this.recipient.income==''){
       const toast = await this.toastCtrl.create({
         message: 'All fields are required.',
         duration: 2000
@@ -80,7 +80,6 @@ export class RecipientFormPage implements OnInit {
     }else{
       var url="http://localhost/smartfoodbank/recipient/addrecipient";
       this.data=this.http.post(url,this.recipient,{headers:{'Content-Type':'application/x-www-form-urlencoded'}});
-    }
     this.data.subscribe(async data=>{
       this.modalCtrl.dismiss();
       const toast = await this.toastCtrl.create({
@@ -88,8 +87,10 @@ export class RecipientFormPage implements OnInit {
         duration: 2000
       });
       toast.present();
-      this.navCtrl.navigateRoot(['/tabs/tab2',{items:data}]);
+      
+     //this.navCtrl.navigateRoot(['/tabs/tab2',{items:data}]);
     })
+  }
   }
    //Update current data
    async update(){

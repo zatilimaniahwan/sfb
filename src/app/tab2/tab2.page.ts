@@ -14,13 +14,19 @@ export class Tab2Page implements OnInit {
   items:string[];
   show;
   title='';
+  cardDonation;
+  cardRecipient;
   constructor(private navCtrl:NavController,private http:HttpClient,private modalCtrl:ModalController){
     this.show=false;
+    this.cardDonation=false;
+    this.cardRecipient=false;
   }
   viewFilter(){
     this.navCtrl.navigateForward('donation-filter');
   }
  segmentDonation(){
+   this.cardDonation=true;
+   this.cardRecipient=false;
   var url='http://localhost/smartfoodbank/donation/donations';
   this.data=this.http.get(url);
   this.data.subscribe(data=>{
@@ -30,6 +36,8 @@ export class Tab2Page implements OnInit {
 this.title='Donation';
  }
  segmentRecipient(){
+   this.cardRecipient=true;
+   this.cardDonation=false;
   var url='http://localhost/smartfoodbank/recipient/recipients';
   this.data=this.http.get(url);
   this.data.subscribe(data=>{
@@ -46,15 +54,21 @@ this.title='Donation';
  }
   ngOnInit() {
     this.title='Donation';
+    this.cardDonation=true;
+    this.cardRecipient=false;
     var url='http://localhost/smartfoodbank/donation/donations';
     this.data=this.http.get(url);
     this.data.subscribe(data=>{
       this.items=data;
     });
-    
-
   }
-
+  async edit(id){
+    const modal=await this.modalCtrl.create({
+      component:RecipientFormPage,
+      componentProps:{value:id}
+    });
+    modal.present();
+   }
   
 }
 

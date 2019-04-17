@@ -42,7 +42,7 @@
                       <ion-label position="floating">Income</ion-label>
                       <ion-input type="number" [(ngModel)]="recipient.income" ></ion-input>
                     </ion-item>
-                    <ion-item>
+                    <ion-item *ngIf="status">
                         <ion-label position="floating">Status</ion-label>
                         <ion-select placeholder="Select One" [(ngModel)]="recipient.status">
                             <ion-select-option value="0">Tidak Aktif</ion-select-option>

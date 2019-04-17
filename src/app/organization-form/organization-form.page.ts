@@ -80,7 +80,7 @@ export class OrganizationFormPage implements OnInit {
     }else{
       var url="http://localhost/smartfoodbank/organization/addorganization";
       this.data=this.http.post(url,this.organization,{headers:{'Content-Type':'application/x-www-form-urlencoded'}});
-    }
+    
     this.data.subscribe(async data=>{
       this.modalCtrl.dismiss();
       const toast = await this.toastCtrl.create({
@@ -90,6 +90,7 @@ export class OrganizationFormPage implements OnInit {
       toast.present();
       this.navCtrl.navigateRoot(['organization',{items:data}]);
     })
+  }
   }
   //Update current data
   async update(){
