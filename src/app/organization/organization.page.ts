@@ -16,8 +16,8 @@ export class OrganizationPage implements OnInit {
   org;
   staff;
   title='';
-  cardOrg;
-  cardStaff;
+  cardOrg=false;
+  cardStaff=false;
   constructor(private navCtrl:NavController,private http:HttpClient,private modalCtrl:ModalController) { 
     this.title='Organization';
   }
@@ -39,12 +39,13 @@ export class OrganizationPage implements OnInit {
     this.title='Organization';
     this.org=true;
     this.staff=false;
-    this.cardOrg=true;
+    this.cardOrg=false;
     this.cardStaff=false;
     var url='http://localhost/smartfoodbank/organization/organizations';
     this.data=this.http.get(url);
     this.data.subscribe(data=>{
       this.items=data;
+      this.cardOrg=true;
     });
   }
   segmentStaff(){
@@ -52,11 +53,13 @@ export class OrganizationPage implements OnInit {
     this.org=false;
     this.staff=true;
     this.cardOrg=false;
-    this.cardStaff=true;
+    this.cardStaff=false;
+    this.cardStaff=false;
     var url='http://localhost/smartfoodbank/staff/staffs';
     this.data=this.http.get(url);
     this.data.subscribe(data=>{
       this.items=data;
+      this.cardStaff=true;
     });
   }
   async createOrg(){

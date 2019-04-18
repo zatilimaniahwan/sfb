@@ -25,18 +25,17 @@
 
   <ion-content>
     <div *ngIf="cardOrg">
-      <ion-card tappable *ngFor="let item of items; let index=index" (click)="editOrg(item.id)">
+      <ion-card tappable  *ngFor="let item of items; let index=index" (click)="editOrg(item.id)">
         <ion-card-header>
-          <ion-list lines="none">
-            <ion-item >
-              
-                <ion-card-subtitle slot="start">{{item.organization_code}}</ion-card-subtitle>
-            </ion-item>
-          </ion-list>
+          <ion-item lines="none">
+              <ion-card-subtitle slot="start">Code: {{item.code}}</ion-card-subtitle>
+              <ion-icon name="business" slot="end"></ion-icon>
+          </ion-item>
         </ion-card-header>
         <ion-card-content>
-          <ion-label>{{item.staff_id}}</ion-label><br>
-          <ion-label>{{item.fullname}}</ion-label>
+          <ion-item lines="none">
+              <ion-label>{{item.org_name}}</ion-label>
+          </ion-item>
         </ion-card-content>
       </ion-card>
     </div>
