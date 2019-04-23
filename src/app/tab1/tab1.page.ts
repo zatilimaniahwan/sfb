@@ -12,8 +12,7 @@ import {
 import { Geolocation } from '@ionic-native/geolocation/ngx';
 import { LocationAccuracy } from '@ionic-native/location-accuracy/ngx';
 import { AndroidPermissions } from '@ionic-native/android-permissions/ngx';
-import { Storage } from '@ionic/storage';
-import { store } from '@angular/core/src/render3';
+
 @Component({
   selector: 'app-tab1',
   templateUrl: 'tab1.page.html',
@@ -24,12 +23,8 @@ export class Tab1Page implements OnInit {
   address:string;
 constructor(public modalCtrl:ModalController,public platform:Platform,public toastCtrl:ToastController, private androidPermissions: AndroidPermissions,
   private geolocation: Geolocation,
-  private locationAccuracy: LocationAccuracy,
-  private storage:Storage){}
+  private locationAccuracy: LocationAccuracy){}
 ngOnInit() {
-  this.storage.get('fullname').then((val)=>{
-    console.log(val);
-  });
   this.platform.ready();
   this.loadMap();
 }
