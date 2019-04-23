@@ -3,6 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { RouteReuseStrategy } from '@angular/router';
 
 import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
+import { IonicStorageModule} from '@ionic/storage';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 
@@ -19,7 +20,7 @@ import { LocationAccuracy } from '@ionic-native/location-accuracy/ngx';
 import { OrganizationFormPageModule } from './organization-form/organization-form.module';
 import { StaffFormPageModule } from './staff-form/staff-form.module';
 import { BoxinfoFormPageModule } from './boxinfo-form/boxinfo-form.module';
-import { AuthModule } from './auth/auth.module';
+
 
 
 @NgModule({
@@ -28,6 +29,7 @@ import { AuthModule } from './auth/auth.module';
   imports: [BrowserModule, 
     HttpClientModule, 
     IonicModule.forRoot(), 
+    IonicStorageModule.forRoot(),
     AppRoutingModule,
     FoodbankFilterPageModule,
     RecipientFormPageModule,
@@ -36,7 +38,7 @@ import { AuthModule } from './auth/auth.module';
     OrganizationFormPageModule,
     StaffFormPageModule,
     BoxinfoFormPageModule,
-    AuthModule
+  
   ],
   providers: [
     StatusBar,

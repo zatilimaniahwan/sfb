@@ -85,6 +85,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _ionic_native_geolocation_ngx__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @ionic-native/geolocation/ngx */ "./node_modules/@ionic-native/geolocation/ngx/index.js");
 /* harmony import */ var _ionic_native_location_accuracy_ngx__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @ionic-native/location-accuracy/ngx */ "./node_modules/@ionic-native/location-accuracy/ngx/index.js");
 /* harmony import */ var _ionic_native_android_permissions_ngx__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @ionic-native/android-permissions/ngx */ "./node_modules/@ionic-native/android-permissions/ngx/index.js");
+/* harmony import */ var _ionic_storage__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @ionic/storage */ "./node_modules/@ionic/storage/fesm5/ionic-storage.js");
+
 
 
 
@@ -94,15 +96,19 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var Tab1Page = /** @class */ (function () {
-    function Tab1Page(modalCtrl, platform, toastCtrl, androidPermissions, geolocation, locationAccuracy) {
+    function Tab1Page(modalCtrl, platform, toastCtrl, androidPermissions, geolocation, locationAccuracy, storage) {
         this.modalCtrl = modalCtrl;
         this.platform = platform;
         this.toastCtrl = toastCtrl;
         this.androidPermissions = androidPermissions;
         this.geolocation = geolocation;
         this.locationAccuracy = locationAccuracy;
+        this.storage = storage;
     }
     Tab1Page.prototype.ngOnInit = function () {
+        this.storage.get('fullname').then(function (val) {
+            console.log(val);
+        });
         this.platform.ready();
         this.loadMap();
     };
@@ -236,7 +242,8 @@ var Tab1Page = /** @class */ (function () {
         }),
         tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_ionic_angular__WEBPACK_IMPORTED_MODULE_2__["ModalController"], _ionic_angular__WEBPACK_IMPORTED_MODULE_2__["Platform"], _ionic_angular__WEBPACK_IMPORTED_MODULE_2__["ToastController"], _ionic_native_android_permissions_ngx__WEBPACK_IMPORTED_MODULE_7__["AndroidPermissions"],
             _ionic_native_geolocation_ngx__WEBPACK_IMPORTED_MODULE_5__["Geolocation"],
-            _ionic_native_location_accuracy_ngx__WEBPACK_IMPORTED_MODULE_6__["LocationAccuracy"]])
+            _ionic_native_location_accuracy_ngx__WEBPACK_IMPORTED_MODULE_6__["LocationAccuracy"],
+            _ionic_storage__WEBPACK_IMPORTED_MODULE_8__["Storage"]])
     ], Tab1Page);
     return Tab1Page;
 }());

@@ -58,7 +58,7 @@ var OrganizationPageModule = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<ion-header no-border >\n    <ion-toolbar>\n        <ion-title>{{title}}</ion-title> \n        <ion-button fill=\"blank\" slot=\"start\" (click)=\"previous()\">\n            <ion-icon slot=\"start\"  name=\"arrow-back\"></ion-icon>\n          </ion-button>\n    </ion-toolbar>\n    <ion-toolbar>\n        <ion-segment [(ngModel)]=\"menuType\">\n            <ion-segment-button value=\"organization\"(ionSelect)=\"segmentOrganization()\">\n              <ion-label>Organization</ion-label>\n            </ion-segment-button>\n            <ion-segment-button value=\"staff\"(ionSelect)=\"segmentStaff()\">\n              <ion-label>Staff</ion-label>\n            </ion-segment-button>\n          </ion-segment>\n    </ion-toolbar>\n    <ion-toolbar>\n        <ion-searchbar  animated slot=\"start\" ></ion-searchbar>\n        <ion-button fill=\"blank\" slot=\"end\" (click)=\"viewFilter()\">\n            <ion-icon slot=\"end\"  name=\"options\"></ion-icon>\n          </ion-button>\n    </ion-toolbar>\n  </ion-header>\n\n  <ion-content>\n      <ion-card tappable ngIf=\"cardOrg\" *ngFor=\"let item of items; let index=index\" (click)=\"editOrg(item.id)\">\n        <ion-card-header>\n          <ion-list lines=\"none\">\n            <ion-item >\n              \n                <ion-card-subtitle slot=\"start\">{{item.organization_code}}</ion-card-subtitle>\n            </ion-item>\n          </ion-list>\n        </ion-card-header>\n        <ion-card-content>\n          <ion-label>{{item.staff_id}}</ion-label><br>\n          <ion-label>{{item.fullname}}</ion-label>\n        </ion-card-content>\n      </ion-card>\n      <ion-card tappable ngIf=\"cardStaff\" *ngFor=\"let item of items; let index=index\" (click)=\"editStaff(item.id)\">\n          <ion-card-header>\n            <ion-list lines=\"none\">\n              <ion-item >\n               \n                  <ion-card-subtitle slot=\"start\">{{item.organization_code}}</ion-card-subtitle>\n              </ion-item>\n            </ion-list>\n          </ion-card-header>\n          <ion-card-content>\n            <ion-label>{{item.staff_id}}</ion-label><br>\n            <ion-label>{{item.fullname}}</ion-label>\n          </ion-card-content>\n        </ion-card>\n      <ion-fab vertical=\"bottom\" horizontal=\"end\" slot=\"fixed\" *ngIf=\"org\">\n          <ion-fab-button (click)=\"createOrg()\">\n            <ion-icon name=\"create\"></ion-icon>\n          </ion-fab-button>\n        </ion-fab>\n      <ion-fab vertical=\"bottom\" horizontal=\"end\" slot=\"fixed\" *ngIf=\"staff\">\n          <ion-fab-button (click)=\"createStaff()\">\n            <ion-icon name=\"create\"></ion-icon>\n          </ion-fab-button>\n        </ion-fab>\n      \n     \n         \n    </ion-content>\n    \n"
+module.exports = "<ion-header no-border >\n    <ion-toolbar>\n        <ion-title>{{title}}</ion-title> \n        <ion-button fill=\"blank\" slot=\"start\" (click)=\"previous()\">\n            <ion-icon slot=\"start\"  name=\"arrow-back\"></ion-icon>\n          </ion-button>\n    </ion-toolbar>\n    <ion-toolbar>\n        <ion-segment [(ngModel)]=\"menuType\">\n            <ion-segment-button value=\"organization\"(ionSelect)=\"segmentOrganization()\">\n              <ion-label>Organization</ion-label>\n            </ion-segment-button>\n            <ion-segment-button value=\"staff\"(ionSelect)=\"segmentStaff()\">\n              <ion-label>Staff</ion-label>\n            </ion-segment-button>\n          </ion-segment>\n    </ion-toolbar>\n    <ion-toolbar>\n        <ion-searchbar  animated slot=\"start\" ></ion-searchbar>\n        <ion-button fill=\"blank\" slot=\"end\" (click)=\"viewFilter()\">\n            <ion-icon slot=\"end\"  name=\"options\"></ion-icon>\n          </ion-button>\n    </ion-toolbar>\n  </ion-header>\n\n  <ion-content>\n    <div *ngIf=\"cardOrg\">\n      <ion-card tappable  *ngFor=\"let item of items; let index=index\" (click)=\"editOrg(item.id)\">\n        <ion-card-header>\n          <ion-item lines=\"none\">\n              <ion-card-subtitle slot=\"start\">Code: {{item.code}}</ion-card-subtitle>\n              <ion-icon name=\"business\" slot=\"end\"></ion-icon>\n          </ion-item>\n        </ion-card-header>\n        <ion-card-content>\n          <ion-item lines=\"none\">\n              <ion-label>{{item.org_name}}</ion-label>\n          </ion-item>\n        </ion-card-content>\n      </ion-card>\n    </div>\n      <div *ngIf=\"cardStaff\">\n      <ion-card tappable  *ngFor=\"let item of items; let index=index\" (click)=\"editStaff(item.id)\">\n          <ion-card-header>\n            <ion-list lines=\"none\">\n              <ion-item >\n                  <ion-card-subtitle slot=\"start\">Company Name:{{item.org_name}}</ion-card-subtitle>\n                  <ion-icon name=\"contact\" slot=\"end\"></ion-icon>\n              </ion-item>\n            </ion-list>\n          </ion-card-header>\n          <ion-card-content>\n            <ion-item lines=\"none\">\n              <ion-label>{{item.staff_code}}</ion-label>\n          </ion-item>\n          <ion-item lines=\"none\">\n            <ion-label id=\"fullname\">{{item.fullname}}</ion-label>\n        </ion-item>\n          </ion-card-content>\n        </ion-card>\n        </div>\n      <ion-fab vertical=\"bottom\" horizontal=\"end\" slot=\"fixed\" *ngIf=\"org\">\n          <ion-fab-button (click)=\"createOrg()\">\n            <ion-icon name=\"create\"></ion-icon>\n          </ion-fab-button>\n        </ion-fab>\n      <ion-fab vertical=\"bottom\" horizontal=\"end\" slot=\"fixed\" *ngIf=\"staff\">\n          <ion-fab-button (click)=\"createStaff()\">\n            <ion-icon name=\"create\"></ion-icon>\n          </ion-fab-button>\n        </ion-fab>\n      \n     \n         \n    </ion-content>\n    \n"
 
 /***/ }),
 
@@ -69,7 +69,7 @@ module.exports = "<ion-header no-border >\n    <ion-toolbar>\n        <ion-title
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL29yZ2FuaXphdGlvbi9vcmdhbml6YXRpb24ucGFnZS5zY3NzIn0= */"
+module.exports = "#fullname {\n  font-size: 0.8em; }\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi9Vc2Vycy96YXRpbGltYW5pL3NmYi9zcmMvYXBwL29yZ2FuaXphdGlvbi9vcmdhbml6YXRpb24ucGFnZS5zY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0VBQ0ksZ0JBQWdCLEVBQUEiLCJmaWxlIjoic3JjL2FwcC9vcmdhbml6YXRpb24vb3JnYW5pemF0aW9uLnBhZ2Uuc2NzcyIsInNvdXJjZXNDb250ZW50IjpbIiNmdWxsbmFtZXtcbiAgICBmb250LXNpemU6IDAuOGVtO1xufSJdfQ== */"
 
 /***/ }),
 
@@ -101,6 +101,8 @@ var OrganizationPage = /** @class */ (function () {
         this.http = http;
         this.modalCtrl = modalCtrl;
         this.title = '';
+        this.cardOrg = false;
+        this.cardStaff = false;
         this.title = 'Organization';
     }
     OrganizationPage.prototype.previous = function () {
@@ -123,12 +125,13 @@ var OrganizationPage = /** @class */ (function () {
         this.title = 'Organization';
         this.org = true;
         this.staff = false;
-        this.cardOrg = true;
+        this.cardOrg = false;
         this.cardStaff = false;
         var url = 'http://localhost/smartfoodbank/organization/organizations';
         this.data = this.http.get(url);
         this.data.subscribe(function (data) {
             _this.items = data;
+            _this.cardOrg = true;
         });
     };
     OrganizationPage.prototype.segmentStaff = function () {
@@ -137,11 +140,13 @@ var OrganizationPage = /** @class */ (function () {
         this.org = false;
         this.staff = true;
         this.cardOrg = false;
-        this.cardStaff = true;
+        this.cardStaff = false;
+        this.cardStaff = false;
         var url = 'http://localhost/smartfoodbank/staff/staffs';
         this.data = this.http.get(url);
         this.data.subscribe(function (data) {
             _this.items = data;
+            _this.cardStaff = true;
         });
     };
     OrganizationPage.prototype.createOrg = function () {

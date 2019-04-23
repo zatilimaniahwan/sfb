@@ -52,7 +52,7 @@ var Tab2PageModule = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<ion-header no-border >\n    <ion-toolbar>\n        <ion-title slot=\"start\">{{title}}</ion-title> \n        <ion-button fill=\"blank\" slot=\"end\" (click)=\"view()\">\n            <ion-icon slot=\"start\"  name=\"unlock\"></ion-icon>\n            <p>Logout</p>\n          </ion-button>\n    </ion-toolbar>\n    <ion-toolbar>\n        <ion-segment [(ngModel)]=\"menuType\">\n            <ion-segment-button value=\"donation\"(ionSelect)=\"segmentDonation()\">\n              <ion-label>Donation</ion-label>\n            </ion-segment-button>\n            <ion-segment-button value=\"recipient\"(ionSelect)=\"segmentRecipient()\">\n              <ion-label>Recipient</ion-label>\n            </ion-segment-button>\n          </ion-segment>\n    </ion-toolbar>\n    <ion-toolbar>\n        <ion-searchbar  animated slot=\"start\" ></ion-searchbar>\n        <ion-button fill=\"blank\" slot=\"end\" (click)=\"viewFilter()\">\n            <ion-icon slot=\"end\"  name=\"options\"></ion-icon>\n          </ion-button>\n    </ion-toolbar>\n  </ion-header>\n  \n\n<ion-content>\n  <ion-card tappable *ngFor=\"let item of items; let index=index\" (click)=\"edit(item.id)\">\n    <ion-card-header>\n      <ion-list lines=\"none\">\n        <ion-item >\n            <ion-card-subtitle slot=\"start\">{{item.code}}</ion-card-subtitle>\n            <ion-badge color=\"secondary\" slot=\"end\">Collected</ion-badge>\n        </ion-item>\n      </ion-list>\n    </ion-card-header>\n    <ion-card-content>\n      <ion-label>{{item.desc}}</ion-label>\n    </ion-card-content>\n  </ion-card>\n  <ion-fab vertical=\"bottom\" horizontal=\"end\" slot=\"fixed\" *ngIf=\"show\">\n      <ion-fab-button (click)=\"create()\">\n        <ion-icon name=\"create\"></ion-icon>\n      </ion-fab-button>\n    </ion-fab>\n  \n \n     \n</ion-content>\n"
+module.exports = "<ion-header no-border >\n    <ion-toolbar>\n        <ion-title slot=\"start\">{{title}}</ion-title> \n        <ion-button fill=\"blank\" slot=\"end\" (click)=\"view()\">\n            <ion-icon slot=\"start\"  name=\"unlock\"></ion-icon>\n            <p>Logout</p>\n          </ion-button>\n    </ion-toolbar>\n    <ion-toolbar>\n        <ion-segment [(ngModel)]=\"menuType\">\n            <ion-segment-button value=\"donation\"(ionSelect)=\"segmentDonation()\">\n              <ion-label>Donation</ion-label>\n            </ion-segment-button>\n            <ion-segment-button value=\"recipient\"(ionSelect)=\"segmentRecipient()\">\n              <ion-label>Recipient</ion-label>\n            </ion-segment-button>\n          </ion-segment>\n    </ion-toolbar>\n    <ion-toolbar>\n        <ion-searchbar  animated slot=\"start\" ></ion-searchbar>\n        <ion-button fill=\"blank\" slot=\"end\" (click)=\"viewFilter()\">\n            <ion-icon slot=\"end\"  name=\"options\"></ion-icon>\n          </ion-button>\n    </ion-toolbar>\n  </ion-header>\n  \n\n<ion-content>\n  <div *ngIf=\"cardDonation\">\n  <ion-card tappable  *ngFor=\"let item of items; let index=index\" (click)=\"edit(item.id)\">\n    <ion-card-header>\n      <ion-list lines=\"none\">\n        <ion-item >\n            <ion-card-subtitle slot=\"start\">Donation {{item.donation_id}}</ion-card-subtitle>\n            <ion-badge *ngIf=\" item.status == 0\" color=\"warning\" slot=\"end\">Not Collected</ion-badge>\n            <ion-badge *ngIf=\" item.status == 1\" color=\"tertiary\" slot=\"end\">Collected</ion-badge>\n            <ion-badge *ngIf=\" item.status == 2\" color=\"secondary\" slot=\"end\">Distributed</ion-badge>\n        </ion-item>\n      </ion-list>\n    </ion-card-header>\n    <ion-card-content>\n      <ion-label></ion-label>\n    </ion-card-content>\n  </ion-card>\n  </div>\n  <div *ngIf=\"cardRecipient\">\n  <ion-card tappable  *ngFor=\"let item of items; let index=index\" (click)=\"edit(item.id)\">\n    <ion-card-header>\n      <ion-list lines=\"none\">\n        <ion-item >\n            <ion-card-subtitle slot=\"start\">{{item.organisation_code}}</ion-card-subtitle>\n            <ion-badge *ngIf=\" item.status == 1\" color=\"secondary\" slot=\"end\">Active</ion-badge>\n            <ion-badge *ngIf=\" item.status == 0\" color=\"danger\" slot=\"end\"> Not Active</ion-badge>\n        </ion-item>\n      </ion-list>\n    </ion-card-header>\n    <ion-card-content>\n      <ion-label>{{item.fullname}}</ion-label>\n    </ion-card-content>\n  </ion-card>\n  </div>\n  <ion-fab vertical=\"bottom\" horizontal=\"end\" slot=\"fixed\" *ngIf=\"show\">\n      <ion-fab-button (click)=\"create()\">\n        <ion-icon name=\"create\"></ion-icon>\n      </ion-fab-button>\n    </ion-fab>\n  \n \n     \n</ion-content>\n"
 
 /***/ }),
 
@@ -94,12 +94,16 @@ var Tab2Page = /** @class */ (function () {
         this.modalCtrl = modalCtrl;
         this.title = '';
         this.show = false;
+        this.cardDonation = false;
+        this.cardRecipient = false;
     }
     Tab2Page.prototype.viewFilter = function () {
         this.navCtrl.navigateForward('donation-filter');
     };
     Tab2Page.prototype.segmentDonation = function () {
         var _this = this;
+        this.cardDonation = true;
+        this.cardRecipient = false;
         var url = 'http://localhost/smartfoodbank/donation/donations';
         this.data = this.http.get(url);
         this.data.subscribe(function (data) {
@@ -110,6 +114,8 @@ var Tab2Page = /** @class */ (function () {
     };
     Tab2Page.prototype.segmentRecipient = function () {
         var _this = this;
+        this.cardRecipient = true;
+        this.cardDonation = false;
         var url = 'http://localhost/smartfoodbank/recipient/recipients';
         this.data = this.http.get(url);
         this.data.subscribe(function (data) {
@@ -137,10 +143,29 @@ var Tab2Page = /** @class */ (function () {
     Tab2Page.prototype.ngOnInit = function () {
         var _this = this;
         this.title = 'Donation';
+        this.cardDonation = true;
+        this.cardRecipient = false;
         var url = 'http://localhost/smartfoodbank/donation/donations';
         this.data = this.http.get(url);
         this.data.subscribe(function (data) {
             _this.items = data;
+        });
+    };
+    Tab2Page.prototype.edit = function (id) {
+        return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function () {
+            var modal;
+            return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, this.modalCtrl.create({
+                            component: _recipient_form_recipient_form_page__WEBPACK_IMPORTED_MODULE_4__["RecipientFormPage"],
+                            componentProps: { value: id }
+                        })];
+                    case 1:
+                        modal = _a.sent();
+                        modal.present();
+                        return [2 /*return*/];
+                }
+            });
         });
     };
     Tab2Page = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([

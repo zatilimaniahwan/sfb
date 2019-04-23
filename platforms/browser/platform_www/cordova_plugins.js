@@ -593,6 +593,22 @@ module.exports = [
         "clobbers": [
             "cordova.plugins.permissions"
         ]
+    },
+    {
+        "file": "plugins/cordova-sqlite-storage/www/SQLitePlugin.js",
+        "id": "cordova-sqlite-storage.SQLitePlugin",
+        "pluginId": "cordova-sqlite-storage",
+        "clobbers": [
+            "SQLitePlugin"
+        ]
+    },
+    {
+        "file": "plugins/cordova-plugin-secure-storage/www/securestorage.js",
+        "id": "cordova-plugin-secure-storage.SecureStorage",
+        "pluginId": "cordova-plugin-secure-storage",
+        "clobbers": [
+            "SecureStorage"
+        ]
     }
 ];
 module.exports.metadata = 
@@ -609,7 +625,9 @@ module.exports.metadata =
     "cordova-plugin-ionic-keyboard": "2.1.3",
     "cordova-plugin-android-permissions": "1.0.0",
     "cordova-plugin-request-location-accuracy": "2.2.3",
-    "cordova-plugin-geolocation": "4.0.1"
+    "cordova-plugin-geolocation": "4.0.1",
+    "cordova-sqlite-storage": "3.2.0",
+    "cordova-plugin-secure-storage": "3.0.2"
 }
 // BOTTOM OF METADATA
 });

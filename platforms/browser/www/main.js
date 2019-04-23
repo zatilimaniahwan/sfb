@@ -1037,7 +1037,7 @@ var AppComponent = /** @class */ (function () {
     AppComponent.prototype.initializeApp = function () {
         var _this = this;
         this.platform.ready().then(function () {
-            //this.router.navigateByUrl('intro');
+            _this.router.navigateByUrl('login');
             _ionic_native_google_maps__WEBPACK_IMPORTED_MODULE_5__["Environment"].setEnv({
                 'API_KEY_FOR_BROWSER_RELEASE': 'AIzaSyDMPAgokYzvVtLUUmMWQpPCvU_ZZ0ncM6o',
                 'API_KEY_FOR_BROWSER_DEBUG': 'AIzaSyDMPAgokYzvVtLUUmMWQpPCvU_ZZ0ncM6o'
@@ -1078,21 +1078,23 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_platform_browser__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/platform-browser */ "./node_modules/@angular/platform-browser/fesm5/platform-browser.js");
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
 /* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @ionic/angular */ "./node_modules/@ionic/angular/dist/fesm5.js");
-/* harmony import */ var _ionic_native_splash_screen_ngx__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @ionic-native/splash-screen/ngx */ "./node_modules/@ionic-native/splash-screen/ngx/index.js");
-/* harmony import */ var _ionic_native_status_bar_ngx__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @ionic-native/status-bar/ngx */ "./node_modules/@ionic-native/status-bar/ngx/index.js");
-/* harmony import */ var _app_routing_module__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./app-routing.module */ "./src/app/app-routing.module.ts");
-/* harmony import */ var _app_component__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./app.component */ "./src/app/app.component.ts");
-/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm5/http.js");
-/* harmony import */ var _foodbank_filter_foodbank_filter_module__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./foodbank-filter/foodbank-filter.module */ "./src/app/foodbank-filter/foodbank-filter.module.ts");
-/* harmony import */ var _recipient_form_recipient_form_module__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./recipient-form/recipient-form.module */ "./src/app/recipient-form/recipient-form.module.ts");
-/* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/fesm5/forms.js");
-/* harmony import */ var _usergroup_form_usergroup_form_module__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./usergroup-form/usergroup-form.module */ "./src/app/usergroup-form/usergroup-form.module.ts");
-/* harmony import */ var _ionic_native_android_permissions_ngx__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! @ionic-native/android-permissions/ngx */ "./node_modules/@ionic-native/android-permissions/ngx/index.js");
-/* harmony import */ var _ionic_native_geolocation_ngx__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! @ionic-native/geolocation/ngx */ "./node_modules/@ionic-native/geolocation/ngx/index.js");
-/* harmony import */ var _ionic_native_location_accuracy_ngx__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! @ionic-native/location-accuracy/ngx */ "./node_modules/@ionic-native/location-accuracy/ngx/index.js");
-/* harmony import */ var _organization_form_organization_form_module__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./organization-form/organization-form.module */ "./src/app/organization-form/organization-form.module.ts");
-/* harmony import */ var _staff_form_staff_form_module__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ./staff-form/staff-form.module */ "./src/app/staff-form/staff-form.module.ts");
-/* harmony import */ var _boxinfo_form_boxinfo_form_module__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! ./boxinfo-form/boxinfo-form.module */ "./src/app/boxinfo-form/boxinfo-form.module.ts");
+/* harmony import */ var _ionic_storage__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @ionic/storage */ "./node_modules/@ionic/storage/fesm5/ionic-storage.js");
+/* harmony import */ var _ionic_native_splash_screen_ngx__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @ionic-native/splash-screen/ngx */ "./node_modules/@ionic-native/splash-screen/ngx/index.js");
+/* harmony import */ var _ionic_native_status_bar_ngx__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @ionic-native/status-bar/ngx */ "./node_modules/@ionic-native/status-bar/ngx/index.js");
+/* harmony import */ var _app_routing_module__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./app-routing.module */ "./src/app/app-routing.module.ts");
+/* harmony import */ var _app_component__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./app.component */ "./src/app/app.component.ts");
+/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm5/http.js");
+/* harmony import */ var _foodbank_filter_foodbank_filter_module__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./foodbank-filter/foodbank-filter.module */ "./src/app/foodbank-filter/foodbank-filter.module.ts");
+/* harmony import */ var _recipient_form_recipient_form_module__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./recipient-form/recipient-form.module */ "./src/app/recipient-form/recipient-form.module.ts");
+/* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/fesm5/forms.js");
+/* harmony import */ var _usergroup_form_usergroup_form_module__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./usergroup-form/usergroup-form.module */ "./src/app/usergroup-form/usergroup-form.module.ts");
+/* harmony import */ var _ionic_native_android_permissions_ngx__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! @ionic-native/android-permissions/ngx */ "./node_modules/@ionic-native/android-permissions/ngx/index.js");
+/* harmony import */ var _ionic_native_geolocation_ngx__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! @ionic-native/geolocation/ngx */ "./node_modules/@ionic-native/geolocation/ngx/index.js");
+/* harmony import */ var _ionic_native_location_accuracy_ngx__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! @ionic-native/location-accuracy/ngx */ "./node_modules/@ionic-native/location-accuracy/ngx/index.js");
+/* harmony import */ var _organization_form_organization_form_module__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ./organization-form/organization-form.module */ "./src/app/organization-form/organization-form.module.ts");
+/* harmony import */ var _staff_form_staff_form_module__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! ./staff-form/staff-form.module */ "./src/app/staff-form/staff-form.module.ts");
+/* harmony import */ var _boxinfo_form_boxinfo_form_module__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! ./boxinfo-form/boxinfo-form.module */ "./src/app/boxinfo-form/boxinfo-form.module.ts");
+
 
 
 
@@ -1118,29 +1120,30 @@ var AppModule = /** @class */ (function () {
     }
     AppModule = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["NgModule"])({
-            declarations: [_app_component__WEBPACK_IMPORTED_MODULE_8__["AppComponent"]],
+            declarations: [_app_component__WEBPACK_IMPORTED_MODULE_9__["AppComponent"]],
             entryComponents: [],
             imports: [_angular_platform_browser__WEBPACK_IMPORTED_MODULE_2__["BrowserModule"],
-                _angular_common_http__WEBPACK_IMPORTED_MODULE_9__["HttpClientModule"],
+                _angular_common_http__WEBPACK_IMPORTED_MODULE_10__["HttpClientModule"],
                 _ionic_angular__WEBPACK_IMPORTED_MODULE_4__["IonicModule"].forRoot(),
-                _app_routing_module__WEBPACK_IMPORTED_MODULE_7__["AppRoutingModule"],
-                _foodbank_filter_foodbank_filter_module__WEBPACK_IMPORTED_MODULE_10__["FoodbankFilterPageModule"],
-                _recipient_form_recipient_form_module__WEBPACK_IMPORTED_MODULE_11__["RecipientFormPageModule"],
-                _angular_forms__WEBPACK_IMPORTED_MODULE_12__["FormsModule"],
-                _usergroup_form_usergroup_form_module__WEBPACK_IMPORTED_MODULE_13__["UsergroupFormPageModule"],
-                _organization_form_organization_form_module__WEBPACK_IMPORTED_MODULE_17__["OrganizationFormPageModule"],
-                _staff_form_staff_form_module__WEBPACK_IMPORTED_MODULE_18__["StaffFormPageModule"],
-                _boxinfo_form_boxinfo_form_module__WEBPACK_IMPORTED_MODULE_19__["BoxinfoFormPageModule"]
+                _ionic_storage__WEBPACK_IMPORTED_MODULE_5__["IonicStorageModule"].forRoot(),
+                _app_routing_module__WEBPACK_IMPORTED_MODULE_8__["AppRoutingModule"],
+                _foodbank_filter_foodbank_filter_module__WEBPACK_IMPORTED_MODULE_11__["FoodbankFilterPageModule"],
+                _recipient_form_recipient_form_module__WEBPACK_IMPORTED_MODULE_12__["RecipientFormPageModule"],
+                _angular_forms__WEBPACK_IMPORTED_MODULE_13__["FormsModule"],
+                _usergroup_form_usergroup_form_module__WEBPACK_IMPORTED_MODULE_14__["UsergroupFormPageModule"],
+                _organization_form_organization_form_module__WEBPACK_IMPORTED_MODULE_18__["OrganizationFormPageModule"],
+                _staff_form_staff_form_module__WEBPACK_IMPORTED_MODULE_19__["StaffFormPageModule"],
+                _boxinfo_form_boxinfo_form_module__WEBPACK_IMPORTED_MODULE_20__["BoxinfoFormPageModule"],
             ],
             providers: [
-                _ionic_native_status_bar_ngx__WEBPACK_IMPORTED_MODULE_6__["StatusBar"],
-                _ionic_native_splash_screen_ngx__WEBPACK_IMPORTED_MODULE_5__["SplashScreen"],
-                _ionic_native_android_permissions_ngx__WEBPACK_IMPORTED_MODULE_14__["AndroidPermissions"],
-                _ionic_native_geolocation_ngx__WEBPACK_IMPORTED_MODULE_15__["Geolocation"],
-                _ionic_native_location_accuracy_ngx__WEBPACK_IMPORTED_MODULE_16__["LocationAccuracy"],
+                _ionic_native_status_bar_ngx__WEBPACK_IMPORTED_MODULE_7__["StatusBar"],
+                _ionic_native_splash_screen_ngx__WEBPACK_IMPORTED_MODULE_6__["SplashScreen"],
+                _ionic_native_android_permissions_ngx__WEBPACK_IMPORTED_MODULE_15__["AndroidPermissions"],
+                _ionic_native_geolocation_ngx__WEBPACK_IMPORTED_MODULE_16__["Geolocation"],
+                _ionic_native_location_accuracy_ngx__WEBPACK_IMPORTED_MODULE_17__["LocationAccuracy"],
                 { provide: _angular_router__WEBPACK_IMPORTED_MODULE_3__["RouteReuseStrategy"], useClass: _ionic_angular__WEBPACK_IMPORTED_MODULE_4__["IonicRouteStrategy"] },
             ],
-            bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_8__["AppComponent"]]
+            bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_9__["AppComponent"]]
         })
     ], AppModule);
     return AppModule;
@@ -1430,7 +1433,7 @@ var OrganizationFormPageModule = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<ion-header>\n  <ion-toolbar>\n      <ion-button fill=\"blank\" slot=\"start\" (click)=\"previous()\">\n          <ion-icon slot=\"start\"  name=\"arrow-back\"></ion-icon>\n        </ion-button>\n    <ion-title>{{title}}</ion-title>\n  </ion-toolbar>\n</ion-header>\n\n<ion-content padding>\n    <ion-item>\n        <ion-label position=\"floating\">Organization Registration Number</ion-label>\n        <ion-input type=\"text\" [(ngModel)]=\"organization.reg_no\" ></ion-input>\n      </ion-item>\n      <ion-item>\n          <ion-label position=\"floating\">Name of Organization</ion-label>\n          <ion-input type=\"text\" [(ngModel)]=\"organization.org_name\" ></ion-input>\n        </ion-item>\n        <ion-item>\n            <ion-label position=\"floating\">Address</ion-label>\n            <ion-textarea type=\"text\" [(ngModel)]=\"organization.address\"></ion-textarea>\n          </ion-item>\n          <ion-item>\n              <ion-label position=\"floating\">State</ion-label>\n              <ion-select placeholder=\"Select One\" [(ngModel)]=\"organization.state\">\n                  <ion-select-option [value]=\"state.code\" *ngFor=\"let state of states\">{{state.desc}}</ion-select-option>\n                </ion-select>\n            </ion-item>\n            <ion-item>\n                <ion-label position=\"floating\">Email</ion-label>\n                <ion-input type=\"email\" [(ngModel)]=\"organization.email\" ></ion-input>\n              </ion-item>\n              <ion-item>\n                  <ion-label position=\"floating\">Telephone No </ion-label>\n                  <ion-input type=\"text\" [(ngModel)]=\"organization.tel_no\" ></ion-input>\n                </ion-item>\n              <ion-item>\n                  <ion-label position=\"floating\">Fax No (optional)</ion-label>\n                  <ion-input type=\"text\" [(ngModel)]=\"organization.fax_no\" ></ion-input>\n                </ion-item>\n                <br><br>\n                <ion-button (click)=\"submit()\"*ngIf=\"btnSubmit\">Submit</ion-button>\n                <ion-button (click)=\"update()\"*ngIf=\"btnUpdate\">Submit</ion-button>\n                <ion-button (click)=\"clear()\" color=\"warning\"*ngIf=\"btnClear\">Clear</ion-button>\n                <ion-button (click)=\"delete()\"color=\"danger\" *ngIf=\"btnDelete\">Delete</ion-button>\n                <br><br>                 \n\n</ion-content>\n"
+module.exports = "<ion-header>\n  <ion-toolbar>\n      <ion-button fill=\"blank\" slot=\"start\" (click)=\"previous()\">\n          <ion-icon slot=\"start\"  name=\"arrow-back\"></ion-icon>\n        </ion-button>\n    <ion-title>{{title}}</ion-title>\n  </ion-toolbar>\n</ion-header>\n\n<ion-content padding>\n    <ion-item>\n        <ion-label position=\"floating\">Organization Registration Number</ion-label>\n        <ion-input type=\"text\" [(ngModel)]=\"organization.reg_no\" ></ion-input>\n      </ion-item>\n      <ion-item>\n          <ion-label position=\"floating\">Code of Organization</ion-label>\n          <ion-input type=\"text\" [(ngModel)]=\"organization.code\" ></ion-input>\n        </ion-item>\n      <ion-item>\n          <ion-label position=\"floating\">Name of Organization</ion-label>\n          <ion-input type=\"text\" [(ngModel)]=\"organization.org_name\" ></ion-input>\n        </ion-item>\n        <ion-item>\n            <ion-label position=\"floating\">Address</ion-label>\n            <ion-textarea type=\"text\" [(ngModel)]=\"organization.address\"></ion-textarea>\n          </ion-item>\n          <ion-item>\n              <ion-label position=\"floating\">State</ion-label>\n              <ion-select placeholder=\"Select One\" [(ngModel)]=\"organization.state\">\n                  <ion-select-option [value]=\"state.code\" *ngFor=\"let state of states\">{{state.desc}}</ion-select-option>\n                </ion-select>\n            </ion-item>\n            <ion-item>\n                <ion-label position=\"floating\">Email</ion-label>\n                <ion-input type=\"email\" [(ngModel)]=\"organization.email\" ></ion-input>\n              </ion-item>\n              <ion-item>\n                  <ion-label position=\"floating\">Telephone No </ion-label>\n                  <ion-input type=\"text\" [(ngModel)]=\"organization.tel_no\" ></ion-input>\n                </ion-item>\n              <ion-item>\n                  <ion-label position=\"floating\">Fax No (optional)</ion-label>\n                  <ion-input type=\"text\" [(ngModel)]=\"organization.fax_no\" ></ion-input>\n                </ion-item>\n                <br><br>\n                <ion-button (click)=\"submit()\"*ngIf=\"btnSubmit\">Submit</ion-button>\n                <ion-button (click)=\"update()\"*ngIf=\"btnUpdate\">Submit</ion-button>\n                <ion-button (click)=\"clear()\" color=\"warning\"*ngIf=\"btnClear\">Clear</ion-button>\n                <ion-button (click)=\"delete()\"color=\"danger\" *ngIf=\"btnDelete\">Delete</ion-button>\n                <br><br>                 \n\n</ion-content>\n"
 
 /***/ }),
 
@@ -1476,6 +1479,7 @@ var OrganizationFormPage = /** @class */ (function () {
         this.organization = {
             id: '',
             reg_no: '',
+            code: '',
             org_name: '',
             address: '',
             state: '',
@@ -1530,7 +1534,7 @@ var OrganizationFormPage = /** @class */ (function () {
             return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_a) {
                 switch (_a.label) {
                     case 0:
-                        if (!(this.organization.reg_no == '' || this.organization.org_name == '' || this.organization.address == '' || this.organization.tel_no == '' || this.organization.email == '' || this.organization.fax_no == '')) return [3 /*break*/, 2];
+                        if (!(this.organization.reg_no == '' || this.organization.org_name == '' || this.organization.address == '' || this.organization.tel_no == '' || this.organization.email == '')) return [3 /*break*/, 2];
                         return [4 /*yield*/, this.toastCtrl.create({
                                 message: 'All fields are required.',
                                 duration: 2000
@@ -1542,8 +1546,6 @@ var OrganizationFormPage = /** @class */ (function () {
                     case 2:
                         url = "http://localhost/smartfoodbank/organization/addorganization";
                         this.data = this.http.post(url, this.organization, { headers: { 'Content-Type': 'application/x-www-form-urlencoded' } });
-                        _a.label = 3;
-                    case 3:
                         this.data.subscribe(function (data) { return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](_this, void 0, void 0, function () {
                             var toast;
                             return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_a) {
@@ -1562,7 +1564,8 @@ var OrganizationFormPage = /** @class */ (function () {
                                 }
                             });
                         }); });
-                        return [2 /*return*/];
+                        _a.label = 3;
+                    case 3: return [2 /*return*/];
                 }
             });
         });
@@ -1745,7 +1748,7 @@ var RecipientFormPageModule = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<ion-header>\n  <ion-toolbar>\n    <ion-title>{{title}}</ion-title>\n    <ion-buttons slot=\"start\">\n        <ion-button (click)=\"previous()\"><ion-icon name=\"arrow-back\"></ion-icon></ion-button>\n      </ion-buttons>\n  </ion-toolbar>\n</ion-header>\n\n<ion-content padding>\n    <ion-item>\n        <ion-label position=\"floating\">Full Name</ion-label>\n        <ion-input type=\"text\" [(ngModel)]=\"recipient.fullname\" ></ion-input>\n      </ion-item>\n      <ion-item>\n          <ion-label position=\"floating\">IC No</ion-label>\n          <ion-input type=\"text\" [(ngModel)]=\"recipient.ic\" ></ion-input>\n        </ion-item>\n        <ion-item>\n            <ion-label position=\"floating\">Address</ion-label>\n            <ion-textarea type=\"text\" [(ngModel)]=\"recipient.address\"></ion-textarea>\n          </ion-item>\n          <ion-item>\n              <ion-label position=\"floating\">State</ion-label>\n              <ion-select placeholder=\"Select One\" [(ngModel)]=\"recipient.state\">\n                  <ion-select-option [value]=\"state.code\" *ngFor=\"let state of states\">{{state.desc}}</ion-select-option>\n                </ion-select>\n            </ion-item>\n            <ion-item>\n                <ion-label position=\"floating\">Age</ion-label>\n                <ion-input type=\"text\" [(ngModel)]=\"recipient.age\"></ion-input>\n              </ion-item>\n              <ion-item>\n                  <ion-label position=\"floating\">Phone No</ion-label>\n                  <ion-input type=\"text\" [(ngModel)]=\"recipient.tel_no\"></ion-input>\n                </ion-item>\n                <ion-item>\n                    <ion-label position=\"floating\">No Family Member</ion-label>\n                    <ion-input type=\"number\" [(ngModel)]=\"recipient.family_no\"></ion-input>\n                  </ion-item>\n                  <ion-item>\n                      <ion-label position=\"floating\">Income</ion-label>\n                      <ion-input type=\"number\" [(ngModel)]=\"recipient.income\" ></ion-input>\n                    </ion-item>\n                    <ion-item>\n                        <ion-label position=\"floating\">Status</ion-label>\n                        <ion-select placeholder=\"Select One\" [(ngModel)]=\"recipient.status\">\n                            <ion-select-option value=\"0\">Tidak Aktif</ion-select-option>\n                            <ion-select-option value=\"1\">Aktif</ion-select-option>\n                          </ion-select>\n                      </ion-item>\n                    <br><br>\n                        <ion-button (click)=\"submit()\">Submit</ion-button>\n                        <ion-button (click)=\"clear\" color=\"warning\">Clear</ion-button>\n                        <br><br>\n</ion-content>\n"
+module.exports = "<ion-header>\n  <ion-toolbar>\n    <ion-title>{{title}}</ion-title>\n    <ion-buttons slot=\"start\">\n        <ion-button (click)=\"previous()\"><ion-icon name=\"arrow-back\"></ion-icon></ion-button>\n      </ion-buttons>\n  </ion-toolbar>\n</ion-header>\n\n<ion-content padding>\n    <ion-item>\n        <ion-label position=\"floating\">Full Name</ion-label>\n        <ion-input type=\"text\" [(ngModel)]=\"recipient.fullname\" ></ion-input>\n      </ion-item>\n      <ion-item>\n          <ion-label position=\"floating\">IC No</ion-label>\n          <ion-input type=\"text\" [(ngModel)]=\"recipient.ic\" ></ion-input>\n        </ion-item>\n        <ion-item>\n            <ion-label position=\"floating\">Address</ion-label>\n            <ion-textarea type=\"text\" [(ngModel)]=\"recipient.address\"></ion-textarea>\n          </ion-item>\n          <ion-item>\n              <ion-label position=\"floating\">State</ion-label>\n              <ion-select placeholder=\"Select One\" [(ngModel)]=\"recipient.state\">\n                  <ion-select-option [value]=\"state.code\" *ngFor=\"let state of states\">{{state.desc}}</ion-select-option>\n                </ion-select>\n            </ion-item>\n            <ion-item>\n                <ion-label position=\"floating\">Age</ion-label>\n                <ion-input type=\"text\" [(ngModel)]=\"recipient.age\"></ion-input>\n              </ion-item>\n              <ion-item>\n                  <ion-label position=\"floating\">Phone No</ion-label>\n                  <ion-input type=\"text\" [(ngModel)]=\"recipient.tel_no\"></ion-input>\n                </ion-item>\n                <ion-item>\n                    <ion-label position=\"floating\">No Family Member</ion-label>\n                    <ion-input type=\"number\" [(ngModel)]=\"recipient.family_no\"></ion-input>\n                  </ion-item>\n                  <ion-item>\n                      <ion-label position=\"floating\">Income</ion-label>\n                      <ion-input type=\"number\" [(ngModel)]=\"recipient.income\" ></ion-input>\n                    </ion-item>\n                    <ion-item *ngIf=\"status\">\n                        <ion-label position=\"floating\">Status</ion-label>\n                        <ion-select placeholder=\"Select One\" [(ngModel)]=\"recipient.status\">\n                            <ion-select-option value=\"0\">Tidak Aktif</ion-select-option>\n                            <ion-select-option value=\"1\">Aktif</ion-select-option>\n                          </ion-select>\n                      </ion-item>\n                      <br><br>\n                      <ion-button (click)=\"submit()\"*ngIf=\"btnSubmit\">Submit</ion-button>\n                      <ion-button (click)=\"update()\"*ngIf=\"btnUpdate\">Submit</ion-button>\n                      <ion-button (click)=\"clear()\" color=\"warning\"*ngIf=\"btnClear\">Clear</ion-button>\n                      <ion-button (click)=\"delete()\"color=\"danger\" *ngIf=\"btnDelete\">Delete</ion-button>\n                      <br><br> \n</ion-content>\n"
 
 /***/ }),
 
@@ -1844,7 +1847,7 @@ var RecipientFormPage = /** @class */ (function () {
             return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_a) {
                 switch (_a.label) {
                     case 0:
-                        if (!(this.recipient.fullname == '' || this.recipient.ic == '' || this.recipient.address == '' || this.recipient.state == '' || this.recipient.age == '' || this.recipient.tel_no == '' || this.recipient.family_no == '' || this.recipient.income == '' || this.recipient.status == '')) return [3 /*break*/, 2];
+                        if (!(this.recipient.fullname == '' || this.recipient.ic == '' || this.recipient.address == '' || this.recipient.state == '' || this.recipient.age == '' || this.recipient.tel_no == '' || this.recipient.family_no == '' || this.recipient.income == '')) return [3 /*break*/, 2];
                         return [4 /*yield*/, this.toastCtrl.create({
                                 message: 'All fields are required.',
                                 duration: 2000
@@ -1856,8 +1859,6 @@ var RecipientFormPage = /** @class */ (function () {
                     case 2:
                         url = "http://localhost/smartfoodbank/recipient/addrecipient";
                         this.data = this.http.post(url, this.recipient, { headers: { 'Content-Type': 'application/x-www-form-urlencoded' } });
-                        _a.label = 3;
-                    case 3:
                         this.data.subscribe(function (data) { return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](_this, void 0, void 0, function () {
                             var toast;
                             return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_a) {
@@ -1871,12 +1872,12 @@ var RecipientFormPage = /** @class */ (function () {
                                     case 1:
                                         toast = _a.sent();
                                         toast.present();
-                                        this.navCtrl.navigateRoot(['/tabs/tab2', { items: data }]);
                                         return [2 /*return*/];
                                 }
                             });
                         }); });
-                        return [2 /*return*/];
+                        _a.label = 3;
+                    case 3: return [2 /*return*/];
                 }
             });
         });
@@ -2061,7 +2062,7 @@ var StaffFormPageModule = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<ion-header>\n  <ion-toolbar>\n      <ion-button fill=\"blank\" slot=\"start\" (click)=\"previous()\">\n          <ion-icon slot=\"start\"  name=\"arrow-back\"></ion-icon>\n        </ion-button>\n    <ion-title>{{title}}</ion-title>\n  </ion-toolbar>\n</ion-header>\n\n<ion-content padding>\n    <ion-item>\n        <ion-label position=\"floating\">Name of Organization</ion-label>\n        <ion-select placeholder=\"Select One\" [(ngModel)]=\"staff.organization_code\">\n            <ion-select-option [value]=\"organization.reg_no\" *ngFor=\"let organization of organizations\">{{organization.reg_no}}</ion-select-option>\n          </ion-select>\n      </ion-item>\n      <ion-item>\n          <ion-label position=\"floating\">Staff ID</ion-label>\n          <ion-input type=\"text\" [(ngModel)]=\"staff.staff_id\" ></ion-input>\n        </ion-item>\n        <ion-item>\n            <ion-label position=\"floating\">Full Name</ion-label>\n            <ion-input type=\"text\" [(ngModel)]=\"staff.fullname\" ></ion-input>\n          </ion-item>\n        <ion-item>\n            <ion-label position=\"floating\">Password</ion-label>\n            <ion-input type=\"password\" [(ngModel)]=\"staff.password\" ></ion-input>\n          </ion-item>\n          <ion-item>\n              <ion-label position=\"floating\">Email</ion-label>\n              <ion-input type=\"email\" [(ngModel)]=\"staff.email\" ></ion-input>\n            </ion-item>\n              <ion-item>\n                  <ion-label position=\"floating\">User Group</ion-label>\n                  <ion-select placeholder=\"Select One\" [(ngModel)]=\"staff.usergroup\">\n                      <ion-select-option [value]=\"usergroup.code\" *ngFor=\"let usergroup of usergroups\">{{usergroup.desc}}</ion-select-option>\n                    </ion-select>\n                </ion-item>\n                <br><br>\n                <ion-button (click)=\"submit()\"*ngIf=\"btnSubmit\">Submit</ion-button>\n                <ion-button (click)=\"update()\"*ngIf=\"btnUpdate\">Submit</ion-button>\n                <ion-button (click)=\"clear()\" color=\"warning\"*ngIf=\"btnClear\">Clear</ion-button>\n                <ion-button (click)=\"delete()\"color=\"danger\" *ngIf=\"btnDelete\">Delete</ion-button>\n                <br><br>  \n\n</ion-content>\n"
+module.exports = "<ion-header>\n  <ion-toolbar>\n      <ion-button fill=\"blank\" slot=\"start\" (click)=\"previous()\">\n          <ion-icon slot=\"start\"  name=\"arrow-back\"></ion-icon>\n        </ion-button>\n    <ion-title>{{title}}</ion-title>\n  </ion-toolbar>\n</ion-header>\n\n<ion-content padding>\n  <ion-card color=\"danger\">\n    <ion-card-content>\n      <ion-label>Field with * is required</ion-label>\n    </ion-card-content>\n  </ion-card>\n    <ion-item>\n        <ion-label position=\"floating\">Name of Organization*</ion-label>\n        <ion-select placeholder=\"Select One\" [(ngModel)]=\"staff.organization_code\">\n            <ion-select-option [value]=\"organization.code\" *ngFor=\"let organization of organizations\">{{organization.org_name}}</ion-select-option>\n          </ion-select>\n      </ion-item>\n      <ion-item>\n          <ion-label position=\"floating\">Staff ID*</ion-label>\n          <ion-input type=\"text\" [(ngModel)]=\"staff.staff_code\" placeholder=\"eg.S002\" ></ion-input>\n        </ion-item>\n        <ion-item>\n            <ion-label position=\"floating\">Full Name*</ion-label>\n            <ion-input type=\"text\" [(ngModel)]=\"staff.fullname\" placeholder=\"eg.John Doe\" ></ion-input>\n          </ion-item>\n          <ion-item>\n              <ion-label position=\"floating\">Email*</ion-label>\n              <ion-input type=\"email\" [(ngModel)]=\"staff.email\" placeholder=\"eg.test@example.com\" ></ion-input>\n            </ion-item>\n              <ion-item>\n                  <ion-label position=\"floating\">User Group*</ion-label>\n                  <ion-select placeholder=\"Select One\" [(ngModel)]=\"staff.usergroup\">\n                      <ion-select-option [value]=\"usergroup.code\" *ngFor=\"let usergroup of usergroups\">{{usergroup.desc}}</ion-select-option>\n                    </ion-select>\n                </ion-item>\n                <br><br>\n                <ion-button (click)=\"submit()\"*ngIf=\"btnSubmit\">Submit</ion-button>\n                <ion-button (click)=\"update()\"*ngIf=\"btnUpdate\">Submit</ion-button>\n                <ion-button (click)=\"clear()\" color=\"warning\"*ngIf=\"btnClear\">Clear</ion-button>\n                <ion-button (click)=\"delete()\"color=\"danger\" *ngIf=\"btnDelete\">Delete</ion-button>\n                <br><br>  \n\n</ion-content>\n"
 
 /***/ }),
 
@@ -2107,7 +2108,7 @@ var StaffFormPage = /** @class */ (function () {
         this.staff = {
             id: '',
             organization_code: '',
-            staff_id: '',
+            staff_code: '',
             fullname: '',
             password: '',
             email: '',
@@ -2118,6 +2119,7 @@ var StaffFormPage = /** @class */ (function () {
         this.btnUpdate = false;
         this.btnClear = false;
         this.btnDelete = false;
+        this.inputPassword = false;
     }
     StaffFormPage.prototype.ngOnInit = function () {
         var _this = this;
@@ -2135,8 +2137,10 @@ var StaffFormPage = /** @class */ (function () {
             _this.organizations = data;
         });
         this.staffID = this.navParams.get('value');
+        console.log(this.staffID);
         if (this.staffID != null || this.staffID != undefined) {
             this.title = 'Edit Data';
+            this.inputPassword = false;
             this.data = this.http.get('http://localhost/smartfoodbank/staff/staffbyid?id=' + this.staffID);
             this.data.subscribe(function (data) {
                 _this.staff = data[0];
@@ -2169,7 +2173,7 @@ var StaffFormPage = /** @class */ (function () {
             return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_a) {
                 switch (_a.label) {
                     case 0:
-                        if (!(this.staff.organization_code == '' || this.staff.staff_id == '' || this.staff.password == '' || this.staff.email == '' || this.staff.usergroup == '')) return [3 /*break*/, 2];
+                        if (!(this.staff.organization_code == '' || this.staff.staff_id == '' || this.staff.email == '' || this.staff.usergroup == '')) return [3 /*break*/, 2];
                         return [4 /*yield*/, this.toastCtrl.create({
                                 message: 'All fields are required.',
                                 duration: 2000
@@ -2196,7 +2200,6 @@ var StaffFormPage = /** @class */ (function () {
                                     case 1:
                                         toast = _a.sent();
                                         toast.present();
-                                        this.navCtrl.navigateRoot(['staff', { items: data }]);
                                         return [2 /*return*/];
                                 }
                             });
@@ -2301,7 +2304,6 @@ var StaffFormPage = /** @class */ (function () {
         this.staff.organization_code = '';
         this.staff.staff_id = '';
         this.staff.fullname = '';
-        this.staff.password = '';
         this.staff.email = '';
         this.staff.usergroup = '';
     };

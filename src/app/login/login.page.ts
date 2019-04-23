@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { NavController, ToastController } from '@ionic/angular';
 import { Observable } from 'rxjs';
 import { HttpClient} from '@angular/common/http';
+import { Storage} from '@ionic/storage';
 
 @Component({
   selector: 'app-login',
@@ -18,7 +19,8 @@ export class LoginPage implements OnInit {
   constructor(
     private navCtrl:NavController,
     private toastCtrl:ToastController,
-    private http:HttpClient
+    private http:HttpClient,
+    private storage:Storage
     ) { 
     
   }
@@ -37,6 +39,9 @@ export class LoginPage implements OnInit {
       var url="http://localhost/smartfoodbank/staff/login";
       this.data=this.http.post(url,this.login,{headers:{'Content-Type':'application/x-www-form-urlencoded'}});
       this.data.subscribe(data=>{
+        this.storage.set('staff_code',data[0].staff_code);
+        this.storage.set('fullname',data[0].fullname);
+        this.storage.set('usergroup',data[0].usergroup);
         this.navCtrl.navigateForward('');
       })
       

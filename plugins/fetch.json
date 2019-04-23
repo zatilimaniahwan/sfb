@@ -99,5 +99,21 @@
     "variables": {
       "GEOLOCATION_USAGE_DESCRIPTION": "To locate you"
     }
+  },
+  "cordova-sqlite-storage": {
+    "source": {
+      "type": "registry",
+      "id": "cordova-sqlite-storage"
+    },
+    "is_top_level": true,
+    "variables": {}
+  },
+  "cordova-plugin-secure-storage": {
+    "source": {
+      "type": "registry",
+      "id": "cordova-plugin-secure-storage"
+    },
+    "is_top_level": true,
+    "variables": {}
   }
 }
