@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NavController, ToastController } from '@ionic/angular';
+import { Observable } from 'rxjs';
+import { HttpClient} from '@angular/common/http';
 
 @Component({
   selector: 'app-login',
@@ -7,27 +9,37 @@ import { NavController, ToastController } from '@ionic/angular';
   styleUrls: ['./login.page.scss'],
 })
 export class LoginPage implements OnInit {
+  data:Observable<any>;
   login:any={
-    email:'',
+    staff_code:'',
     password:''
   }
   toaster:any;
-  constructor(private navCtrl:NavController,private toastCtrl:ToastController) { 
+  constructor(
+    private navCtrl:NavController,
+    private toastCtrl:ToastController,
+    private http:HttpClient
+    ) { 
     
   }
   previous(){
     this.navCtrl.navigateForward('role');
   }
   async submit(){
-    if(this.login.email=='' && this.login.password==''){
+    if(this.login.staff_code=='' && this.login.password==''){
       const toast = await this.toastCtrl.create({
-        message: 'Email or password cannot be empty.',
+        message: 'Staff code or password cannot be empty.',
         duration: 2000
       });
       toast.present();
     }
     else{
-      this.navCtrl.navigateForward('');
+      var url="http://localhost/smartfoodbank/staff/login";
+      this.data=this.http.post(url,this.login,{headers:{'Content-Type':'application/x-www-form-urlencoded'}});
+      this.data.subscribe(data=>{
+        this.navCtrl.navigateForward('');
+      })
+      
     }
   }
 

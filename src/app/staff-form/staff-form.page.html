@@ -8,30 +8,31 @@
 </ion-header>
 
 <ion-content padding>
+  <ion-card color="danger">
+    <ion-card-content>
+      <ion-label>Field with * is required</ion-label>
+    </ion-card-content>
+  </ion-card>
     <ion-item>
-        <ion-label position="floating">Name of Organization</ion-label>
+        <ion-label position="floating">Name of Organization*</ion-label>
         <ion-select placeholder="Select One" [(ngModel)]="staff.organization_code">
             <ion-select-option [value]="organization.code" *ngFor="let organization of organizations">{{organization.org_name}}</ion-select-option>
           </ion-select>
       </ion-item>
       <ion-item>
-          <ion-label position="floating">Staff ID</ion-label>
-          <ion-input type="text" [(ngModel)]="staff.staff_id" ></ion-input>
+          <ion-label position="floating">Staff ID*</ion-label>
+          <ion-input type="text" [(ngModel)]="staff.staff_code" placeholder="eg.S002" ></ion-input>
         </ion-item>
         <ion-item>
-            <ion-label position="floating">Full Name</ion-label>
-            <ion-input type="text" [(ngModel)]="staff.fullname" ></ion-input>
-          </ion-item>
-        <ion-item>
-            <ion-label position="floating">Password</ion-label>
-            <ion-input type="password" [(ngModel)]="staff.password" ></ion-input>
+            <ion-label position="floating">Full Name*</ion-label>
+            <ion-input type="text" [(ngModel)]="staff.fullname" placeholder="eg.John Doe" ></ion-input>
           </ion-item>
           <ion-item>
-              <ion-label position="floating">Email</ion-label>
-              <ion-input type="email" [(ngModel)]="staff.email" ></ion-input>
+              <ion-label position="floating">Email*</ion-label>
+              <ion-input type="email" [(ngModel)]="staff.email" placeholder="eg.test@example.com" ></ion-input>
             </ion-item>
               <ion-item>
-                  <ion-label position="floating">User Group</ion-label>
+                  <ion-label position="floating">User Group*</ion-label>
                   <ion-select placeholder="Select One" [(ngModel)]="staff.usergroup">
                       <ion-select-option [value]="usergroup.code" *ngFor="let usergroup of usergroups">{{usergroup.desc}}</ion-select-option>
                     </ion-select>

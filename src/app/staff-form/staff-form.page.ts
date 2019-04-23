@@ -13,7 +13,7 @@ title='';
 staff:any={
   id:'',
   organization_code:'',
-  staff_id:'',
+  staff_code:'',
   fullname:'',
   password:'',
   email:'',
@@ -27,6 +27,7 @@ btnSubmit=false;
 btnUpdate=false;
 btnClear=false;
 btnDelete=false;
+inputPassword=false;
 items:string[];
   constructor(
     private modalCtrl:ModalController,
@@ -52,8 +53,10 @@ items:string[];
       this.organizations=data;
     });
     this.staffID=this.navParams.get('value');
+    console.log(this.staffID);
     if(this.staffID !=null || this.staffID !=undefined){
       this.title='Edit Data';
+      this.inputPassword=false;
       this.data=this.http.get('http://localhost/smartfoodbank/staff/staffbyid?id='+this.staffID);
       this.data.subscribe(data=>{
         this.staff=data[0];
@@ -82,7 +85,7 @@ items:string[];
 //Submit new data
 async submit(){
   //check whether the field is blank or not
-  if(this.staff.organization_code==''|| this.staff.staff_id==''|| this.staff.password==''|| this.staff.email==''||this.staff.usergroup==''){
+  if(this.staff.organization_code==''|| this.staff.staff_id==''||this.staff.email==''||this.staff.usergroup==''){
     const toast = await this.toastCtrl.create({
       message: 'All fields are required.',
       duration: 2000
@@ -99,7 +102,7 @@ async submit(){
       duration: 2000
     });
     toast.present();
-    this.navCtrl.navigateRoot(['staff',{items:data}]);
+    //this.navCtrl.navigateRoot(['staff',{items:data}]);
   })
 }
 //Update current data
@@ -159,7 +162,6 @@ clear(){
   this.staff.organization_code='';
   this.staff.staff_id='';
   this.staff.fullname='';
-  this.staff.password='';
   this.staff.email='';
   this.staff.usergroup='';
 }

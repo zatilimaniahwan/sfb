@@ -8,18 +8,18 @@
 </ion-header>
 
 <ion-content padding>
-  <ion-card>
+  <ion-card color="warning">
     <ion-card-content>
-      <ion-label>Please enter your email and password to login. Please contact admin if you forgot the password</ion-label>
+      <ion-label id="warning">Please enter your staff code and password to login. Please contact admin if you forgot the password</ion-label>
     </ion-card-content>
   </ion-card>
   <ion-item>
-      <ion-icon name="mail" slot="start" position="floating"></ion-icon><ion-label position="floating">Email</ion-label>
-      <ion-input type="email"[(ngModel)]="login.email"></ion-input>
+      <ion-icon name="contact" slot="start" position="floating"></ion-icon>
+      <ion-input type="text"[(ngModel)]="login.staff_code" placeholder="Enter your Staff Code"></ion-input>
     </ion-item>
     <ion-item>
-        <ion-icon name="lock" slot="start" position="floating"></ion-icon><ion-label position="floating">Password</ion-label>
-        <ion-input type="password" [(ngModel)]="login.password"></ion-input>
+        <ion-icon name="lock" slot="start" position="floating"></ion-icon>
+        <ion-input type="password" [(ngModel)]="login.password" placeholder="Enter your password"></ion-input>
       </ion-item>
       <br>
       <ion-button expand="block" (click)="submit()"><ion-icon name="log-in" slot="end"></ion-icon>Login</ion-button>
