@@ -39,15 +39,6 @@ export class LoginPage implements OnInit {
       var url="http://localhost/smartfoodbank/staff/login";
       this.data=this.http.post(url,this.login,{headers:{'Content-Type':'application/x-www-form-urlencoded'}});
       this.data.subscribe(data=>{
-        /*this.secureStorage.create('login')
-        .then((storage: SecureStorageObject) => {
-           storage.set('fullname', data[0].fullname)
-             .then(
-              data => console.log(data),
-               error => console.log(error)
-           );
-      
-        });*/      
         this.navCtrl.navigateForward('');
       })
       

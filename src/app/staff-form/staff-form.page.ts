@@ -96,7 +96,10 @@ async submit(){
     this.data=this.http.post(url,this.staff,{headers:{'Content-Type':'application/x-www-form-urlencoded'}});
   }
   this.data.subscribe(async data=>{
-    this.modalCtrl.dismiss();
+    let value=data;
+    this.modalCtrl.dismiss({
+      'result':value
+    });
     const toast = await this.toastCtrl.create({
       message: 'Data successfully added.',
       duration: 2000
