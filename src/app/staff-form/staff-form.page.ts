@@ -130,11 +130,11 @@ async update(){
     var url='http://localhost/smartfoodbank/staff/updatestaff';
     this.data=this.http.post(url,this.staff,{headers:{'Content-Type':'application/x-www-form-urlencoded'}});
     this.data.subscribe(data=>{
-     this.onModalClose()
+     this.onModalCloseUpdate()
     })
   }
 }
-onModalClose(){
+onModalCloseUpdate(){
   var url='http://localhost/smartfoodbank/staff/staffs';
     this.data=this.http.get(url);
     this.data.subscribe(async data=>{
