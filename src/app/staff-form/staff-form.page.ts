@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { HttpClient} from '@angular/common/http';
 import { AlertController, ModalController, NavParams, ToastController, NavController } from '@ionic/angular';
+import { FormBuilder, Validators, FormGroup } from '@angular/forms';
+
+
 @Component({
   selector: 'app-staff-form',
   templateUrl: './staff-form.page.html',
@@ -10,16 +13,15 @@ import { AlertController, ModalController, NavParams, ToastController, NavContro
 export class StaffFormPage implements OnInit {
 //Declare variable,object and array
 title='';
-staff:any={
-  id:'',
-  organization_code:'',
-  staff_code:'',
-  fullname:'',
-  password:'',
-  email:'',
-  usergroup:''
-}
+public staffForm: FormGroup;
 staffID='';
+staff:any={
+organization_code:'',
+staff_code:'',
+fullname:'',
+email:'',
+usergroup:''
+}
 data:Observable<any>;
 organizations:string[];
 usergroups:string[];
@@ -29,14 +31,25 @@ btnClear=false;
 btnDelete=false;
 inputPassword=false;
 items:string[];
-  constructor(
+constructor(
     private modalCtrl:ModalController,
     private http:HttpClient,
     private navParams:NavParams,
     private toastCtrl:ToastController,
     private navCtrl:NavController,
-    private alertCtrl:AlertController
-  ) { }
+    private alertCtrl:AlertController,
+    public formBuilder: FormBuilder
+  ) {
+
+    this.staffForm = formBuilder.group({
+      organization_code: ['', Validators.compose([Validators.required])],
+      staff_code: ['', Validators.compose([Validators.maxLength(4), Validators.pattern('[a-zA-Z][0-9]*'), Validators.required])],
+      fullname: ['', Validators.compose([Validators.maxLength(255), Validators.pattern('[a-zA-Z ]*'), Validators.required])],
+      email: ['', Validators.compose([Validators.required,Validators.email])],
+      usergroup: ['', Validators.compose([Validators.required])]
+
+  });
+   }
 
   ngOnInit() {
     this.title='Add New Data';
@@ -53,12 +66,11 @@ items:string[];
       this.organizations=data;
     });
     this.staffID=this.navParams.get('value');
-    console.log(this.staffID);
     if(this.staffID !=null || this.staffID !=undefined){
       this.title='Edit Data';
       this.inputPassword=false;
       this.data=this.http.get('http://localhost/smartfoodbank/staff/staffbyid?id='+this.staffID);
-      this.data.subscribe(data=>{
+     this.data.subscribe(data=>{
         this.staff=data[0];
       });
       var url='http://localhost/smartfoodbank/usergroup/usergroups';
@@ -84,46 +96,58 @@ items:string[];
   }
 //Submit new data
 async submit(){
-  //check whether the field is blank or not
-  if(this.staff.organization_code==''|| this.staff.staff_id==''||this.staff.email==''||this.staff.usergroup==''){
+  if(!this.staffForm.valid){
     const toast = await this.toastCtrl.create({
       message: 'All fields are required.',
       duration: 2000
     });
     toast.present();
+    return;
   }else{
     var url="http://localhost/smartfoodbank/staff/addstaff";
     this.data=this.http.post(url,this.staff,{headers:{'Content-Type':'application/x-www-form-urlencoded'}});
   }
-  this.data.subscribe(async data=>{
-    let value=data;
-    this.modalCtrl.dismiss({
-      'result':value
-    });
-    const toast = await this.toastCtrl.create({
-      message: 'Data successfully added.',
-      duration: 2000
-    });
-    toast.present();
-    //this.navCtrl.navigateRoot(['staff',{items:data}]);
-  })
+  this.data.subscribe(data=>{
+    this.onModalCloseCreate()
+   })
+}
+onModalCloseCreate(){
+  var url='http://localhost/smartfoodbank/staff/staffs';
+    this.data=this.http.get(url);
+    this.data.subscribe(async data=>{
+      this.items=data;
+      this.modalCtrl.dismiss(this.items);
+      const toast = await this.toastCtrl.create({
+        message: 'Data successfully added.',
+        duration: 2000
+      });
+      toast.present();
+    })
 }
 //Update current data
 async update(){
   if(this.staffID !=''){
     var url='http://localhost/smartfoodbank/staff/updatestaff';
     this.data=this.http.post(url,this.staff,{headers:{'Content-Type':'application/x-www-form-urlencoded'}});
+    this.data.subscribe(data=>{
+     this.onModalClose()
+    })
+  }
+}
+onModalClose(){
+  var url='http://localhost/smartfoodbank/staff/staffs';
+    this.data=this.http.get(url);
     this.data.subscribe(async data=>{
-      this.modalCtrl.dismiss();
+      this.items=data;
+      this.modalCtrl.dismiss(this.items);
       const toast = await this.toastCtrl.create({
         message: 'Data successfully updated.',
         duration: 2000
       });
       toast.present();
-      this.navCtrl.navigateRoot(['staff',{items:data}]);
     })
-  }
 }
+
 //Delete current data
 async delete(){
   // Call alert to ask confirmation before delete the data
@@ -135,7 +159,7 @@ async delete(){
         text:'Cancel',
         role:'cancel',
         cssClass:'danger',
-        handler:(blah)=>{
+        handler:()=>{
           this.alertCtrl.dismiss();
         }},
         {
@@ -151,8 +175,8 @@ async delete(){
                   duration: 2000
                 });
                 toast.present();
-                this.navCtrl.navigateRoot(['staff',{items:data}]);
-              })
+              });
+              
             }
           }
         }
@@ -162,11 +186,15 @@ async delete(){
 }
 //Clear form
 clear(){
-  this.staff.organization_code='';
-  this.staff.staff_id='';
-  this.staff.fullname='';
-  this.staff.email='';
-  this.staff.usergroup='';
+  this.staffForm = this.formBuilder.group({
+    organization_code:'',
+    staff_code: '',
+    fullname: '',
+    email: '',
+    usergroup:''
+
+});
 }
+
 
 }

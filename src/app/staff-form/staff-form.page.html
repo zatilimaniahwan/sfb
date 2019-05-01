@@ -5,38 +5,51 @@
         </ion-button>
     <ion-title>{{title}}</ion-title>
   </ion-toolbar>
+  <ion-toolbar>
+    <ion-card color="danger">
+      <ion-card-content>
+        <ion-label>Field with * is required</ion-label>
+      </ion-card-content>
+    </ion-card>
+  </ion-toolbar>
 </ion-header>
 
 <ion-content padding>
-  <ion-card color="danger">
-    <ion-card-content>
-      <ion-label>Field with * is required</ion-label>
-    </ion-card-content>
-  </ion-card>
+  <form [formGroup]="staffForm">
     <ion-item>
         <ion-label position="floating">Name of Organization*</ion-label>
-        <ion-select placeholder="Select One" [(ngModel)]="staff.organization_code">
+        <ion-select formControlName="organization_code" placeholder="Select One" [(ngModel)]="staff.organization_code">
             <ion-select-option [value]="organization.code" *ngFor="let organization of organizations">{{organization.org_name}}</ion-select-option>
           </ion-select>
       </ion-item>
       <ion-item>
           <ion-label position="floating">Staff ID*</ion-label>
-          <ion-input type="text" [(ngModel)]="staff.staff_code" placeholder="eg.S002" ></ion-input>
+          <ion-input formControlName="staff_code" type="text" [(ngModel)]="staff.staff_code" placeholder="eg.S002" ></ion-input>
         </ion-item>
+        <ion-item *ngIf="!staffForm.controls.staff_code.valid  && (staffForm.controls.staff_code.dirty || submitAttempt)" lines="none">
+          <p>Please enter a valid staff code.</p>
+      </ion-item>
         <ion-item>
             <ion-label position="floating">Full Name*</ion-label>
-            <ion-input type="text" [(ngModel)]="staff.fullname" placeholder="eg.John Doe" ></ion-input>
+            <ion-input formControlName="fullname"  type="text" [(ngModel)]="staff.fullname" placeholder="eg.John Doe" ></ion-input>
           </ion-item>
+          <ion-item *ngIf="!staffForm.controls.fullname.valid  && (staffForm.controls.fullname.dirty || submitAttempt)" lines="none">
+            <p>Please enter a valid fullname.</p>
+        </ion-item>
           <ion-item>
               <ion-label position="floating">Email*</ion-label>
-              <ion-input type="email" [(ngModel)]="staff.email" placeholder="eg.test@example.com" ></ion-input>
+              <ion-input formControlName="email" type="email" [(ngModel)]="staff.email" placeholder="eg.test@example.com" ></ion-input>
             </ion-item>
+            <ion-item *ngIf="!staffForm.controls.email.valid  && (staffForm.controls.email.dirty || submitAttempt)" lines="none">
+              <p>Please enter a valid email.</p>
+          </ion-item>
               <ion-item>
                   <ion-label position="floating">User Group*</ion-label>
-                  <ion-select placeholder="Select One" [(ngModel)]="staff.usergroup">
+                  <ion-select formControlName="usergroup" placeholder="Select One" [(ngModel)]="staff.usergroup">
                       <ion-select-option [value]="usergroup.code" *ngFor="let usergroup of usergroups">{{usergroup.desc}}</ion-select-option>
                     </ion-select>
                 </ion-item>
+                </form>
                 <br><br>
                 <ion-button (click)="submit()"*ngIf="btnSubmit">Submit</ion-button>
                 <ion-button (click)="update()"*ngIf="btnUpdate">Submit</ion-button>

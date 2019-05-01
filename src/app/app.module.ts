@@ -11,7 +11,7 @@ import { AppComponent } from './app.component';
 import { HttpClientModule } from '@angular/common/http';
 import { FoodbankFilterPageModule } from './foodbank-filter/foodbank-filter.module';
 import { RecipientFormPageModule } from './recipient-form/recipient-form.module';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { UsergroupFormPageModule } from './usergroup-form/usergroup-form.module';
 import { AndroidPermissions } from '@ionic-native/android-permissions/ngx';
 import { Geolocation } from '@ionic-native/geolocation/ngx';
@@ -36,6 +36,8 @@ import { BoxinfoFormPageModule } from './boxinfo-form/boxinfo-form.module';
     OrganizationFormPageModule,
     StaffFormPageModule,
     BoxinfoFormPageModule,
+    FormsModule,
+    ReactiveFormsModule
   
   ],
   providers: [

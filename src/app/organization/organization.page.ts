@@ -1,9 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { HttpClient} from '@angular/common/http';
-import { NavController, ModalController } from '@ionic/angular';
+import { NavController, ModalController, NavParams } from '@ionic/angular';
 import { OrganizationFormPage } from '../organization-form/organization-form.page';
 import { StaffFormPage } from '../staff-form/staff-form.page';
+
+
+
 
 @Component({
   selector: 'app-organization',
@@ -18,6 +21,7 @@ export class OrganizationPage implements OnInit {
   title='';
   cardOrg=false;
   cardStaff=false;
+  
   constructor(private navCtrl:NavController,private http:HttpClient,private modalCtrl:ModalController) { 
     this.title='Organization';
   }
@@ -64,15 +68,19 @@ export class OrganizationPage implements OnInit {
   }
   async createOrg(){
     const modal= await this.modalCtrl.create({
-      component:OrganizationFormPage
+      component:OrganizationFormPage,
     });
+
     return modal.present();
   }
   async createStaff(){
     const modal=await this.modalCtrl.create({
-      component:StaffFormPage
+      component:StaffFormPage,
     });
-    return modal.present();
+    modal.onDidDismiss().then((data)=>{
+      this.items=data.data;
+    });
+  return modal.present();
   }
   async editOrg(id){
     const modal=await this.modalCtrl.create({
@@ -81,12 +89,18 @@ export class OrganizationPage implements OnInit {
     });
     return modal.present();
   }
+  
   async editStaff(id){
     const modal= await this.modalCtrl.create({
       component:StaffFormPage,
       componentProps:{value:id}
     });
+    modal.onDidDismiss().then((data)=>{
+      this.items=data.data;
+   
+    });
     return modal.present();
+    
   }
 
 }

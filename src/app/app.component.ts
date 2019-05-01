@@ -23,7 +23,7 @@ export class AppComponent {
 
   initializeApp() {
     this.platform.ready().then(() => {
-    this.router.navigateByUrl('');
+    //this.router.navigateByUrl('');
       Environment.setEnv({
         'API_KEY_FOR_BROWSER_RELEASE': 'AIzaSyDMPAgokYzvVtLUUmMWQpPCvU_ZZ0ncM6o',
         'API_KEY_FOR_BROWSER_DEBUG': 'AIzaSyDMPAgokYzvVtLUUmMWQpPCvU_ZZ0ncM6o'
