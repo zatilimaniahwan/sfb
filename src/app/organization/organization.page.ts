@@ -77,8 +77,9 @@ export class OrganizationPage implements OnInit {
     const modal=await this.modalCtrl.create({
       component:StaffFormPage,
     });
-    modal.onDidDismiss().then((data)=>{
-      this.items=data.data;
+    //during modal is dismissed, pass data from modal
+    modal.onDidDismiss().then((result)=>{
+      this.items=result.data;
     });
   return modal.present();
   }
@@ -95,8 +96,8 @@ export class OrganizationPage implements OnInit {
       component:StaffFormPage,
       componentProps:{value:id}
     });
-    modal.onDidDismiss().then((data)=>{
-      this.items=data.data;
+    modal.onDidDismiss().then((result)=>{
+      this.items=result.data;
    
     });
     return modal.present();
