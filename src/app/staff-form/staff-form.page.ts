@@ -36,7 +36,6 @@ constructor(
     private http:HttpClient,
     private navParams:NavParams,
     private toastCtrl:ToastController,
-    private navCtrl:NavController,
     private alertCtrl:AlertController,
     public formBuilder: FormBuilder
   ) {
@@ -169,12 +168,7 @@ async delete(){
               var url='http://localhost/smartfoodbank/staff/deletestaff';
               this.data=this.http.post(url,this.staff,{headers:{'Content-Type':'application/x-www-form-urlencoded'}});
               this.data.subscribe(async data=>{
-                this.modalCtrl.dismiss();
-                const toast = await this.toastCtrl.create({
-                  message: 'Data successfully deleted.',
-                  duration: 2000
-                });
-                toast.present();
+                this.onCloseModalDelete()
               });
               
             }
@@ -183,6 +177,19 @@ async delete(){
     ]
   });
   await alert.present();
+}
+onCloseModalDelete(){
+  var url='http://localhost/smartfoodbank/staff/staffs';
+    this.data=this.http.get(url);
+    this.data.subscribe(async data=>{
+      this.items=data;
+      this.modalCtrl.dismiss(this.items);
+      const toast = await this.toastCtrl.create({
+        message: 'Data successfully deleted.',
+        duration: 2000
+      });
+      toast.present();
+    })
 }
 //Clear form
 clear(){
