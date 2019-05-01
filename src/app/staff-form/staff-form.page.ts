@@ -106,6 +106,7 @@ async submit(){
     var url="http://localhost/smartfoodbank/staff/addstaff";
     this.data=this.http.post(url,this.staff,{headers:{'Content-Type':'application/x-www-form-urlencoded'}});
   }
+  //after post data, close modal and get updated data from db
   this.data.subscribe(data=>{
     this.onModalCloseCreate()
    })
