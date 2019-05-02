@@ -24,10 +24,10 @@ export class AppComponent {
   initializeApp() {
     this.platform.ready().then(() => {
     //this.router.navigateByUrl('');
-      Environment.setEnv({
+      /*Environment.setEnv({
         'API_KEY_FOR_BROWSER_RELEASE': 'AIzaSyDMPAgokYzvVtLUUmMWQpPCvU_ZZ0ncM6o',
         'API_KEY_FOR_BROWSER_DEBUG': 'AIzaSyDMPAgokYzvVtLUUmMWQpPCvU_ZZ0ncM6o'
-      });
+      });*/
       this.statusBar.styleDefault();
       this.splashScreen.hide();
     });

@@ -13,9 +13,6 @@ import { FoodbankFilterPageModule } from './foodbank-filter/foodbank-filter.modu
 import { RecipientFormPageModule } from './recipient-form/recipient-form.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { UsergroupFormPageModule } from './usergroup-form/usergroup-form.module';
-import { AndroidPermissions } from '@ionic-native/android-permissions/ngx';
-import { Geolocation } from '@ionic-native/geolocation/ngx';
-import { LocationAccuracy } from '@ionic-native/location-accuracy/ngx';
 import { OrganizationFormPageModule } from './organization-form/organization-form.module';
 import { StaffFormPageModule } from './staff-form/staff-form.module';
 import { BoxinfoFormPageModule } from './boxinfo-form/boxinfo-form.module';
@@ -43,9 +40,6 @@ import { BoxinfoFormPageModule } from './boxinfo-form/boxinfo-form.module';
   providers: [
     StatusBar,
     SplashScreen,
-    AndroidPermissions,
-    Geolocation,
-    LocationAccuracy,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy},
   
   ],

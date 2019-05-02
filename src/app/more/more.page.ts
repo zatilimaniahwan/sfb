@@ -18,10 +18,7 @@ export class MorePage implements OnInit {
   viewBox(){
     this.navCtrl.navigateForward('boxinfo');
   }
-  viewAnnounce(){
-    this.navCtrl.navigateForward('announcement');
-  }
-
+  
   ngOnInit() {
   }
 
