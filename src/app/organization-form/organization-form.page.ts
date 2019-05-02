@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ModalController, NavParams, NavController, ToastController, AlertController } from '@ionic/angular';
 import { Observable } from 'rxjs';
 import { HttpClient} from '@angular/common/http';
+import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 @Component({
   selector: 'app-organization-form',
   templateUrl: './organization-form.page.html',
@@ -10,6 +11,7 @@ import { HttpClient} from '@angular/common/http';
 export class OrganizationFormPage implements OnInit {
   //Declare variable,object and array
   title='';
+  public orgForm: FormGroup;
   organization:any={
     id:'',
     reg_no:'',
@@ -35,7 +37,19 @@ export class OrganizationFormPage implements OnInit {
     private navParams:NavParams,
     private navCtrl:NavController,
     private toastCtrl:ToastController,
-    private alertCtrl:AlertController ) { }
+    private alertCtrl:AlertController,
+    public formBuilder: FormBuilder ) { 
+      this.orgForm = formBuilder.group({
+        reg_no: ['', Validators.compose([Validators.pattern('[a-zA-Z][0-9]*'),Validators.required])],
+        code: ['', Validators.compose([Validators.maxLength(3), Validators.pattern('[a-zA-Z]*'), Validators.required])],
+        org_name: ['', Validators.compose([Validators.pattern('[a-zA-Z ]*'), Validators.required])],
+        address: ['', Validators.compose([Validators.required])],
+        state: ['', Validators.compose([Validators.required])],
+        email: ['', Validators.compose([Validators.required,Validators.email])],
+        tel_no: ['', Validators.compose([Validators.required,Validators.pattern('[0-9]*')])],
+        fax_no: ['', Validators.compose([Validators.pattern('[0-9]*')])]
+    });
+    }
 //State when ionic in ready state
   ngOnInit() {
     this.title='Add New Data';
@@ -83,15 +97,22 @@ export class OrganizationFormPage implements OnInit {
       this.data=this.http.post(url,this.organization,{headers:{'Content-Type':'application/x-www-form-urlencoded'}});
     
     this.data.subscribe(async data=>{
-      this.modalCtrl.dismiss();
-      const toast = await this.toastCtrl.create({
-        message: 'Data successfully added.',
-        duration: 2000
-      });
-      toast.present();
-      this.navCtrl.navigateRoot(['organization',{items:data}]);
-    })
+      this.onModalCloseCreate();
+    });
   }
+  }
+  onModalCloseCreate(){
+    var url='http://localhost/smartfoodbank/organization/organizations';
+      this.data=this.http.get(url);
+      this.data.subscribe(async data=>{
+        this.items=data;
+        this.modalCtrl.dismiss(this.items);
+        const toast = await this.toastCtrl.create({
+          message: 'Data successfully added.',
+          duration: 2000
+        });
+        toast.present();
+      })
   }
   //Update current data
   async update(){

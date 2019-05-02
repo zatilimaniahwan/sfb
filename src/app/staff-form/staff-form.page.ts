@@ -91,7 +91,12 @@ constructor(
   }
    //Close modal and back to previous page
    previous(){
-    this.modalCtrl.dismiss();
+    var url='http://localhost/smartfoodbank/staff/staffs';
+    this.data=this.http.get(url);
+    this.data.subscribe(async data=>{
+      this.items=data;
+      this.modalCtrl.dismiss(this.items);
+    })
   }
 //Submit new data
 async submit(){

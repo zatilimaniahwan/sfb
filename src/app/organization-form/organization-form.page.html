@@ -5,43 +5,73 @@
         </ion-button>
     <ion-title>{{title}}</ion-title>
   </ion-toolbar>
+  <ion-toolbar>
+    <ion-card color="danger">
+      <ion-card-content>
+        <ion-label>Field with * is required</ion-label>
+      </ion-card-content>
+    </ion-card>
+  </ion-toolbar>
 </ion-header>
 
 <ion-content padding>
+    <form [formGroup]="orgForm">
     <ion-item>
-        <ion-label position="floating">Organization Registration Number</ion-label>
-        <ion-input type="text" [(ngModel)]="organization.reg_no" ></ion-input>
+        <ion-label position="floating">Organization Registration Number*</ion-label>
+        <ion-input formControlName="reg_no" type="text" [(ngModel)]="organization.reg_no" ></ion-input>
+      </ion-item>
+      <ion-item *ngIf="!orgForm.controls.reg_no.valid  && (orgForm.controls.reg_no.dirty || submitAttempt)" lines="none">
+          <p>Please enter a valid registration number.</p>
       </ion-item>
       <ion-item>
-          <ion-label position="floating">Code of Organization</ion-label>
-          <ion-input type="text" [(ngModel)]="organization.code" ></ion-input>
+          <ion-label position="floating">Code of Organization*</ion-label>
+          <ion-input formControlName="code" type="text" [(ngModel)]="organization.code" ></ion-input>
+        </ion-item>
+        <ion-item *ngIf="!orgForm.controls.code.valid  && (orgForm.controls.code.dirty || submitAttempt)" lines="none">
+            <p>Please enter a valid organization code.</p>
         </ion-item>
       <ion-item>
-          <ion-label position="floating">Name of Organization</ion-label>
-          <ion-input type="text" [(ngModel)]="organization.org_name" ></ion-input>
+          <ion-label position="floating">Name of Organization*</ion-label>
+          <ion-input formControlName="org_name" type="text" [(ngModel)]="organization.org_name" ></ion-input>
+        </ion-item>
+        <ion-item *ngIf="!orgForm.controls.org_name.valid  && (orgForm.controls.org_name.dirty || submitAttempt)" lines="none">
+            <p>Please enter a valid name of organization.</p>
         </ion-item>
         <ion-item>
-            <ion-label position="floating">Address</ion-label>
-            <ion-textarea type="text" [(ngModel)]="organization.address"></ion-textarea>
+            <ion-label position="floating">Address*</ion-label>
+            <ion-textarea formControlName="address" type="text" [(ngModel)]="organization.address"></ion-textarea>
+          </ion-item>
+          <ion-item *ngIf="!orgForm.controls.address.valid  && (orgForm.controls.address.dirty || submitAttempt)" lines="none">
+              <p>Please enter a valid address.</p>
           </ion-item>
           <ion-item>
-              <ion-label position="floating">State</ion-label>
-              <ion-select placeholder="Select One" [(ngModel)]="organization.state">
+              <ion-label position="floating">State*</ion-label>
+              <ion-select formControlName="state" placeholder="Select One" [(ngModel)]="organization.state">
                   <ion-select-option [value]="state.code" *ngFor="let state of states">{{state.desc}}</ion-select-option>
                 </ion-select>
             </ion-item>
             <ion-item>
-                <ion-label position="floating">Email</ion-label>
-                <ion-input type="email" [(ngModel)]="organization.email" ></ion-input>
+                <ion-label position="floating">Email*</ion-label>
+                <ion-input formControlName="email" type="email" [(ngModel)]="organization.email" ></ion-input>
+              </ion-item>
+              <ion-item *ngIf="!orgForm.controls.email.valid  && (orgForm.controls.email.dirty || submitAttempt)" lines="none">
+                  <p>Please enter a valid email.</p>
               </ion-item>
               <ion-item>
-                  <ion-label position="floating">Telephone No </ion-label>
-                  <ion-input type="text" [(ngModel)]="organization.tel_no" ></ion-input>
+                  <ion-label position="floating">Telephone No* </ion-label>
+                  <ion-input formControlName="tel_no" type="text" [(ngModel)]="organization.tel_no" ></ion-input>
+                </ion-item>
+                <ion-item *ngIf="!orgForm.controls.tel_no.valid  && (orgForm.controls.tel_no.dirty || submitAttempt)" lines="none">
+                    <p>Please enter a valid telephone number.</p>
                 </ion-item>
               <ion-item>
                   <ion-label position="floating">Fax No (optional)</ion-label>
-                  <ion-input type="text" [(ngModel)]="organization.fax_no" ></ion-input>
+                  <ion-input formControlName="fax_no" type="text" [(ngModel)]="organization.fax_no" ></ion-input>
                 </ion-item>
+                <ion-item *ngIf="!orgForm.controls.fax_no.valid  && (orgForm.controls.fax_no.dirty || submitAttempt)" lines="none">
+                    <p>Please enter a valid fax number.</p>
+                </ion-item>
+                </form>
                 <br><br>
                 <ion-button (click)="submit()"*ngIf="btnSubmit">Submit</ion-button>
                 <ion-button (click)="update()"*ngIf="btnUpdate">Submit</ion-button>
