@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ModalController, NavParams, ToastController, NavController, AlertController } from '@ionic/angular';
 import { Observable } from 'rxjs';
 import { HttpClient} from '@angular/common/http';
+import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-usergroup-form',
@@ -11,6 +12,7 @@ import { HttpClient} from '@angular/common/http';
 export class UsergroupFormPage implements OnInit {
   // Declare variable, array and object
   title='';
+  public usergroupForm: FormGroup;
   usergroup:any={
     id:'',
     code:'',
@@ -30,7 +32,13 @@ export class UsergroupFormPage implements OnInit {
     private navParams:NavParams,
     private toastCtrl:ToastController,
     private navCtrl:NavController,
-    private alertCtrl:AlertController) { }
+    private alertCtrl:AlertController,
+    public formBuilder: FormBuilder) { 
+      this.usergroupForm = formBuilder.group({
+        code: ['', Validators.compose([Validators.maxLength(3), Validators.pattern('[a-zA-Z]*'),Validators.required])],
+        desc: ['', Validators.compose([Validators.pattern('[a-zA-Z]*'), Validators.required])]
+    });
+    }
 
   // State when ionic in ready state
   ngOnInit() {
@@ -52,7 +60,12 @@ export class UsergroupFormPage implements OnInit {
   }
 //close modal and back to previous page
   previous(){
-    this.modalCtrl.dismiss();
+    var url='http://localhost/smartfoodbank/usergroup/usergroups';
+    this.data=this.http.get(url);
+    this.data.subscribe(async data=>{
+      this.items=data;
+      this.modalCtrl.dismiss(this.items);
+    })
   }
   //Submit new data
   async submit(){
@@ -67,31 +80,45 @@ export class UsergroupFormPage implements OnInit {
       var url="http://localhost/smartfoodbank/usergroup/addusergroup";
       this.data=this.http.post(url,this.usergroup,{headers:{'Content-Type':'application/x-www-form-urlencoded'}});
     }
-    this.data.subscribe(async data=>{
-      this.modalCtrl.dismiss();
-      const toast = await this.toastCtrl.create({
-        message: 'Data successfully added.',
-        duration: 2000
-      });
-      toast.present();
-      this.navCtrl.navigateRoot(['usergroup',{items:data}]);
-    })
+    this.data.subscribe(data=>{
+      this.onModalCloseCreate()
+     })
+  }
+  onModalCloseCreate(){
+    var url='http://localhost/smartfoodbank/usergroup/usergroups';
+      this.data=this.http.get(url);
+      this.data.subscribe(async data=>{
+        this.items=data;
+        this.modalCtrl.dismiss(this.items);
+        const toast = await this.toastCtrl.create({
+          message: 'Data successfully added.',
+          duration: 2000
+        });
+        toast.present();
+      })
   }
   //Update current data
   async update(){
     if(this.usergroupID !=''){
       var url='http://localhost/smartfoodbank/usergroup/updateusergroup';
       this.data=this.http.post(url,this.usergroup,{headers:{'Content-Type':'application/x-www-form-urlencoded'}});
+      this.data.subscribe(data=>{
+        this.onModalCloseUpdate()
+       })
+    }
+  }
+  onModalCloseUpdate(){
+    var url='http://localhost/smartfoodbank/usergroup/usergroups';
+      this.data=this.http.get(url);
       this.data.subscribe(async data=>{
-        this.modalCtrl.dismiss();
+        this.items=data;
+        this.modalCtrl.dismiss(this.items);
         const toast = await this.toastCtrl.create({
           message: 'Data successfully updated.',
           duration: 2000
         });
         toast.present();
-        this.navCtrl.navigateRoot(['usergroup',{items:data}]);
       })
-    }
   }
   //Delete current data
   async delete(){
@@ -114,14 +141,8 @@ export class UsergroupFormPage implements OnInit {
                 var url='http://localhost/smartfoodbank/usergroup/deleteusergroup';
                 this.data=this.http.post(url,this.usergroup,{headers:{'Content-Type':'application/x-www-form-urlencoded'}});
                 this.data.subscribe(async data=>{
-                  this.modalCtrl.dismiss();
-                  const toast = await this.toastCtrl.create({
-                    message: 'Data successfully deleted.',
-                    duration: 2000
-                  });
-                  toast.present();
-                  this.navCtrl.navigateRoot(['usergroup',{items:data}]);
-                })
+                  this.onCloseModalDelete()
+                });
               }
             }
           }
@@ -129,9 +150,25 @@ export class UsergroupFormPage implements OnInit {
     });
     await alert.present();
   }
+  onCloseModalDelete(){
+    var url='http://localhost/smartfoodbank/usergroup/usergroups';
+      this.data=this.http.get(url);
+      this.data.subscribe(async data=>{
+        this.items=data;
+        this.modalCtrl.dismiss(this.items);
+        const toast = await this.toastCtrl.create({
+          message: 'Data successfully deleted.',
+          duration: 2000
+        });
+        toast.present();
+      })
+  }
   //Clear form
   clear(){
-    this.usergroup.code='';
-    this.usergroup.desc='';
+    this.usergroupForm = this.formBuilder.group({
+     code:'',
+     desc:''
+  
+  });
   }
 }

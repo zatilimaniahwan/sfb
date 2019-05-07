@@ -70,7 +70,10 @@ export class OrganizationPage implements OnInit {
     const modal= await this.modalCtrl.create({
       component:OrganizationFormPage,
     });
-
+     //during modal is dismissed, pass data from modal
+     modal.onDidDismiss().then((result)=>{
+      this.items=result.data;
+    });
     return modal.present();
   }
   async createStaff(){

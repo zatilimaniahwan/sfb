@@ -46,7 +46,7 @@
           </ion-item>
           <ion-item>
               <ion-label position="floating">State*</ion-label>
-              <ion-select formControlName="state" placeholder="Select One" [(ngModel)]="organization.state">
+              <ion-select formControlName="state_id" placeholder="Select One" [(ngModel)]="organization.state_id">
                   <ion-select-option [value]="state.code" *ngFor="let state of states">{{state.desc}}</ion-select-option>
                 </ion-select>
             </ion-item>
@@ -66,7 +66,7 @@
                 </ion-item>
               <ion-item>
                   <ion-label position="floating">Fax No (optional)</ion-label>
-                  <ion-input formControlName="fax_no" placeholder="03-12345678" type="text" [(ngModel)]="organization.fax_no" ></ion-input>
+                  <ion-input formControlName="fax_no" placeholder="eg.03-12345678" type="text" [(ngModel)]="organization.fax_no" ></ion-input>
                 </ion-item>
                 <ion-item *ngIf="!orgForm.controls.fax_no.valid  && (orgForm.controls.fax_no.dirty || submitAttempt)" lines="none">
                     <p>Please enter a valid fax number.</p>

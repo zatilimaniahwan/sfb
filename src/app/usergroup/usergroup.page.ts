@@ -27,12 +27,20 @@ export class UsergroupPage implements OnInit {
     const modal = await this.modalCtrl.create({
       component:UsergroupFormPage
     });
+     //during modal is dismissed, pass data from modal
+     modal.onDidDismiss().then((result)=>{
+      this.items=result.data;
+    });
   return modal.present();
   }
   async edit(id){
     const modal=await this.modalCtrl.create({
       component:UsergroupFormPage,
       componentProps:{value:id}
+    });
+     //during modal is dismissed, pass data from modal
+     modal.onDidDismiss().then((result)=>{
+      this.items=result.data;
     });
    return modal.present();
   }

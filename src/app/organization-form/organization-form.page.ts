@@ -18,7 +18,7 @@ export class OrganizationFormPage implements OnInit {
     code:'',
     org_name:'',
     address:'',
-    state:'',
+    state_id:'',
     email:'',
     tel_no:'',
     fax_no:''
@@ -43,7 +43,7 @@ export class OrganizationFormPage implements OnInit {
         code: ['', Validators.compose([Validators.maxLength(3), Validators.pattern('[a-zA-Z]*'), Validators.required])],
         org_name: ['', Validators.compose([Validators.pattern('[a-zA-Z ]*'), Validators.required])],
         address: ['', Validators.compose([Validators.required])],
-        state: ['', Validators.compose([Validators.required])],
+        state_id: ['', Validators.compose([Validators.required])],
         email: ['', Validators.compose([Validators.required,Validators.email])],
         tel_no: ['', Validators.compose([Validators.required,Validators.pattern('[0-9]*')])],
         fax_no: ['', Validators.compose([Validators.pattern('[0-9]*')])]
@@ -191,7 +191,7 @@ export class OrganizationFormPage implements OnInit {
       code: '',
       org_name: '',
       address: '',
-      state: '',
+      state_id: '',
       email: '',
       tel_no:'',
       fax_no: ''

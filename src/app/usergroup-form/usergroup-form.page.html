@@ -20,7 +20,7 @@
           <ion-label position="floating">Name of User Group</ion-label>
           <ion-input formControlName="desc" placeholder="eg.Example" type="text" [(ngModel)]="usergroup.desc" ></ion-input>
         </ion-item>
-        <ion-item *ngIf="!usergroupForm.controls.staff_code.valid  && (staffForm.controls.staff_code.dirty || submitAttempt)" lines="none">
+        <ion-item *ngIf="!usergroupForm.controls.desc.valid  && (usergroupForm.controls.desc.dirty || submitAttempt)" lines="none">
           <p>Please enter a valid staff code.</p>
       </ion-item>
         </form>

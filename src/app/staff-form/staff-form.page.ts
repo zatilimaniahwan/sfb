@@ -136,7 +136,7 @@ async update(){
     this.data=this.http.post(url,this.staff,{headers:{'Content-Type':'application/x-www-form-urlencoded'}});
     this.data.subscribe(data=>{
      this.onModalCloseUpdate()
-    })
+    });
   }
 }
 onModalCloseUpdate(){
