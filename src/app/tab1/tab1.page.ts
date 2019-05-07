@@ -9,8 +9,7 @@ import { FoodbankFilterPage } from '../foodbank-filter/foodbank-filter.page';
   styleUrls: ['tab1.page.scss']
 })
 export class Tab1Page implements OnInit {
-  map: GoogleMap;
-  address:string;
+  
 constructor(public modalCtrl:ModalController,public platform:Platform,public toastCtrl:ToastController){}
 ngOnInit() {
 

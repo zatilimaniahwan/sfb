@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ModalController, NavParams, NavController, ToastController, AlertController } from '@ionic/angular';
+import { ModalController, NavParams,ToastController, AlertController } from '@ionic/angular';
 import { Observable } from 'rxjs';
 import { HttpClient} from '@angular/common/http';
 import { FormBuilder, Validators, FormGroup } from '@angular/forms';
@@ -35,7 +35,6 @@ export class OrganizationFormPage implements OnInit {
     private modalCtrl:ModalController,
     private http:HttpClient,
     private navParams:NavParams,
-    private navCtrl:NavController,
     private toastCtrl:ToastController,
     private alertCtrl:AlertController,
     public formBuilder: FormBuilder ) { 
@@ -81,7 +80,12 @@ export class OrganizationFormPage implements OnInit {
   }
   //Close modal and back to previous page
   previous(){
-    this.modalCtrl.dismiss();
+    var url='http://localhost/smartfoodbank/organization/organizations';
+    this.data=this.http.get(url);
+    this.data.subscribe(async data=>{
+      this.items=data;
+      this.modalCtrl.dismiss(this.items);
+    })
   }
   //Submit new data
   async submit(){
@@ -119,16 +123,23 @@ export class OrganizationFormPage implements OnInit {
     if(this.organizationID !=''){
       var url='http://localhost/smartfoodbank/organization/updateorganization';
       this.data=this.http.post(url,this.organization,{headers:{'Content-Type':'application/x-www-form-urlencoded'}});
+      this.data.subscribe(data=>{
+        this.onModalCloseUpdate()
+       })
+    }
+  }
+  onModalCloseUpdate(){
+    var url='http://localhost/smartfoodbank/organization/organizations';
+      this.data=this.http.get(url);
       this.data.subscribe(async data=>{
-        this.modalCtrl.dismiss();
+        this.items=data;
+        this.modalCtrl.dismiss(this.items);
         const toast = await this.toastCtrl.create({
           message: 'Data successfully updated.',
           duration: 2000
         });
         toast.present();
-        this.navCtrl.navigateRoot(['organization',{items:data}]);
       })
-    }
   }
   //Delete current data
   async delete(){
@@ -151,14 +162,8 @@ export class OrganizationFormPage implements OnInit {
                 var url='http://localhost/smartfoodbank/organization/deleteorganization';
                 this.data=this.http.post(url,this.organization,{headers:{'Content-Type':'application/x-www-form-urlencoded'}});
                 this.data.subscribe(async data=>{
-                  this.modalCtrl.dismiss();
-                  const toast = await this.toastCtrl.create({
-                    message: 'Data successfully deleted.',
-                    duration: 2000
-                  });
-                  toast.present();
-                  this.navCtrl.navigateRoot(['organization',{items:data}]);
-                })
+                  this.onCloseModalDelete()
+                });
               }
             }
           }
@@ -166,15 +171,32 @@ export class OrganizationFormPage implements OnInit {
     });
     await alert.present();
   }
+  onCloseModalDelete(){
+    var url='http://localhost/smartfoodbank/organization/organizations';
+      this.data=this.http.get(url);
+      this.data.subscribe(async data=>{
+        this.items=data;
+        this.modalCtrl.dismiss(this.items);
+        const toast = await this.toastCtrl.create({
+          message: 'Data successfully deleted.',
+          duration: 2000
+        });
+        toast.present();
+      })
+  }
   //Clear form
   clear(){
-    this.organization.reg_no='';
-    this.organization.org_name='';
-    this.organization.address='';
-    this.organization.state='';
-    this.organization.email='';
-    this.organization.tel_no='';
-    this.organization.fax_no='';
+    this.orgForm = this.formBuilder.group({
+      reg_no: '',
+      code: '',
+      org_name: '',
+      address: '',
+      state: '',
+      email: '',
+      tel_no:'',
+      fax_no: ''
+  
+  });
   }
 
 }

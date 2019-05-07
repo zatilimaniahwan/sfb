@@ -8,14 +8,22 @@
   </ion-header>
 
 <ion-content padding>
+    <form [formGroup]="usergroupForm">
     <ion-item>
         <ion-label position="floating">Code of User Group</ion-label>
-        <ion-input type="text" [(ngModel)]="usergroup.code" ></ion-input>
+        <ion-input formControlName="code" placeholder="eg.EXP" type="text" [(ngModel)]="usergroup.code" ></ion-input>
+      </ion-item>
+      <ion-item *ngIf="!usergroupForm.controls.code.valid  && (usergroupForm.controls.code.dirty || submitAttempt)" lines="none">
+          <p>Please enter a valid staff code.</p>
       </ion-item>
       <ion-item>
           <ion-label position="floating">Name of User Group</ion-label>
-          <ion-input type="text" [(ngModel)]="usergroup.desc" ></ion-input>
+          <ion-input formControlName="desc" placeholder="eg.Example" type="text" [(ngModel)]="usergroup.desc" ></ion-input>
         </ion-item>
+        <ion-item *ngIf="!usergroupForm.controls.staff_code.valid  && (staffForm.controls.staff_code.dirty || submitAttempt)" lines="none">
+          <p>Please enter a valid staff code.</p>
+      </ion-item>
+        </form>
         <br><br>
           <ion-button (click)="submit()"*ngIf="btnSubmit">Submit</ion-button>
           <ion-button (click)="update()"*ngIf="btnUpdate">Submit</ion-button>
