@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { NavController, ToastController } from '@ionic/angular';
 import { Observable } from 'rxjs';
 import { HttpClient} from '@angular/common/http';
-import { SecureStorage, SecureStorageObject } from '@ionic-native/secure-storage/ngx';
 
 @Component({
   selector: 'app-login',
@@ -15,12 +14,13 @@ export class LoginPage implements OnInit {
     staff_code:'',
     password:''
   }
+  staffID='';
+  loginToken='';
   toaster:any;
   constructor(
     private navCtrl:NavController,
     private toastCtrl:ToastController,
-    private http:HttpClient,
-    private secureStorage:SecureStorage
+    private http:HttpClient
     ) { 
     
   }
@@ -39,11 +39,20 @@ export class LoginPage implements OnInit {
       var url="http://localhost/smartfoodbank/staff/login";
       this.data=this.http.post(url,this.login,{headers:{'Content-Type':'application/x-www-form-urlencoded'}});
       this.data.subscribe(data=>{
-        this.navCtrl.navigateForward('');
+        data.forEach(element => {
+          this.loginToken=element['login_token'];
+        });
+        if(this.loginToken!='' && this.loginToken!=undefined){
+          this.navCtrl.navigateForward('');
+        }
+       else{
+         return;
+       }
       })
       
     }
   }
+ 
 
   ngOnInit() {
   }

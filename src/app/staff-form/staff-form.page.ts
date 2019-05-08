@@ -19,6 +19,7 @@ staff:any={
 organization_code:'',
 staff_code:'',
 fullname:'',
+ic_no:'',
 email:'',
 usergroup:''
 }
@@ -43,7 +44,8 @@ constructor(
     this.staffForm = formBuilder.group({
       organization_code: ['', Validators.compose([Validators.required])],
       staff_code: ['', Validators.compose([Validators.maxLength(4), Validators.pattern('[a-zA-Z][0-9]*'), Validators.required])],
-      fullname: ['', Validators.compose([Validators.maxLength(255), Validators.pattern('[a-zA-Z ]*'), Validators.required])],
+      fullname: ['', Validators.compose([Validators.pattern('[a-zA-Z ]*'), Validators.required])],
+      ic_no: ['', Validators.compose([Validators.maxLength(12), Validators.pattern('[0-9]*'), Validators.required])],
       email: ['', Validators.compose([Validators.required,Validators.email])],
       usergroup: ['', Validators.compose([Validators.required])]
 
@@ -203,6 +205,7 @@ clear(){
     organization_code:'',
     staff_code: '',
     fullname: '',
+    ic_no:'',
     email: '',
     usergroup:''
 

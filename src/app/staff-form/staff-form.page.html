@@ -36,6 +36,13 @@
           <ion-item *ngIf="!staffForm.controls.fullname.valid  && (staffForm.controls.fullname.dirty || submitAttempt)" lines="none">
             <p>Please enter a valid fullname.</p>
         </ion-item>
+        <ion-item>
+          <ion-label position="floating">IC Number*</ion-label>
+          <ion-input formControlName="ic_no"  type="text" [(ngModel)]="staff.ic_no" placeholder="eg.900112105567" ></ion-input>
+        </ion-item>
+        <ion-item *ngIf="!staffForm.controls.ic_no.valid  && (staffForm.controls.ic_no.dirty || submitAttempt)" lines="none">
+            <p>Please enter a valid IC number.</p>
+        </ion-item>
           <ion-item>
               <ion-label position="floating">Email*</ion-label>
               <ion-input formControlName="email" type="email" [(ngModel)]="staff.email" placeholder="eg.test@example.com" ></ion-input>
