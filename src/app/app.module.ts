@@ -6,6 +6,7 @@ import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 
+
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HttpClientModule } from '@angular/common/http';
@@ -16,6 +17,7 @@ import { UsergroupFormPageModule } from './usergroup-form/usergroup-form.module'
 import { OrganizationFormPageModule } from './organization-form/organization-form.module';
 import { StaffFormPageModule } from './staff-form/staff-form.module';
 import { BoxinfoFormPageModule } from './boxinfo-form/boxinfo-form.module';
+import { AuthModule } from  './auth/auth.module';
 
 
 
@@ -34,7 +36,8 @@ import { BoxinfoFormPageModule } from './boxinfo-form/boxinfo-form.module';
     StaffFormPageModule,
     BoxinfoFormPageModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    AuthModule
   
   ],
   providers: [

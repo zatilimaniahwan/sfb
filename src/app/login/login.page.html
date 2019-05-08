@@ -8,19 +8,27 @@
 </ion-header>
 
 <ion-content padding>
-  <ion-card color="warning">
+  <ion-card color="secondary">
     <ion-card-content>
-      <ion-label id="warning">Please enter your staff code and password to login. Please contact admin if you forgot the password</ion-label>
+      <ion-label id="warning">Please enter your staff code and password to login. Your password is your IC number.Please contact admin if you forgot the password</ion-label>
     </ion-card-content>
   </ion-card>
+  <form [formGroup]="loginForm">
   <ion-item>
       <ion-icon name="contact" slot="start" position="floating"></ion-icon>
-      <ion-input type="text"[(ngModel)]="login.staff_code" placeholder="Enter your Staff Code"></ion-input>
+      <ion-input formControlName="staff_code" type="text"[(ngModel)]="login.staff_code" placeholder="Enter your staff code."></ion-input>
     </ion-item>
+    <ion-item *ngIf="!loginForm.controls.staff_code.valid  && (loginForm.controls.staff_code.dirty || submitAttempt)" lines="none">
+      <p>Please enter a valid staff code.</p>
+  </ion-item>
     <ion-item>
         <ion-icon name="lock" slot="start" position="floating"></ion-icon>
-        <ion-input type="password" [(ngModel)]="login.password" placeholder="Enter your password"></ion-input>
+        <ion-input formControlName="password" type="password" [(ngModel)]="login.password" placeholder="Enter your password."></ion-input>
       </ion-item>
+      <ion-item *ngIf="!loginForm.controls.password.valid  && (loginForm.controls.password.dirty || submitAttempt)" lines="none">
+        <p>Please enter a valid password.</p>
+    </ion-item>
+      </form>
       <br>
       <ion-button expand="block" (click)="submit()"><ion-icon name="log-in" slot="end"></ion-icon>Login</ion-button>
 

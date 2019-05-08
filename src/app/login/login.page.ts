@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { NavController, ToastController } from '@ionic/angular';
 import { Observable } from 'rxjs';
 import { HttpClient} from '@angular/common/http';
+import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-login',
@@ -10,18 +11,25 @@ import { HttpClient} from '@angular/common/http';
 })
 export class LoginPage implements OnInit {
   data:Observable<any>;
+  public loginForm: FormGroup;
   login:any={
     staff_code:'',
     password:''
   }
+  userData = {"staff_code": "","fullname": "", "usergroup": "","email": ""};
   staffID='';
   loginToken='';
   toaster:any;
   constructor(
     private navCtrl:NavController,
     private toastCtrl:ToastController,
-    private http:HttpClient
+    private http:HttpClient,
+    public formBuilder: FormBuilder
     ) { 
+      this.loginForm = formBuilder.group({
+        staff_code: ['', Validators.compose([Validators.maxLength(4), Validators.pattern('[a-zA-Z][0-9]*'), Validators.required])],
+        password: ['', Validators.compose([Validators.maxLength(12), Validators.pattern('[0-9]*'), Validators.required])],
+    });
     
   }
   previous(){
@@ -43,6 +51,8 @@ export class LoginPage implements OnInit {
           this.loginToken=element['login_token'];
         });
         if(this.loginToken!='' && this.loginToken!=undefined){
+         const items= localStorage.setItem('userData', JSON.stringify(data));
+          console.log(items);
           this.navCtrl.navigateForward('');
         }
        else{
@@ -52,8 +62,6 @@ export class LoginPage implements OnInit {
       
     }
   }
- 
-
   ngOnInit() {
   }
 
